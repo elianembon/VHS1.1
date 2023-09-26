@@ -448,6 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b76ea61c6899449b76a5a7c00b893a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxGen: 4
 --- !u!65 &200384340
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -581,6 +582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b76ea61c6899449b76a5a7c00b893a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxGen: 4
 --- !u!65 &316717426
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -694,7 +696,7 @@ GameObject:
   - component: {fileID: 387905511}
   - component: {fileID: 387905510}
   - component: {fileID: 387905509}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: En
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -716,7 +718,7 @@ MonoBehaviour:
   sacarVida: {fileID: 1538932953}
   jugador: {fileID: 482045284}
   rangoPersecusion: 3
-  velocidad: 800
+  velocidad: 5
   distanciaMinima: 1
   Point1Transform: {fileID: 453862909}
   Point2Transform: {fileID: 599847870}
@@ -745,7 +747,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -1220,7 +1222,7 @@ GameObject:
   - component: {fileID: 549771329}
   - component: {fileID: 549771328}
   - component: {fileID: 549771330}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ActiveRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2985,11 +2987,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4762592824401658686, guid: d08cdec9e5f8cc24c99e4e094a3e83ad, type: 3}
       propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762592824401658686, guid: d08cdec9e5f8cc24c99e4e094a3e83ad, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762592824401658686, guid: d08cdec9e5f8cc24c99e4e094a3e83ad, type: 3}
+      propertyPath: m_Interpolate
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762592824401658686, guid: d08cdec9e5f8cc24c99e4e094a3e83ad, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6094763725625658860, guid: d08cdec9e5f8cc24c99e4e094a3e83ad, type: 3}
       propertyPath: m_Name
       value: Player 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6094763725625658860, guid: d08cdec9e5f8cc24c99e4e094a3e83ad, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8985131238114696005, guid: d08cdec9e5f8cc24c99e4e094a3e83ad, type: 3}
       propertyPath: getLife
@@ -3039,6 +3057,14 @@ PrefabInstance:
       propertyPath: Bag.Array.data[8]
       value: 
       objectReference: {fileID: 1552080805}
+    - target: {fileID: 9056026973098899036, guid: d08cdec9e5f8cc24c99e4e094a3e83ad, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9056026973098899036, guid: d08cdec9e5f8cc24c99e4e094a3e83ad, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
