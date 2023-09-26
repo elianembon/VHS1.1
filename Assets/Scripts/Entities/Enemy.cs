@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour
             {
                 persiguiendoJugador = true;
 
-                // Si no estamos en pausa, seguimos moviéndonos hacia el jugador.
+                // Si no estamos en pausa, seguimos moviendonos hacia el jugador.
                 Vector3 direccion = (jugador.position - transform.position).normalized;
                 transform.position += direccion * velocidad * Time.deltaTime;
             }
