@@ -26,7 +26,7 @@ public class Inventory : MonoBehaviour
     {
         Nav();
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             if (!activeInventory)
             {

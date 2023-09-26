@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IMovable, ILife
 {
@@ -100,8 +101,9 @@ public class Player : MonoBehaviour, IMovable, ILife
     {
             
        Debug.Log($"{name} !DIED¡");
+
         //Destroy(gameObject);
-        
+        SceneManager.LoadScene("Derrota");
     }
 
     #endregion

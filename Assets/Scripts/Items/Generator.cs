@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Generator : MonoBehaviour
 {
@@ -22,6 +24,7 @@ public class Generator : MonoBehaviour
         if (generatorManager.GetGeneratorCount() == maxGen)
         {
             Debug.Log("¡Ganaste!");
+            SceneManager.LoadScene("Victoria");
         }
 
         if (canSpaceInp == true)
