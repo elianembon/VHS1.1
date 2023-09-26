@@ -64,10 +64,9 @@ public class PlayerManager : Player
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Medic"))
+        if (collision.gameObject.CompareTag("Medic") || collision.gameObject.CompareTag("Item"))
         {
-            GetLife();
-            
+            Destroy(collision.gameObject);
         }
     }
 

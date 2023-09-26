@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
+    public PlayerManager getLife;
     public List<GameObject> Bag = new List<GameObject>();
     public GameObject inventory;
 
@@ -60,6 +61,8 @@ public class Inventory : MonoBehaviour
                 {
                     // Realiza la acción de curación
                     Debug.Log("Te estoy curando");
+                    getLife.GetLife();
+                    RemoveItemFromInventory();
                     // Puedes agregar aquí la lógica para curar al jugador si es necesario
                 }
             }
