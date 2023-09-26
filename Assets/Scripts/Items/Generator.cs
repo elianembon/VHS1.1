@@ -24,7 +24,7 @@ public class Generator : MonoBehaviour
         if (generatorManager.GetGeneratorCount() == maxGen)
         {
             Debug.Log("¡Ganaste!");
-            SceneManager.LoadScene("Victoria");
+            SceneManager.LoadScene("Victoria1");
         }
 
         if (canSpaceInp == true)

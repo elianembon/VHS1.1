@@ -60,4 +60,14 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("ComoJugar");
     }
+
+    public void level2()
+    {
+        SceneManager.LoadScene("Level2");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
