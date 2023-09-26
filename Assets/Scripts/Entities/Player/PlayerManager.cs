@@ -62,14 +62,6 @@ public class PlayerManager : Player
         Attack();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Medic") || collision.gameObject.CompareTag("Item"))
-        {
-            Destroy(collision.gameObject);
-        }
-    }
-
     private void Attack()
     {
         if (Input.GetKey(_attack))

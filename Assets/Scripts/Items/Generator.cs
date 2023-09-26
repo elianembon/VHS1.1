@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
+    public int maxGen = 4;
+
     private GeneratorManager generatorManager;
 
     private Stack<GameObject> generatorStack = new();
@@ -17,7 +19,7 @@ public class Generator : MonoBehaviour
     }
     private void Update()
     {
-        if (generatorManager.GetGeneratorCount() == 2)
+        if (generatorManager.GetGeneratorCount() == maxGen)
         {
             Debug.Log("¡Ganaste!");
         }

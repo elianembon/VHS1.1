@@ -100,7 +100,8 @@ public class Player : MonoBehaviour, IMovable, ILife
     {
             
        Debug.Log($"{name} !DIED¡");
-       //Destroy(gameObject);
+        //Destroy(gameObject);
+        
     }
 
     #endregion
