@@ -7,12 +7,64 @@ public class Inventory : MonoBehaviour
 {
     public List<GameObject> Bag = new List<GameObject>();
     public GameObject inventory;
-    public bool activeInventory;
 
     public GameObject Selector;
     public int ID;
 
-    private bool isGamePaused = false;
+    private bool isGamePaused;
+    private bool activeInventory;
+
+    private void Awake()
+    {
+        isGamePaused = false;
+        activeInventory = false;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Nav();
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            if (!activeInventory)
+            {
+                activeInventory = true;
+                inventory.SetActive(true);
+                PauseGame();
+            }
+            else
+            {
+                activeInventory = false;
+                inventory.SetActive(false);
+                ResumeGame();
+            }
+        }
+
+        // Añade un manejo para quitar un objeto del inventario
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            RemoveItemFromInventory();
+        }
+
+        // Verifica si se presiona 'F' y el objeto seleccionado tiene la etiqueta "Medic"
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (ID >= 0 && ID < Bag.Count)
+            {
+                GameObject selectedSlot = Bag[ID];
+                Image selectedImage = selectedSlot.GetComponent<Image>();
+
+                // Verifica si el objeto en el slot tiene la etiqueta "Medic"
+                if (selectedImage.enabled && selectedSlot.CompareTag("Medic"))
+                {
+                    // Realiza la acción de curación
+                    Debug.Log("Te estoy curando");
+                    // Puedes agregar aquí la lógica para curar al jugador si es necesario
+                }
+            }
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D coll)
     {
@@ -115,53 +167,6 @@ public class Inventory : MonoBehaviour
         ResumeGameDueToInventory(); // Reanuda el juego cuando se cierra el inventario
         inventory.SetActive(false);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Nav();
-
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            if (!activeInventory)
-            {
-                activeInventory = true;
-                inventory.SetActive(true);
-                PauseGame();
-            }
-            else
-            {
-                activeInventory = false;
-                inventory.SetActive(false);
-                ResumeGame();
-            }
-        }
-
-        // Añade un manejo para quitar un objeto del inventario
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            RemoveItemFromInventory();
-        }
-
-        // Verifica si se presiona 'F' y el objeto seleccionado tiene la etiqueta "Medic"
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            if (ID >= 0 && ID < Bag.Count)
-            {
-                GameObject selectedSlot = Bag[ID];
-                Image selectedImage = selectedSlot.GetComponent<Image>();
-
-                // Verifica si el objeto en el slot tiene la etiqueta "Medic"
-                if (selectedImage.enabled && selectedSlot.CompareTag("Medic"))
-                {
-                    // Realiza la acción de curación
-                    Debug.Log("Te estoy curando");
-                    // Puedes agregar aquí la lógica para curar al jugador si es necesario
-                }
-            }
-        }
-    }
-
 }
 
 
