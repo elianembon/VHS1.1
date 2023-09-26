@@ -19,16 +19,10 @@ private void Start()
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-
         if (collision.gameObject.tag == "Player")
-
         {
-            sacarVida.LooseLife();        
-            
-        }
-        
-        
-        
+            sacarVida.LooseLife();                  
+        }      
     }
 
     private void Update()
