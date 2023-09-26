@@ -9,21 +9,27 @@ public class GameManager : MonoBehaviour
 
     private bool isGamePaused = false;
 
+    private string currentSceneName;
+
     private void Awake()
     {
-        // Asegúrate de que solo haya una instancia de GameManager en la escena
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
+            OnDestroy();
         }
+
     }
 
-    // Resto del código del GameManager...
+    private void Start()
+    {
+        GeneratorManager.OnGeneratorCountReachedMax += NextLevel;
+    }
 
     // Método para pausar el juego
     public void PauseGame()
@@ -43,12 +49,20 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel()
     {
+        currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void ReloadScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (!string.IsNullOrEmpty(currentSceneName))
+        {
+            SceneManager.LoadScene(currentSceneName);
+        }
+        else
+        {
+            SceneManager.LoadScene("Level 1");
+        }
     }
 
     public void GoToMenu()
@@ -70,4 +84,11 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    private void OnDestroy()
+    {
+        GeneratorManager.OnGeneratorCountReachedMax -= NextLevel;
+    }
+
 }
+

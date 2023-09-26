@@ -63,7 +63,7 @@ public class Inventory : MonoBehaviour
                     Debug.Log("Te estoy curando");
                     getLife.GetLife();
                     RemoveItemFromInventory();
-                    // Puedes agregar aquí la lógica para curar al jugador si es necesario
+                    
                 }
             }
         }

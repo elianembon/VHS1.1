@@ -6,26 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class Generator : MonoBehaviour
 {
-    public int maxGen = 4;
-
     private GeneratorManager generatorManager;
 
     private Stack<GameObject> generatorStack = new();
 
     private bool canSpaceInp = false;
 
-
+    SpriteRenderer spriteRenderer;
     private void Start()
     {
         generatorManager = GeneratorManager.Instance;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     private void Update()
     {
-        if (generatorManager.GetGeneratorCount() == maxGen)
-        {
-            Debug.Log("¡Ganaste!");
-            SceneManager.LoadScene("Victoria1");
-        }
 
         if (canSpaceInp == true)
         {
@@ -47,6 +41,7 @@ public class Generator : MonoBehaviour
     private void SaveGenerator()
     {
         generatorManager.PushGenerator(gameObject);
+        spriteRenderer.color = Color.yellow;
     }
 
     public void EnableSpaceInput()
@@ -57,5 +52,13 @@ public class Generator : MonoBehaviour
     public void DisableSpaceInput()
     {
         canSpaceInp = false;
+    }
+
+    public void ChangeSpriteColor(Color newColor)
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = newColor;
+        }
     }
 }

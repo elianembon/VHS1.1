@@ -1,25 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using static Generator;
 
 public class GeneratorManager : MonoBehaviour
 {
     private static GeneratorManager instance;
 
-    // Esta será la pila compartida por todos los objetos con el script Generator.
     private Stack<GameObject> generatorStack = new Stack<GameObject>();
 
+    public delegate void GeneratorCountReachedMax();
+    public static event GeneratorCountReachedMax OnGeneratorCountReachedMax;
+
     private float timer = 0f;
-    public float maxTimer = 60f; // Tiempo límite
+    public float maxTimer = 60f;
     private bool isTimerActive = false;
     public static GeneratorManager Instance
     {
         get { return instance; }
     }
 
+    public int maxGeneratorCount = 3;
+    private int currentGeneratorCount = 0;
+
     private void Awake()
     {
-        // Asegúrate de que solo haya una instancia de GeneratorManager en la escena.
         if (instance == null)
         {
             instance = this;
@@ -36,15 +42,12 @@ public class GeneratorManager : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            // Si se alcanza el tiempo límite, saca el último elemento de la pila y reinicia el cronómetro.
-            if (timer >= maxTimer)
+            if (timer >= maxTimer && generatorStack.Count() > 0)
             {
-                if (generatorStack.Count() > 0)
-                {
-                    GameObject lastGenerator = generatorStack.Pop();
-                    // Realiza aquí cualquier acción que necesites al sacar el último generador.
-                    Debug.Log("Se ha sacado el último generador de la pila.");
-                }
+                GameObject lastGenerator = generatorStack.Pop();
+                ChangeSpriteColorOfLastGenerator(lastGenerator);
+                PerformAction(lastGenerator);
+
                 ResetTimer();
             }
         }
@@ -52,20 +55,26 @@ public class GeneratorManager : MonoBehaviour
 
     public void PushGenerator(GameObject generator)
     {
-        // Agrega el generador actual a la pila.
         generatorStack.Push(generator);
+        currentGeneratorCount++;
 
-
-        // Si la pila tenía 0 elementos antes de agregar este generador, inicia el cronómetro.
-        if (generatorStack.Count() == 1)
+        if (currentGeneratorCount >= maxGeneratorCount)
+        {
+            StopTimer();
+            if (OnGeneratorCountReachedMax != null)
+            {
+                OnGeneratorCountReachedMax(); // Dispara el evento
+            }
+        }
+        else if (!isTimerActive)
         {
             StartTimer();
         }
     }
 
-    public int GetGeneratorCount()
+    public int GetCurrentGeneratorCount()
     {
-        return generatorStack.Count();
+        return currentGeneratorCount;
     }
 
     private void StartTimer()
@@ -74,10 +83,31 @@ public class GeneratorManager : MonoBehaviour
         timer = 0f;
     }
 
-    private void ResetTimer()
+    private void StopTimer()
     {
         isTimerActive = false;
+    }
+
+    private void ResetTimer()
+    {
         timer = 0f;
     }
+
+    private void ChangeSpriteColorOfLastGenerator(GameObject generator)
+    {
+        Generator generatorComponent = generator.GetComponent<Generator>();
+
+        if (generatorComponent != null)
+        {
+            generatorComponent.ChangeSpriteColor(Color.red);
+        }
+    }
+
+    private void PerformAction(GameObject generator)
+    {
+        // Realiza la acción cuando se alcanza el tiempo límite.
+        // Puedes implementar tu lógica personalizada aquí.
+    }
+
 }
 
