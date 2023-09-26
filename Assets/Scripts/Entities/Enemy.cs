@@ -14,6 +14,11 @@ public class Enemy : MonoBehaviour
     public Transform Point2Transform;
     public Transform Point3Transform;
     public Transform Point4Transform;
+    public Transform Point5Transform;
+    public Transform Point6Transform;
+    public Transform Point7Transform;
+    public Transform Point8Transform;
+    public Transform Point9Transform;
 
     private Transform puntoActual;
     private bool persiguiendoJugador = false;
@@ -28,6 +33,11 @@ public class Enemy : MonoBehaviour
         puntosRecorrido.Enqueue(Point2Transform);
         puntosRecorrido.Enqueue(Point3Transform);
         puntosRecorrido.Enqueue(Point4Transform);
+        puntosRecorrido.Enqueue(Point5Transform);
+        puntosRecorrido.Enqueue(Point6Transform);
+        puntosRecorrido.Enqueue(Point7Transform);
+        puntosRecorrido.Enqueue(Point8Transform);
+        puntosRecorrido.Enqueue(Point9Transform);
         if (puntosRecorrido.Counter() > 0)
         {
             puntoActual = puntosRecorrido.Dequeue();
