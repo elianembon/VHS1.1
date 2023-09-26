@@ -10,7 +10,7 @@ public class GeneratorManager : MonoBehaviour
     private Stack<GameObject> generatorStack = new Stack<GameObject>();
 
     private float timer = 0f;
-    private float maxTimer = 60f; // Tiempo límite
+    public float maxTimer = 60f; // Tiempo límite
     private bool isTimerActive = false;
     public static GeneratorManager Instance
     {
