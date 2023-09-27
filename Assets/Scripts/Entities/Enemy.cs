@@ -6,8 +6,8 @@ public class Enemy : MonoBehaviour
 {
     public PlayerManager sacarVida;
     public Transform jugador;
-    public float rangoPersecusion = 10.0f;
-    public float velocidad = 5.0f;
+    public static float rangoPersecusion = 4f;
+    public static float velocidad = 4.0f;
     public float distanciaMinima = 1.0f;
     public Q_queue<Transform> puntosRecorrido;
     public Transform Point1Transform;
@@ -24,9 +24,12 @@ public class Enemy : MonoBehaviour
     private bool persiguiendoJugador = false;
     private bool enPausaDespuesDeColision = false;
     private float tiempoPausa = 1.0f; // 1 segundo de pausa
+    private float rangoPersecusionInit;
 
     private void Start()
     {
+        rangoPersecusionInit = rangoPersecusion;
+
         sacarVida = GameObject.FindObjectOfType<PlayerManager>();
         puntosRecorrido = new Q_queue<Transform>();
         puntosRecorrido.Enqueue(Point1Transform);
@@ -58,6 +61,29 @@ public class Enemy : MonoBehaviour
         else
         {
             float distancia = Vector3.Distance(transform.position, jugador.position);
+
+            // Verifica si se presiona la tecla Shift izquierda (Shift izq.)
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                // Duplica el rango de persecución temporalmente
+                float nuevoRango = rangoPersecusion * 2f;
+
+                // Asigna el nuevo valor al rango de persecución
+                rangoPersecusion = nuevoRango;
+            }
+            else if (Input.GetKey(KeyCode.LeftControl))
+            {
+                // Divide el rango de persecución temporalmente
+                float nuevoRango = rangoPersecusion / 2f;
+
+                // Asigna el nuevo valor al rango de persecución
+                rangoPersecusion = nuevoRango;
+            }
+            else
+            {
+                // Si ninguna tecla se presiona, restaura el valor inicial
+                rangoPersecusion = rangoPersecusionInit;
+            }
 
             if (distancia <= rangoPersecusion)//estamos en rango del player
             {

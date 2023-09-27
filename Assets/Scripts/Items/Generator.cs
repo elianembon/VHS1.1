@@ -27,6 +27,8 @@ public class Generator : MonoBehaviour
             {
                 Debug.Log("Repare");
                 SaveGenerator();
+                Enemy.rangoPersecusion += 1;
+                Enemy.velocidad += 1;
             }
         }
         else if (canSpaceInp == false)

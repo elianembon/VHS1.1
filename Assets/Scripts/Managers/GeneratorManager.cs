@@ -64,6 +64,8 @@ public class GeneratorManager : MonoBehaviour
             if (OnGeneratorCountReachedMax != null)
             {
                 OnGeneratorCountReachedMax(); // Dispara el evento
+                Enemy.rangoPersecusion -= 1;
+                Enemy.velocidad -= 1;
             }
         }
         else if (!isTimerActive)
