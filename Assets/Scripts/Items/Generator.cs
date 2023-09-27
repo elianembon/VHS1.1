@@ -10,32 +10,37 @@ public class Generator : MonoBehaviour
 
     private Stack<GameObject> generatorStack = new();
 
+    Enemy enemy;
+
     private bool canSpaceInp = false;
+    private bool isRepaired = false;
 
     SpriteRenderer spriteRenderer;
     private void Start()
     {
         generatorManager = GeneratorManager.Instance;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        enemy = new();
+        GeneratorManager.OnEnemyReduce += ReduceDifficultEnemy;
     }
     private void Update()
     {
 
-        if (canSpaceInp == true)
+        if (canSpaceInp == true && !isRepaired)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("Repare");
                 SaveGenerator();
-                Enemy.rangoPersecusion += 1;
-                Enemy.velocidad += 1;
+                enemy.IncreaseVelocity();
+                enemy.IncreaseRange();
             }
         }
         else if (canSpaceInp == false)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("no estoy cerca");
+                Debug.Log("no estoy cerca o ya estoy reparado");
             }
         }
     }
@@ -43,7 +48,7 @@ public class Generator : MonoBehaviour
     private void SaveGenerator()
     {
         generatorManager.PushGenerator(gameObject);
-        spriteRenderer.color = Color.yellow;
+        RepairGenerator();
     }
 
     public void EnableSpaceInput()
@@ -63,4 +68,28 @@ public class Generator : MonoBehaviour
             spriteRenderer.color = newColor;
         }
     }
+
+    public void ReduceDifficultEnemy()
+    {
+        enemy.DecreaseRange();
+        enemy.DecreaseVelocity();
+    }
+
+    public void RepairGenerator()
+    {
+        // Lógica para reparar el generador...
+        isRepaired = true;
+        spriteRenderer.color = Color.yellow;
+    }
+
+    public void NoRepairGenerator()
+    {
+        isRepaired = false;
+    }
+
+    public bool IsRepaired()
+    {
+        return isRepaired;
+    }
+
 }

@@ -6,8 +6,8 @@ public class Enemy : MonoBehaviour
 {
     public PlayerManager sacarVida;
     public Transform jugador;
-    public static float rangoPersecusion = 4f;
-    public static float velocidad = 4.0f;
+    public float rangoPersecusion = 4f;
+    public float speed = 4.0f;
     public float distanciaMinima = 1.0f;
     public Q_queue<Transform> puntosRecorrido;
     public Transform Point1Transform;
@@ -91,7 +91,7 @@ public class Enemy : MonoBehaviour
 
                 // Si no estamos en pausa, seguimos moviendonos hacia el jugador.
                 Vector3 direccion = (jugador.position - transform.position).normalized;
-                transform.position += direccion * velocidad * Time.deltaTime;
+                transform.position += direccion * speed * Time.deltaTime;
             }
             else
             {
@@ -126,6 +126,26 @@ public class Enemy : MonoBehaviour
     private void MoverHaciaPunto(Transform punto)
     {
         Vector3 direccion = (punto.position - transform.position).normalized;
-        transform.position += direccion * velocidad * Time.deltaTime;
+        transform.position += direccion * speed * Time.deltaTime;
+    }
+
+    public void IncreaseVelocity()
+    {
+        speed += 1;
+    }
+
+    public void DecreaseVelocity()
+    {
+        speed -= 1;
+    }
+
+    public void IncreaseRange()
+    {
+        rangoPersecusion += 1; 
+    }
+
+    public void DecreaseRange()
+    {
+        rangoPersecusion -= 1;
     }
 }

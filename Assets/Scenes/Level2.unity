@@ -2478,7 +2478,7 @@ MonoBehaviour:
   sacarVida: {fileID: 333538813}
   jugador: {fileID: 333538810}
   rangoPersecusion: 4
-  velocidad: 3
+  speed: 4
   distanciaMinima: 1
   Point1Transform: {fileID: 1845168666}
   Point2Transform: {fileID: 1292373307}
@@ -3031,9 +3031,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae06c50d7d066054abe6378e714d817d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTimer: 60
+  maxTimer: 15
   maxGeneratorCount: 3
-  victorySceneName: Victoria1
 --- !u!4 &1367762360
 Transform:
   m_ObjectHideFlags: 0
@@ -3549,7 +3548,7 @@ MonoBehaviour:
   sacarVida: {fileID: 333538813}
   jugador: {fileID: 333538810}
   rangoPersecusion: 4
-  velocidad: 3
+  speed: 4
   distanciaMinima: 1
   Point1Transform: {fileID: 1849137017}
   Point2Transform: {fileID: 1366568566}

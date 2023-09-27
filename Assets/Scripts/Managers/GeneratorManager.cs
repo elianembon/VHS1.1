@@ -13,6 +13,9 @@ public class GeneratorManager : MonoBehaviour
     public delegate void GeneratorCountReachedMax();
     public static event GeneratorCountReachedMax OnGeneratorCountReachedMax;
 
+    public delegate void EnemyReduce();
+    public static event EnemyReduce OnEnemyReduce;
+
     private float timer = 0f;
     public float maxTimer = 60f;
     private bool isTimerActive = false;
@@ -23,6 +26,7 @@ public class GeneratorManager : MonoBehaviour
 
     public int maxGeneratorCount = 3;
     private int currentGeneratorCount = 0;
+    private int repairedGeneratorCount = 0; // Contador para los generadores reparados
 
     private void Awake()
     {
@@ -45,8 +49,11 @@ public class GeneratorManager : MonoBehaviour
             if (timer >= maxTimer && generatorStack.Count() > 0)
             {
                 GameObject lastGenerator = generatorStack.Pop();
+                Generator generatorComponent = lastGenerator.GetComponent<Generator>();
+                generatorComponent.NoRepairGenerator();
                 ChangeSpriteColorOfLastGenerator(lastGenerator);
-                PerformAction(lastGenerator);
+                GeneratorRemoved(lastGenerator);
+                PerformAction();
 
                 ResetTimer();
             }
@@ -58,19 +65,35 @@ public class GeneratorManager : MonoBehaviour
         generatorStack.Push(generator);
         currentGeneratorCount++;
 
-        if (currentGeneratorCount >= maxGeneratorCount)
+        // Incrementa el contador si el generador se repara
+        Generator generatorComponent = generator.GetComponent<Generator>();
+        if (generatorComponent != null && generatorComponent.IsRepaired())
+        {
+            repairedGeneratorCount++;
+        }
+
+        // Verifica si se alcanza la cantidad requerida
+        if (repairedGeneratorCount >= maxGeneratorCount)
         {
             StopTimer();
             if (OnGeneratorCountReachedMax != null)
             {
                 OnGeneratorCountReachedMax(); // Dispara el evento
-                Enemy.rangoPersecusion -= 1;
-                Enemy.velocidad -= 1;
             }
         }
         else if (!isTimerActive)
         {
             StartTimer();
+        }
+    }
+
+    public void GeneratorRemoved(GameObject generator)
+    {
+        // Resta del contador si el generador se retira o desactiva
+        Generator generatorComponent = generator.GetComponent<Generator>();
+        if (generatorComponent != null && generatorComponent.IsRepaired())
+        {
+            repairedGeneratorCount--;
         }
     }
 
@@ -105,10 +128,11 @@ public class GeneratorManager : MonoBehaviour
         }
     }
 
-    private void PerformAction(GameObject generator)
+    private void PerformAction()
     {
         // Realiza la acción cuando se alcanza el tiempo límite.
-        // Puedes implementar tu lógica personalizada aquí.
+        OnEnemyReduce?.Invoke();
+
     }
 
 }
