@@ -13,7 +13,7 @@ public class Generator : MonoBehaviour
     Enemy enemy;
 
     private bool canSpaceInp = false;
-    private bool isRepaired = false;
+    public bool isRepaired = false;
 
     SpriteRenderer spriteRenderer;
     private void Start()
@@ -47,8 +47,10 @@ public class Generator : MonoBehaviour
 
     private void SaveGenerator()
     {
-        generatorManager.PushGenerator(gameObject);
-        RepairGenerator();
+        if (!isRepaired) // Verifica si no está reparado
+        {
+            RepairGenerator();
+        }
     }
 
     public void EnableSpaceInput()
@@ -80,6 +82,7 @@ public class Generator : MonoBehaviour
         // Lógica para reparar el generador...
         isRepaired = true;
         spriteRenderer.color = Color.yellow;
+        generatorManager.PushGenerator(gameObject);
     }
 
     public void NoRepairGenerator()

@@ -26,7 +26,7 @@ public class GeneratorManager : MonoBehaviour
 
     public int maxGeneratorCount = 3;
     private int currentGeneratorCount = 0;
-    private int repairedGeneratorCount = 0; // Contador para los generadores reparados
+    public int repairedGeneratorCount = 0; // Contador para los generadores reparados
 
     private void Awake()
     {
@@ -67,9 +67,21 @@ public class GeneratorManager : MonoBehaviour
 
         // Incrementa el contador si el generador se repara
         Generator generatorComponent = generator.GetComponent<Generator>();
-        if (generatorComponent != null && generatorComponent.IsRepaired())
+        if (generatorComponent != null)
         {
-            repairedGeneratorCount++;
+            if (generatorComponent.IsRepaired())
+            {
+                repairedGeneratorCount++;
+                Debug.Log("El generador está reparado. Total de generadores reparados: " + repairedGeneratorCount);
+            }
+            else
+            {
+                Debug.Log("El generador no está reparado.");
+            }
+        }
+        else
+        {
+            Debug.Log("No se encontró un componente Generator en el generador.");
         }
 
         // Verifica si se alcanza la cantidad requerida
@@ -94,6 +106,7 @@ public class GeneratorManager : MonoBehaviour
         if (generatorComponent != null && generatorComponent.IsRepaired())
         {
             repairedGeneratorCount--;
+            
         }
     }
 

@@ -31,10 +31,10 @@ public class Player : MonoBehaviour, IMovable, ILife
 
     #region KEY_BINDINGS
     /*--------- [KEY BINDINGS] ---------*/
-     protected KeyCode _moveForward = KeyCode.UpArrow;
-     protected KeyCode _moveBack = KeyCode.DownArrow;
-     protected KeyCode _moveLeft = KeyCode.LeftArrow;
-     protected KeyCode _moveRight = KeyCode.RightArrow;
+     protected KeyCode _moveForward = KeyCode.W;
+     protected KeyCode _moveBack = KeyCode.S;
+     protected KeyCode _moveLeft = KeyCode.A;
+     protected KeyCode _moveRight = KeyCode.D;
 
      protected KeyCode _attack = KeyCode.Z;
 
