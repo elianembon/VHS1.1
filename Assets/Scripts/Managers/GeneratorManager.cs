@@ -88,10 +88,7 @@ public class GeneratorManager : MonoBehaviour
         if (repairedGeneratorCount >= maxGeneratorCount)
         {
             StopTimer();
-            if (OnGeneratorCountReachedMax != null)
-            {
-                OnGeneratorCountReachedMax(); // Dispara el evento
-            }
+            OnGeneratorCountReachedMax?.Invoke(); // Dispara el evento
         }
         else if (!isTimerActive)
         {

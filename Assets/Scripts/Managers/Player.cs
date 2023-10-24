@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static GeneratorManager;
 
 public class Player : MonoBehaviour, IMovable, ILife
 {
@@ -10,7 +11,8 @@ public class Player : MonoBehaviour, IMovable, ILife
     public float MovementSpeedWalk => _movementSpeedWalk;
     public float MovementSpeedRun => _movementSpeedRun;
 
-    
+    public delegate void PlayerDead();
+    public static event PlayerDead OnPlayerDead;
 
     public int MaxLife => _maxLife;
 
@@ -84,7 +86,7 @@ public class Player : MonoBehaviour, IMovable, ILife
     {
         _currentLife -= damage;
 
-        if (_currentLife <= damage)
+        if (_currentLife <= 0)
         {
             Die();
         }
@@ -103,7 +105,7 @@ public class Player : MonoBehaviour, IMovable, ILife
        Debug.Log($"{name} !DIED¡");
 
         //Destroy(gameObject);
-        SceneManager.LoadScene("Derrota");
+        OnPlayerDead?.Invoke();
     }
 
     #endregion

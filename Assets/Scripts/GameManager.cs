@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            //DontDestroyOnLoad(gameObject);
+           
         }
         else
         {
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         GeneratorManager.OnGeneratorCountReachedMax += NextLevel;
+        Player.OnPlayerDead += GoToLoseScene;
     }
 
     // Método para pausar el juego
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
     {
         isGamePaused = true;
         Time.timeScale = 0f; // Pausa el tiempo
-        // Aquí puedes deshabilitar los controles de movimiento del jugador si es necesario
+       
     }
 
     // Método para reanudar el juego
@@ -44,17 +45,21 @@ public class GameManager : MonoBehaviour
     {
         isGamePaused = false;
         Time.timeScale = 1f; // Restaura el tiempo
-        // Aquí puedes habilitar nuevamente los controles de movimiento del jugador si es necesario
+       
     }
 
     public void NextLevel()
     {
         currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        currentSceneName = SceneManager.GetActiveScene().name;
+        //SceneManager.LoadScene(currentSceneName);
+
     }
 
     public void ReloadScene()
     {
+        //currentSceneName = SceneManager.GetActiveScene().name;
         if (!string.IsNullOrEmpty(currentSceneName))
         {
             SceneManager.LoadScene(currentSceneName);
@@ -68,6 +73,12 @@ public class GameManager : MonoBehaviour
     public void GoToMenu()
     {
         SceneManager.LoadScene("MenuInicial");
+    }
+
+    public void GoToLoseScene()
+    {
+        currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene("Derrota");
     }
 
     public void GoComoJugar()
