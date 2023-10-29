@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         GeneratorManager.OnGeneratorCountReachedMax += NextLevel;
-        Player.OnPlayerDead += GoToLoseScene;
+       
     }
 
     // Método para pausar el juego
@@ -52,14 +52,13 @@ public class GameManager : MonoBehaviour
     {
         currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        currentSceneName = SceneManager.GetActiveScene().name;
         //SceneManager.LoadScene(currentSceneName);
 
     }
 
     public void ReloadScene()
     {
-        //currentSceneName = SceneManager.GetActiveScene().name;
+        currentSceneName = SceneManager.GetActiveScene().name;
         if (!string.IsNullOrEmpty(currentSceneName))
         {
             SceneManager.LoadScene(currentSceneName);
@@ -75,11 +74,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("MenuInicial");
     }
 
-    public void GoToLoseScene()
-    {
-        currentSceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene("Derrota");
-    }
 
     public void GoComoJugar()
     {
