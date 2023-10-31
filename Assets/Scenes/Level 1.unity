@@ -598,7 +598,6 @@ GameObject:
   m_Component:
   - component: {fileID: 90749553}
   - component: {fileID: 90749552}
-  - component: {fileID: 90749554}
   m_Layer: 0
   m_Name: GenManager
   m_TagString: Untagged
@@ -618,9 +617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae06c50d7d066054abe6378e714d817d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTimer: 60
-  maxGeneratorCount: 3
-  repairedGeneratorCount: 0
 --- !u!4 &90749553
 Transform:
   m_ObjectHideFlags: 0
@@ -636,19 +632,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &90749554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 90749551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3b76ea61c6899449b76a5a7c00b893a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isRepaired: 0
 --- !u!1 &120198666
 GameObject:
   m_ObjectHideFlags: 0
@@ -2283,6 +2266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRepaired: 0
+  RepairCounter: 3
 --- !u!212 &692794931
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5994,6 +5978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRepaired: 0
+  RepairCounter: 60
 --- !u!212 &1702492314
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6313,6 +6298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRepaired: 0
+  RepairCounter: 60
 --- !u!212 &1762015484
 SpriteRenderer:
   m_ObjectHideFlags: 0

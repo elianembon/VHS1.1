@@ -1,56 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
 
 public class Generator : MonoBehaviour
 {
-    private GeneratorManager generatorManager;
-
-    private Stack<GameObject> generatorStack = new();
-
-    Enemy enemy;
-
-    private bool canSpaceInp = false;
     public bool isRepaired = false;
+    private bool canSpaceInp = false;
+
+    private GeneratorManager generatorManager;
+    public float RepairCounter = 60; // Contador inicializado en 60 segundos
+    private float startTimer; // variable para guardar
 
     SpriteRenderer spriteRenderer;
+
     private void Start()
     {
         generatorManager = GeneratorManager.Instance;
+        generatorManager.RegisterGenerator(this);
         spriteRenderer = GetComponent<SpriteRenderer>();
-        enemy = new();
-        GeneratorManager.OnEnemyReduce += ReduceDifficultEnemy;
+        startTimer = RepairCounter;
     }
     private void Update()
     {
-
-        if (canSpaceInp == true && !isRepaired)
+        if(canSpaceInp == true && !isRepaired)
         {
+            Debug.Log("puedo reparar");
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("Repare");
-                SaveGenerator();
-                enemy.IncreaseVelocity();
-                enemy.IncreaseRange();
-            }
-        }
-        else if (canSpaceInp == false)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Debug.Log("no estoy cerca o ya estoy reparado");
+                RepairGenerator();
+                Debug.Log("repare");
             }
         }
     }
 
-    private void SaveGenerator()
+    public void RepairGenerator()
     {
-        if (!isRepaired) // Verifica si no está reparado
+        isRepaired = true;
+        spriteRenderer.color = Color.yellow;
+        StartCoroutine(RepairCountdown());
+    }
+
+    private IEnumerator RepairCountdown()
+    {
+        while (isRepaired && RepairCounter > 0)
         {
-            RepairGenerator();
+            yield return new WaitForSeconds(1f);
+            RepairCounter--;
         }
+
+        if (RepairCounter == 0)
+        {
+            NoRepairGenerator();
+        }
+    }
+
+    public void NoRepairGenerator()
+    {
+        isRepaired = false;
+        spriteRenderer.color = Color.red;
+        generatorManager.UnregisterGenerator(this);
+        RepairCounter = startTimer;
     }
 
     public void EnableSpaceInput()
@@ -63,36 +72,7 @@ public class Generator : MonoBehaviour
         canSpaceInp = false;
     }
 
-    public void ChangeSpriteColor(Color newColor)
-    {
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.color = newColor;
-        }
-    }
-
-    public void ReduceDifficultEnemy()
-    {
-        enemy.DecreaseRange();
-        enemy.DecreaseVelocity();
-    }
-
-    public void RepairGenerator()
-    {
-        // Lógica para reparar el generador...
-        isRepaired = true;
-        spriteRenderer.color = Color.yellow;
-        generatorManager.PushGenerator(gameObject);
-    }
-
-    public void NoRepairGenerator()
-    {
-        isRepaired = false;
-    }
-
-    public bool IsRepaired()
-    {
-        return isRepaired;
-    }
-
 }
+
+
+

@@ -12,12 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 1.unity
     guid: 39a10fd8b29161a47b03fcaef6015ebd
   - enabled: 1
-    path: Assets/Scenes/Victoria1.unity
-    guid: 2dd1e447e626cff408c4441dc0c83dc8
-  - enabled: 1
-    path: Assets/Scenes/Level2.unity
-    guid: 6d91680610ae0d34eb33807618ba21bd
-  - enabled: 1
     path: Assets/Scenes/Victoria.unity
     guid: 368f5981317cb9745a3abfed877f531c
   - enabled: 0
@@ -26,7 +20,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ComoJugar.unity
     guid: 821b015450722c44f9a4c380cbe07c18
-  - enabled: 1
-    path: Assets/Scenes/Derrota.unity
-    guid: ec41a15a5f8ae6c41b2e4dcc8eed2eca
   m_configObjects: {}

@@ -1,32 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using static Generator;
 
 public class GeneratorManager : MonoBehaviour
 {
     private static GeneratorManager instance;
+    private List<Generator> generators = new List<Generator>();
 
-    private Stack<GameObject> generatorStack = new Stack<GameObject>();
-
-    public delegate void GeneratorCountReachedMax();
-    public static event GeneratorCountReachedMax OnGeneratorCountReachedMax;
-
-    public delegate void EnemyReduce();
-    public static event EnemyReduce OnEnemyReduce;
-
-    private float timer = 0f;
-    public float maxTimer = 60f;
-    private bool isTimerActive = false;
     public static GeneratorManager Instance
     {
         get { return instance; }
     }
-
-    public int maxGeneratorCount = 3;
-    private int currentGeneratorCount = 0;
-    public int repairedGeneratorCount = 0; // Contador para los generadores reparados
 
     private void Awake()
     {
@@ -40,110 +24,16 @@ public class GeneratorManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void RegisterGenerator(Generator generator)
     {
-        if (isTimerActive)
-        {
-            timer += Time.deltaTime;
-
-            if (timer >= maxTimer && generatorStack.Count() > 0)
-            {
-                GameObject lastGenerator = generatorStack.Pop();
-                Generator generatorComponent = lastGenerator.GetComponent<Generator>();
-                generatorComponent.NoRepairGenerator();
-                ChangeSpriteColorOfLastGenerator(lastGenerator);
-                GeneratorRemoved(lastGenerator);
-                PerformAction();
-
-                ResetTimer();
-            }
-        }
+        generators.Add(generator);
     }
 
-    public void PushGenerator(GameObject generator)
+    public void UnregisterGenerator(Generator generator)
     {
-        generatorStack.Push(generator);
-        currentGeneratorCount++;
-
-        // Incrementa el contador si el generador se repara
-        Generator generatorComponent = generator.GetComponent<Generator>();
-        if (generatorComponent != null)
-        {
-            if (generatorComponent.IsRepaired())
-            {
-                repairedGeneratorCount++;
-                Debug.Log("El generador está reparado. Total de generadores reparados: " + repairedGeneratorCount);
-            }
-            else
-            {
-                Debug.Log("El generador no está reparado.");
-            }
-        }
-        else
-        {
-            Debug.Log("No se encontró un componente Generator en el generador.");
-        }
-
-        // Verifica si se alcanza la cantidad requerida
-        if (repairedGeneratorCount >= maxGeneratorCount)
-        {
-            StopTimer();
-            OnGeneratorCountReachedMax?.Invoke(); // Dispara el evento
-        }
-        else if (!isTimerActive)
-        {
-            StartTimer();
-        }
+        generators.Remove(generator);
     }
-
-    public void GeneratorRemoved(GameObject generator)
-    {
-        // Resta del contador si el generador se retira o desactiva
-        Generator generatorComponent = generator.GetComponent<Generator>();
-        if (generatorComponent != null && generatorComponent.IsRepaired())
-        {
-            repairedGeneratorCount--;
-            
-        }
-    }
-
-    public int GetCurrentGeneratorCount()
-    {
-        return currentGeneratorCount;
-    }
-
-    private void StartTimer()
-    {
-        isTimerActive = true;
-        timer = 0f;
-    }
-
-    private void StopTimer()
-    {
-        isTimerActive = false;
-    }
-
-    private void ResetTimer()
-    {
-        timer = 0f;
-    }
-
-    private void ChangeSpriteColorOfLastGenerator(GameObject generator)
-    {
-        Generator generatorComponent = generator.GetComponent<Generator>();
-
-        if (generatorComponent != null)
-        {
-            generatorComponent.ChangeSpriteColor(Color.red);
-        }
-    }
-
-    private void PerformAction()
-    {
-        // Realiza la acción cuando se alcanza el tiempo límite.
-        OnEnemyReduce?.Invoke();
-
-    }
-
 }
+
+
 

@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        GeneratorManager.OnGeneratorCountReachedMax += NextLevel;
+        
        
     }
 
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        GeneratorManager.OnGeneratorCountReachedMax -= NextLevel;
+       
     }
 
 }
