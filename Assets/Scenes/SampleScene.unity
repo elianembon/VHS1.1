@@ -247,7 +247,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -448,7 +448,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b76ea61c6899449b76a5a7c00b893a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxGen: 4
+  isRepaired: 0
+  RepairCounter: 60
 --- !u!65 &200384340
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -582,7 +583,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b76ea61c6899449b76a5a7c00b893a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxGen: 4
+  isRepaired: 0
+  RepairCounter: 60
 --- !u!65 &316717426
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -718,12 +720,17 @@ MonoBehaviour:
   sacarVida: {fileID: 1538932953}
   jugador: {fileID: 482045284}
   rangoPersecusion: 3
-  velocidad: 5
+  speed: 4
   distanciaMinima: 1
   Point1Transform: {fileID: 453862909}
   Point2Transform: {fileID: 599847870}
   Point3Transform: {fileID: 2025537505}
   Point4Transform: {fileID: 956240139}
+  Point5Transform: {fileID: 0}
+  Point6Transform: {fileID: 0}
+  Point7Transform: {fileID: 0}
+  Point8Transform: {fileID: 0}
+  Point9Transform: {fileID: 0}
 --- !u!50 &387905510
 Rigidbody2D:
   serializedVersion: 4
@@ -806,7 +813,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1249,7 +1256,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2317,7 +2324,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2523,7 +2530,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2851,7 +2858,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

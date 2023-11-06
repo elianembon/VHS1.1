@@ -57,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49692955c0826e94f8343db0fc30009f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  getLife: {fileID: 0}
   Bag:
   - {fileID: 0}
   - {fileID: 0}
@@ -217,6 +218,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   inventory: {fileID: 0}
-  activeInventory: 0
   Selector: {fileID: 0}
   ID: 0
