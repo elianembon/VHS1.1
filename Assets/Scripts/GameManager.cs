@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
        
     }
 
-    // Método para pausar el juego
+    // Mï¿½todo para pausar el juego
     public void PauseGame()
     {
         isGamePaused = true;
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
        
     }
 
-    // Método para reanudar el juego
+    // Mï¿½todo para reanudar el juego
     public void ResumeGame()
     {
         isGamePaused = false;
@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+   
     private void OnDestroy()
     {
        

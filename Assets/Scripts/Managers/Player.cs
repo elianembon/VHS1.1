@@ -63,9 +63,9 @@ public class Player : MonoBehaviour, IMovable, ILife
         
         if (Input.GetKey(_moveRight))
             movement += Vector2.right;
-       
+        
 
-        ChangeSpeed();
+            ChangeSpeed();
         Move(movement);
     }
     public virtual void ChangeSpeed()
@@ -102,7 +102,7 @@ public class Player : MonoBehaviour, IMovable, ILife
     public void Die()
     {
             
-       Debug.Log($"{name} !DIED¡");
+       Debug.Log($"{name} !DIEDï¿½");
 
         //Destroy(gameObject);
         OnPlayerDead?.Invoke();
