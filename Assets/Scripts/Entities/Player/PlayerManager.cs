@@ -6,10 +6,9 @@ public class PlayerManager : Player
 {
     public static PlayerManager Instance { get; private set; }
 
-    public Hud hud;
     public GameObject sword;
-
     private Animator animator;
+    [SerializeField] private Cordura cordura;
     
 
     private void Start()
@@ -17,6 +16,8 @@ public class PlayerManager : Player
         _currentLife = _maxLife;
         
         animator = GetComponent<Animator>();
+
+        cordura.InitBarraCordura(_currentLife);
     }
 
     private void Update()
@@ -71,9 +72,9 @@ public class PlayerManager : Player
     }
 
     public void LooseLife()
-    {
-        hud.DesactiveLife(_currentLife);
-        TakeDamage(1);     
+    {    
+        TakeDamage(1);
+        cordura.changeCurrentCordura(_currentLife);
     }
 
     public void GetLife()
@@ -82,8 +83,8 @@ public class PlayerManager : Player
             return;
         else
         {
-            hud.ActiveLife(_currentLife);
             TakeLife(1);
+            cordura.changeCurrentCordura(_currentLife);
         }
     }
     

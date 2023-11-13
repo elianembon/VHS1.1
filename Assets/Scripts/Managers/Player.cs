@@ -26,7 +26,7 @@ public class Player : MonoBehaviour, IMovable, ILife
     [SerializeField] protected float _movementSpeedRun = 8f;
     [SerializeField] protected float _movementSpeedSilent = 1f;
 
-    [SerializeField] protected int _maxLife = 3;
+    [SerializeField] protected int _maxLife = 80;
     [SerializeField] protected int _currentLife;
 
     #endregion
