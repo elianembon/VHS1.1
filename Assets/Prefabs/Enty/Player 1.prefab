@@ -31,11 +31,11 @@ Transform:
   m_GameObject: {fileID: 6094763725625658860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.2750535, y: -0.4136491, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9056026973098899036
 SpriteRenderer:
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: adc3743afe73f6b4bbde8432ccd8e775, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e25c72b059a16d448be38a8bdd26adcd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -148,8 +148,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.11005342, y: -0.09537959}
-  m_Size: {x: 0.9677222, y: 1.3532407}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.2, y: 0.5}
   m_Direction: 0
 --- !u!114 &1702182478034359807
 MonoBehaviour:
@@ -171,8 +171,8 @@ MonoBehaviour:
   _currentLife: 0
   _moveRun: 304
   _moveSilent: 306
-  hud: {fileID: 0}
   sword: {fileID: 5365637053950696771, guid: e036f51e2f968904a9934685c43c10d1, type: 3}
+  cordura: {fileID: 0}
 --- !u!95 &1603048683868254519
 Animator:
   serializedVersion: 5
