@@ -5,23 +5,26 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public PlayerManager getLife;
     public List<GameObject> Bag = new List<GameObject>();
     public GameObject inventory;
-
     public GameObject Selector;
     public int ID;
 
     private bool isGamePaused;
     private bool activeInventory;
 
-    private void Awake()
+    private int maxMedicItems = 3;
+    private int maxOtherItems = 3;
+
+    private List<Vector2> originalPositions = new List<Vector2>();
+
+    void Awake()
     {
         isGamePaused = false;
         activeInventory = false;
+        RecordOriginalPositions();
     }
 
-    // Update is called once per frame
     void Update()
     {
         Nav();
@@ -42,52 +45,105 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        // Añade un manejo para quitar un objeto del inventario
         if (Input.GetKeyDown(KeyCode.Q))
         {
             RemoveItemFromInventory();
         }
 
-        // Verifica si se presiona 'F' y el objeto seleccionado tiene la etiqueta "Medic"
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (ID >= 0 && ID < Bag.Count)
-            {
-                GameObject selectedSlot = Bag[ID];
-                Image selectedImage = selectedSlot.GetComponent<Image>();
+            UseMedicItem();
+        }
 
-                // Verifica si el objeto en el slot tiene la etiqueta "Medic"
-                if (selectedImage.enabled && selectedSlot.CompareTag("Medic"))
-                {
-                    // Realiza la acción de curación
-                    Debug.Log("Te estoy curando");
-                    getLife.GetLife();
-                    RemoveItemFromInventory();
-                    
-                }
-            }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SortInventory();
+        }
+    }
+
+    private void SortInventory()
+    {
+        Quicksort.Sort(Bag, 0, Bag.Count - 1);
+        // Implementa la lógica para actualizar la interfaz de usuario del inventario si es necesario
+        UpdateInventoryUI();
+    }
+
+    private void UpdateInventoryUI()
+    {
+        for (int i = 0; i < Bag.Count; i++)
+        {
+            Bag[i].GetComponent<RectTransform>().anchoredPosition = originalPositions[i];
+        }
+    }
+
+    private void RecordOriginalPositions()
+    {
+        originalPositions.Clear();
+        foreach (var item in Bag)
+        {
+            originalPositions.Add(item.GetComponent<RectTransform>().anchoredPosition);
         }
     }
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.CompareTag("Item") || coll.CompareTag("Medic"))
+        if ((coll.CompareTag("Item") && CountItemsWithTag("Item") < maxOtherItems) ||
+            (coll.CompareTag("Medic") && CountItemsWithTag("Medic") < maxMedicItems))
         {
-            for (int i = 0; i < Bag.Count; i++)
+            AddItemToInventory(coll);
+        }
+    }
+
+    void AddItemToInventory(Collider2D coll)
+    {
+        for (int i = 0; i < Bag.Count; i++)
+        {
+            if (!Bag[i].GetComponent<Image>().enabled)
             {
-                if (Bag[i].GetComponent<Image>().enabled == false)
-                {
-                    Bag[i].GetComponent<Image>().enabled = true;
-                    Bag[i].GetComponent<Image>().sprite = coll.GetComponent<SpriteRenderer>().sprite;
-                    Bag[i].tag = coll.tag; // Conserva la etiqueta del objeto en el inventario
-                    break;
-                }
+                Bag[i].GetComponent<Image>().enabled = true;
+                Bag[i].GetComponent<Image>().sprite = coll.GetComponent<SpriteRenderer>().sprite;
+                Bag[i].tag = coll.tag;
+                break;
             }
         }
     }
 
+    int CountItemsWithTag(string tag)
+    {
+        return Bag.FindAll(item => item.tag == tag).Count;
+    }
 
-    private void RemoveItemFromInventory()
+    void UseMedicItem()
+    {
+        if (ID >= 0 && ID < Bag.Count)
+        {
+            GameObject selectedSlot = Bag[ID];
+            Image selectedImage = selectedSlot.GetComponent<Image>();
+
+            if (selectedImage.enabled && selectedSlot.CompareTag("Medic"))
+            {
+                Debug.Log("Te estoy curando");
+                // Acción de curación aquí
+            }
+        }
+    }
+
+    void ToggleInventory()
+    {
+        activeInventory = !activeInventory;
+        inventory.SetActive(activeInventory);
+
+        if (activeInventory)
+        {
+            PauseGame();
+        }
+        else
+        {
+            ResumeGame();
+        }
+    }
+
+    void RemoveItemFromInventory()
     {
         if (ID >= 0 && ID < Bag.Count)
         {
@@ -97,22 +153,9 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // Llama al método de pausa del GameManager
-    private void PauseGame()
+    void Nav()
     {
-        GameManager.Instance.PauseGame();
-    }
-
-    // Llama al método de reanudación del GameManager
-    private void ResumeGame()
-    {
-        GameManager.Instance.ResumeGame();
-    }
-
-
-    public void Nav()
-    {
-        if (!isGamePaused) // Solo permite la navegación si el juego no está pausado
+        if (!isGamePaused)
         {
             if (Input.GetKeyDown(KeyCode.D) && ID < Bag.Count - 1)
             {
@@ -141,34 +184,14 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // Método para pausar el juego debido al inventario
-    private void PauseGameDueToInventory()
+    void PauseGame()
     {
-        isGamePaused = true;
-        Time.timeScale = 0f; // Establece el tiempo a 0 para pausar el juego
+        GameManager.Instance.PauseGame();
     }
 
-    // Método para reanudar el juego debido al inventario
-    private void ResumeGameDueToInventory()
+    void ResumeGame()
     {
-        isGamePaused = false;
-        Time.timeScale = 1f; // Restaura el tiempo original
-    }
-
-    // Método para activar el inventario
-    public void ActivateInventory()
-    {
-        activeInventory = true;
-        PauseGameDueToInventory(); // Pausa el juego cuando se abre el inventario
-        inventory.SetActive(true);
-    }
-
-    // Método para desactivar el inventario
-    public void DeactivateInventory()
-    {
-        activeInventory = false;
-        ResumeGameDueToInventory(); // Reanuda el juego cuando se cierra el inventario
-        inventory.SetActive(false);
+        GameManager.Instance.ResumeGame();
     }
 }
 
