@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -20,13 +18,14 @@ public class Enemy : MonoBehaviour
     public Transform Point8Transform;
     public Transform Point9Transform;
 
-    private Transform puntoActual;
-    private bool persiguiendoJugador = false;
+    public Transform puntoActual;
     private bool enPausaDespuesDeColision = false;
     private float tiempoPausa = 1.0f; // 1 segundo de pausa
     private float rangoPersecusionInit;
 
-    private void Start()
+    private DecisionTree decisionTree;
+
+    void Start()
     {
         rangoPersecusionInit = rangoPersecusion;
 
@@ -45,9 +44,11 @@ public class Enemy : MonoBehaviour
         {
             puntoActual = puntosRecorrido.Dequeue();
         }
+
+        decisionTree = new DecisionTree(this);
     }
 
-    private void Update()
+    void Update()
     {
         if (enPausaDespuesDeColision)
         {
@@ -60,54 +61,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            float distancia = Vector3.Distance(transform.position, jugador.position);
-
-            // Verifica si se presiona la tecla Shift izquierda (Shift izq.)
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                // Duplica el rango de persecución temporalmente
-                float nuevoRango = rangoPersecusion * 2f;
-
-                // Asigna el nuevo valor al rango de persecución
-                rangoPersecusion = nuevoRango;
-            }
-            else if (Input.GetKey(KeyCode.LeftControl))
-            {
-                // Divide el rango de persecución temporalmente
-                float nuevoRango = rangoPersecusion / 2f;
-
-                // Asigna el nuevo valor al rango de persecución
-                rangoPersecusion = nuevoRango;
-            }
-            else
-            {
-                // Si ninguna tecla se presiona, restaura el valor inicial
-                rangoPersecusion = rangoPersecusionInit;
-            }
-
-            if (distancia <= rangoPersecusion)//estamos en rango del player
-            {
-                persiguiendoJugador = true;
-
-                // Si no estamos en pausa, seguimos moviendonos hacia el jugador.
-                Vector3 direccion = (jugador.position - transform.position).normalized;
-                transform.position += direccion * speed * Time.deltaTime;
-            }
-            else
-            {
-                persiguiendoJugador = false;
-            }
-
-            if (!persiguiendoJugador && puntosRecorrido.Counter() > 0)
-            {
-                MoverHaciaPunto(puntoActual);
-
-                if (Vector3.Distance(transform.position, puntoActual.position) <= distanciaMinima)
-                {
-                    puntoActual = puntosRecorrido.Dequeue();
-                    puntosRecorrido.Enqueue(puntoActual);
-                }
-            }
+            decisionTree.ExecuteDecisionTree();
         }
     }
 
@@ -123,7 +77,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void MoverHaciaPunto(Transform punto)
+    public void MoverHaciaPunto(Transform punto)
     {
         Vector3 direccion = (punto.position - transform.position).normalized;
         transform.position += direccion * speed * Time.deltaTime;
@@ -141,7 +95,7 @@ public class Enemy : MonoBehaviour
 
     public void IncreaseRange()
     {
-        rangoPersecusion += 1; 
+        rangoPersecusion += 1;
     }
 
     public void DecreaseRange()
@@ -149,3 +103,4 @@ public class Enemy : MonoBehaviour
         rangoPersecusion -= 1;
     }
 }
+

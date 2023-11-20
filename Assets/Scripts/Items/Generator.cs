@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class Generator : MonoBehaviour
     public float RepairCounter = 60; // Contador inicializado en 60 segundos
     private float startTimer; // variable para guardar
 
+    private ChangesLightColor myLight;
+
     SpriteRenderer spriteRenderer;
 
     private void Start()
@@ -19,6 +22,7 @@ public class Generator : MonoBehaviour
         generatorManager.RegisterGenerator(this);
         spriteRenderer = GetComponent<SpriteRenderer>();
         startTimer = RepairCounter;
+        myLight = GetComponent<ChangesLightColor>();
     }
     private void Update()
     {
@@ -38,6 +42,7 @@ public class Generator : MonoBehaviour
         isRepaired = true;
         spriteRenderer.color = Color.yellow;
         StartCoroutine(RepairCountdown());
+        myLight.ChangetoWhite();
     }
 
     private IEnumerator RepairCountdown()
@@ -60,6 +65,7 @@ public class Generator : MonoBehaviour
         spriteRenderer.color = Color.red;
         generatorManager.UnregisterGenerator(this);
         RepairCounter = startTimer;
+        myLight.ChangetoPurple();
     }
 
     public void EnableSpaceInput()
