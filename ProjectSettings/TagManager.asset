@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Medic
   - Item
+  - Objects
   layers:
   - Default
   - TransparentFX

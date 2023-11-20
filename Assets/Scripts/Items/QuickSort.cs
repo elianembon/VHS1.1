@@ -18,12 +18,13 @@ public static class Quicksort
 
     private static int Partition(List<GameObject> list, int left, int right)
     {
-        string pivotTag = "Medic";
+        int pivotValue = 2; // Valor correspondiente a "Medic"
         int i = left - 1;
 
         for (int j = left; j < right; j++)
         {
-            if (list[j].CompareTag(pivotTag))
+            int currentTagValue = GetTagValue(list[j].tag);
+            if (currentTagValue < pivotValue)
             {
                 i++;
                 Swap(list, i, j);
@@ -39,5 +40,21 @@ public static class Quicksort
         GameObject temp = list[i];
         list[i] = list[j];
         list[j] = temp;
+    }
+
+    private static int GetTagValue(string tag)
+    {
+        // Asigna valores numéricos a las etiquetas
+        switch (tag)
+        {
+            case "Medic":
+                return 2;
+            case "Item":
+                return 1;
+            case "Objects":
+                return 3;
+            default:
+                return 0; // Valor predeterminado en caso de etiqueta desconocida
+        }
     }
 }

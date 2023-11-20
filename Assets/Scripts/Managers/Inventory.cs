@@ -63,8 +63,27 @@ public class Inventory : MonoBehaviour
 
     private void SortInventory()
     {
-        Quicksort.Sort(Bag, 0, Bag.Count - 1);
-        // Implementa la lógica para actualizar la interfaz de usuario del inventario si es necesario
+        List<GameObject> activeItems = Bag.FindAll(item => item.activeSelf);
+
+        // Filtrar elementos por tipo
+        List<GameObject> items = activeItems.FindAll(item => item.tag == "Item");
+        List<GameObject> medicItems = activeItems.FindAll(item => item.tag == "Medic");
+        List<GameObject> objectItems = activeItems.FindAll(item => item.tag == "Objects");
+
+        // Ordenar cada lista por separado
+        Quicksort.Sort(items, 0, items.Count - 1);
+        Quicksort.Sort(medicItems, 0, medicItems.Count - 1);
+        Quicksort.Sort(objectItems, 0, objectItems.Count - 1);
+
+        // Limpiar la bolsa original
+        Bag.Clear();
+
+        // Agregar los elementos ordenados en la bolsa original, manteniendo los elementos existentes
+        Bag.AddRange(items);
+        Bag.AddRange(medicItems);
+        Bag.AddRange(objectItems);
+
+        // Implementar la lógica para actualizar la interfaz de usuario del inventario si es necesario
         UpdateInventoryUI();
     }
 
@@ -88,7 +107,8 @@ public class Inventory : MonoBehaviour
     void OnTriggerEnter2D(Collider2D coll)
     {
         if ((coll.CompareTag("Item") && CountItemsWithTag("Item") < maxOtherItems) ||
-            (coll.CompareTag("Medic") && CountItemsWithTag("Medic") < maxMedicItems))
+            (coll.CompareTag("Medic") && CountItemsWithTag("Medic") < maxMedicItems) || 
+            (coll.CompareTag("Objects") && CountItemsWithTag("Objects") < maxOtherItems))
         {
             AddItemToInventory(coll);
         }
