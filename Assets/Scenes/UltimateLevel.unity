@@ -344,7 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 360242324}
   activRoom: {fileID: 1313389042}
-  dampSpeed: 2
+  dampSpeed: 5
   minModX: 8.2
   maxModX: -7.7
   minModY: 4.6
@@ -3286,7 +3286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &624921558
 RectTransform:
   m_ObjectHideFlags: 0

@@ -27,6 +27,7 @@ public class Camera : MonoBehaviour
     }
 
 
+
     // Update is called once per frame
     void Update()
     {
@@ -43,5 +44,19 @@ public class Camera : MonoBehaviour
         Vector3 smoohtPos = Vector3.Lerp(transform.position, clampedPos, dampSpeed * Time.deltaTime);
 
         transform.position = smoohtPos;
+    }
+    public void UpdateCameraPosition()
+    {
+        var minPosY = activRoom.GetComponent<BoxCollider2D>().bounds.min.y + minModY;
+        var maxPosY = activRoom.GetComponent<BoxCollider2D>().bounds.max.y + maxModY;
+        var minPosX = activRoom.GetComponent<BoxCollider2D>().bounds.min.x + minModX;
+        var maxPosX = activRoom.GetComponent<BoxCollider2D>().bounds.max.x + maxModX;
+
+        Vector3 clampedPos = new Vector3(
+            Mathf.Clamp(player.position.x + posCamX, minPosX, maxPosX),
+            Mathf.Clamp(player.position.y, minPosY, maxPosY),
+            Mathf.Clamp(player.position.z, -10, -10));
+
+        transform.position = clampedPos;
     }
 }

@@ -69,27 +69,11 @@ public class PlayerManager : Player
         {
             if(currentDoor != null)
             {
-                StartCoroutine(TeleportCoroutine());
+                transform.position = currentDoor.GetComponent<Doors>().GetDestination().position;
+                Camera.instance.UpdateCameraPosition();
             }
         }
     }
-
-    private IEnumerator TeleportCoroutine()
-    {
-        // Activa la pantalla negra
-        blackScreen.SetActive(true);
-
-        // Espera el tiempo de teletransporte
-        yield return new WaitForSeconds(teleportTime);
-
-        // Cambia la posición del jugador
-        transform.position = currentDoor.GetComponent<Doors>().GetDestination().position;
-
-        // Desactiva la pantalla negra después del teletransporte
-        yield return new WaitForSeconds(2f); // Espera adicional de 2 segundos
-        blackScreen.SetActive(false);
-    }
-
 
     private void Attack()
     {
