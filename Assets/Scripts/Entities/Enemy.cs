@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
+
     public PlayerManager sacarVida;
     public Transform jugador;
     public float rangoPersecusion = 4f;
@@ -19,12 +23,15 @@ public class Enemy : MonoBehaviour
     public Transform Point7Transform;
     public Transform Point8Transform;
     public Transform Point9Transform;
+    public Transform Point10Transform;
+    public Transform Point11Transform;
 
     private Transform puntoActual;
     private bool persiguiendoJugador = false;
     private bool enPausaDespuesDeColision = false;
     private float tiempoPausa = 1.0f; // 1 segundo de pausa
     private float rangoPersecusionInit;
+    private Graph graph;
 
     private void Start()
     {
@@ -41,10 +48,22 @@ public class Enemy : MonoBehaviour
         puntosRecorrido.Enqueue(Point7Transform);
         puntosRecorrido.Enqueue(Point8Transform);
         puntosRecorrido.Enqueue(Point9Transform);
-        if (puntosRecorrido.Counter() > 0)
+        puntosRecorrido.Enqueue(Point10Transform);
+        puntosRecorrido.Enqueue(Point11Transform);
+
+        graph = new Graph();
+
+        for (int i = 0; i < puntosRecorrido.Counter(); i++)
         {
-            puntoActual = puntosRecorrido.Dequeue();
+            for (int j = i + 1; j < puntosRecorrido.Counter(); j++)
+            {
+                float distancia = Vector3.Distance(puntosRecorrido.GetElement(i).position, puntosRecorrido.GetElement(j).position);
+                graph.AddEdge(puntosRecorrido.GetElement(i), puntosRecorrido.GetElement(j), distancia);
+            }
         }
+
+        // Inicializar puntoActual usando Dijkstra
+        puntoActual = Dijkstra(puntosRecorrido.GetElement(0));
     }
 
     private void Update()
@@ -98,8 +117,10 @@ public class Enemy : MonoBehaviour
                 persiguiendoJugador = false;
             }
 
-            if (!persiguiendoJugador && puntosRecorrido.Counter() > 0)
+            if (!persiguiendoJugador && puntosRecorrido.Counter() > 1)
             {
+
+                
                 MoverHaciaPunto(puntoActual);
 
                 if (Vector3.Distance(transform.position, puntoActual.position) <= distanciaMinima)
@@ -109,6 +130,15 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void MoverHaciaPunto(Transform punto)
+    {
+        // Calcula la dirección hacia el punto
+        Vector3 direccion = (punto.position - transform.position).normalized;
+
+        // Mueve el enemigo hacia el punto con la velocidad específica
+        transform.position += direccion * speed * Time.deltaTime;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -123,13 +153,52 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void MoverHaciaPunto(Transform punto)
+    private Transform Dijkstra(Transform startNode)
     {
-        Vector3 direccion = (punto.position - transform.position).normalized;
-        transform.position += direccion * speed * Time.deltaTime;
+        Dictionary<Transform, float> distances = new Dictionary<Transform, float>();
+        Dictionary<Transform, Transform> previous = new Dictionary<Transform, Transform>();
+        List<Transform> unvisitedNodes = new List<Transform>();
+
+        
+
+        while (unvisitedNodes.Count > 0)
+        {
+            Transform currentNode = null;
+
+            foreach (Transform node in unvisitedNodes)
+            {
+                if (currentNode == null || distances[node] < distances[currentNode])
+                {
+                    currentNode = node;
+                }
+            }
+
+            unvisitedNodes.Remove(currentNode);
+
+            foreach (var neighbor in graph.AdjacencyList[currentNode])
+            {
+                float tentativeDistance = distances[currentNode] + neighbor.Value;
+                if (tentativeDistance < distances[neighbor.Key])
+                {
+                    distances[neighbor.Key] = tentativeDistance;
+                    previous[neighbor.Key] = currentNode;
+                }
+            }
+        }
+
+        // Recuperar el camino más corto
+        Transform targetNode = puntosRecorrido.Peek(); // Puedes cambiar este nombre si lo deseas
+        List<Transform> path = new List<Transform>();
+        while (previous[targetNode] != null)
+        {
+            path.Insert(0, targetNode);
+            targetNode = previous[targetNode];
+        }
+
+        return path.Count > 0 ? path[0] : null;
     }
 
-    public void IncreaseVelocity()
+        public void IncreaseVelocity()
     {
         speed += 1;
     }

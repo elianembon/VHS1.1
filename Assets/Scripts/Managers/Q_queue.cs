@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,17 @@ public class Q_queue<T> : IQueue<T>
         }
 
         return queue.Dequeue();
+    }
+
+    public T GetElement(int index)
+    {
+        if (index < 0 || index >= queue.Count)
+        {
+            throw new IndexOutOfRangeException("Índice fuera de rango en la cola.");
+        }
+
+        List<T> list = new List<T>(queue);
+        return list[index];
     }
 
     public T Peek()
