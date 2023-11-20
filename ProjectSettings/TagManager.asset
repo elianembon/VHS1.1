@@ -8,6 +8,7 @@ TagManager:
   - Medic
   - Item
   - Objects
+  - Door
   layers:
   - Default
   - TransparentFX

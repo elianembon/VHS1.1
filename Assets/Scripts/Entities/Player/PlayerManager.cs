@@ -6,8 +6,11 @@ public class PlayerManager : Player
 {
     public static PlayerManager Instance { get; private set; }
 
+    public GameObject blackScreen;
+    private float teleportTime = 2f;
     public GameObject sword;
     private Animator animator;
+    private GameObject currentDoor;
     [SerializeField] private Cordura cordura;
     
 
@@ -61,7 +64,32 @@ public class PlayerManager : Player
             animator.SetBool("PressA", false);
         }
         Attack();
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if(currentDoor != null)
+            {
+                StartCoroutine(TeleportCoroutine());
+            }
+        }
     }
+
+    private IEnumerator TeleportCoroutine()
+    {
+        // Activa la pantalla negra
+        blackScreen.SetActive(true);
+
+        // Espera el tiempo de teletransporte
+        yield return new WaitForSeconds(teleportTime);
+
+        // Cambia la posición del jugador
+        transform.position = currentDoor.GetComponent<Doors>().GetDestination().position;
+
+        // Desactiva la pantalla negra después del teletransporte
+        yield return new WaitForSeconds(2f); // Espera adicional de 2 segundos
+        blackScreen.SetActive(false);
+    }
+
 
     private void Attack()
     {
@@ -87,5 +115,24 @@ public class PlayerManager : Player
             cordura.changeCurrentCordura(_currentLife);
         }
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Door"))
+        {
+            currentDoor = collision.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Door"))
+        {
+            if(collision.gameObject == currentDoor)
+            {
+                currentDoor = null;
+            }
+        }
+    }
+
 }
