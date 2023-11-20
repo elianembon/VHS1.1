@@ -28,7 +28,7 @@ public class Cordura : MonoBehaviour
 
     public void InitBarraCordura (float QuantityCordura)
     {
-        changeMaxCordura(QuantityCordura);
-        changeCurrentCordura(QuantityCordura);
+        //changeMaxCordura(QuantityCordura);
+        //changeCurrentCordura(QuantityCordura);
     }
 }
