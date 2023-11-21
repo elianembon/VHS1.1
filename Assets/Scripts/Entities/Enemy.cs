@@ -19,15 +19,16 @@ public class Enemy : MonoBehaviour
     public Transform Point9Transform;
 
     public Transform puntoActual;
-    private bool enPausaDespuesDeColision = false;
-    private float tiempoPausa = 1.0f; // 1 segundo de pausa
+    private bool enPausaDespuesDeColision;
+    private float tiempoPausa = 0f; // 1 segundo de pausa
     private float rangoPersecusionInit;
 
-    private DecisionTree decisionTree;
+    private Tree<Enemy> decisionTree;
 
     void Start()
     {
         rangoPersecusionInit = rangoPersecusion;
+        enPausaDespuesDeColision = false;
 
         sacarVida = GameObject.FindObjectOfType<PlayerManager>();
         puntosRecorrido = new Q_queue<Transform>();
@@ -45,11 +46,15 @@ public class Enemy : MonoBehaviour
             puntoActual = puntosRecorrido.Dequeue();
         }
 
-        decisionTree = new DecisionTree(this);
+        var decisionTreeBuilder = new EnemyDecisionTreeBuilder();
+        var rootNode = decisionTreeBuilder.BuildDecisionTree();
+        decisionTree = new Tree<Enemy>(rootNode);
     }
 
     void Update()
     {
+        Debug.Log($"Tiempo de pausa: {tiempoPausa}");
+
         if (enPausaDespuesDeColision)
         {
             // Si estamos en pausa, contar el tiempo de pausa y luego reanudar el movimiento.
@@ -61,7 +66,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            decisionTree.ExecuteDecisionTree();
+            decisionTree.Root.Execute(this);
         }
     }
 
@@ -73,7 +78,7 @@ public class Enemy : MonoBehaviour
 
             // Detener el movimiento y entrar en estado de pausa.
             enPausaDespuesDeColision = true;
-            tiempoPausa = 1.0f; // 1 segundo de pausa
+            tiempoPausa = 1.0f; // Restablecer el tiempo de pausa
         }
     }
 
@@ -81,6 +86,20 @@ public class Enemy : MonoBehaviour
     {
         Vector3 direccion = (punto.position - transform.position).normalized;
         transform.position += direccion * speed * Time.deltaTime;
+    }
+
+    public void Patrol()
+    {
+        if (puntosRecorrido.Counter() > 0)
+        {
+            MoverHaciaPunto(puntoActual);
+
+            if (Vector3.Distance(transform.position, puntoActual.position) <= distanciaMinima)
+            {
+                puntoActual = puntosRecorrido.Dequeue();
+                puntosRecorrido.Enqueue(puntoActual);
+            }
+        }
     }
 
     public void IncreaseVelocity()
