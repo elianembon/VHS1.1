@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -7,16 +10,7 @@ public class Enemy : MonoBehaviour
     public float rangoPersecusion = 4f;
     public float speed = 4.0f;
     public float distanciaMinima = 1.0f;
-    public Q_queue<Transform> puntosRecorrido;
-    public Transform Point1Transform;
-    public Transform Point2Transform;
-    public Transform Point3Transform;
-    public Transform Point4Transform;
-    public Transform Point5Transform;
-    public Transform Point6Transform;
-    public Transform Point7Transform;
-    public Transform Point8Transform;
-    public Transform Point9Transform;
+    public GrafoMA grafo;  // Usa tu implementación del grafo en lugar de Q_queue y puntosRecorrido
 
     public Transform puntoActual;
     private bool enPausaDespuesDeColision;
@@ -31,24 +25,38 @@ public class Enemy : MonoBehaviour
         enPausaDespuesDeColision = false;
 
         sacarVida = GameObject.FindObjectOfType<PlayerManager>();
-        puntosRecorrido = new Q_queue<Transform>();
-        puntosRecorrido.Enqueue(Point1Transform);
-        puntosRecorrido.Enqueue(Point2Transform);
-        puntosRecorrido.Enqueue(Point3Transform);
-        puntosRecorrido.Enqueue(Point4Transform);
-        puntosRecorrido.Enqueue(Point5Transform);
-        puntosRecorrido.Enqueue(Point6Transform);
-        puntosRecorrido.Enqueue(Point7Transform);
-        puntosRecorrido.Enqueue(Point8Transform);
-        puntosRecorrido.Enqueue(Point9Transform);
-        if (puntosRecorrido.Counter() > 0)
+
+        // Utiliza tu propia implementación del grafo (por ejemplo, GrafoMA)
+        grafo = new GrafoMA();
+
+        if (grafo != null) //check if grafo object is not null
         {
-            puntoActual = puntosRecorrido.Dequeue();
+            grafo.InicializarGrafo();
+            grafo.AgregarVertice(1);
+            grafo.AgregarVertice(2);
+            grafo.AgregarVertice(3);
+
+            // Añade las aristas según tu escenario
+            grafo.AgregarArista(1, 1, 2, 1);
+            grafo.AgregarArista(2, 2, 3, 1);
+
+            if (puntoActual != null) // check if puntoActual object is not null
+            {
+                puntoActual = grafo.ObtenerVertice(1) as Transform;
+            }
+
+        }
+        else
+        {
+            Debug.Log("Grafo no está instanciado correctamente");
         }
 
-        var decisionTreeBuilder = new EnemyDecisionTreeBuilder();
-        var rootNode = decisionTreeBuilder.BuildDecisionTree();
-        decisionTree = new Tree<Enemy>(rootNode);
+        // En caso de que Enemy esté bien instanciado.
+        
+            var decisionTreeBuilder = new EnemyDecisionTreeBuilder();
+            var rootNode = decisionTreeBuilder.BuildDecisionTree(grafo);
+            decisionTree = new Tree<Enemy>(rootNode);
+        
     }
 
     void Update()
@@ -88,17 +96,17 @@ public class Enemy : MonoBehaviour
         transform.position += direccion * speed * Time.deltaTime;
     }
 
-    public void Patrol()
+   public void Patrol()
     {
-        if (puntosRecorrido.Counter() > 0)
-        {
-            MoverHaciaPunto(puntoActual);
+        int indiceActual = Array.IndexOf(grafo.Etiqs, puntoActual.GetInstanceID());
+        ConjuntoTDA adyacentes = grafo.VerticesAdyacentes(indiceActual);
 
-            if (Vector3.Distance(transform.position, puntoActual.position) <= distanciaMinima)
-            {
-                puntoActual = puntosRecorrido.Dequeue();
-                puntosRecorrido.Enqueue(puntoActual);
-            }
+        if (!adyacentes.ConjuntoVacio())
+        {
+            int nodoAleatorio = adyacentes.Elegir();
+            puntoActual = grafo.ObtenerVertice(nodoAleatorio) as Transform;
+
+            MoverHaciaPunto(puntoActual);
         }
     }
 
@@ -122,4 +130,3 @@ public class Enemy : MonoBehaviour
         rangoPersecusion -= 1;
     }
 }
-
