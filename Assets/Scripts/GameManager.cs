@@ -90,6 +90,10 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void Victoy()
+    {
+        SceneManager.LoadScene("Victoria");
+    }
    
     private void OnDestroy()
     {

@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.Linq;
+
 
 public class Inventory : MonoBehaviour
 {
@@ -28,6 +31,11 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         Nav();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TransferItemToThermal();
+        }
 
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -65,26 +73,41 @@ public class Inventory : MonoBehaviour
     {
         List<GameObject> activeItems = Bag.FindAll(item => item.activeSelf);
 
-        // Filtrar elementos por tipo
-        List<GameObject> items = activeItems.FindAll(item => item.tag == "Item");
-        List<GameObject> medicItems = activeItems.FindAll(item => item.tag == "Medic");
-        List<GameObject> objectItems = activeItems.FindAll(item => item.tag == "Objects");
+        // Comparador para ordenar por tipo de objeto
+        Comparison<GameObject> itemComparison = (item1, item2) =>
+        {
+            int item1Value = GetSortValue(item1.tag);
+            int item2Value = GetSortValue(item2.tag);
+            return item1Value.CompareTo(item2Value);
+        };
 
-        // Ordenar cada lista por separado
-        Quicksort.Sort(items, 0, items.Count - 1);
-        Quicksort.Sort(medicItems, 0, medicItems.Count - 1);
-        Quicksort.Sort(objectItems, 0, objectItems.Count - 1);
+        // Ordenar la lista de objetos activos usando Quicksort genérico
+        Quicksort<GameObject>.Sort(activeItems, itemComparison, 0, activeItems.Count - 1);
 
         // Limpiar la bolsa original
         Bag.Clear();
 
         // Agregar los elementos ordenados en la bolsa original, manteniendo los elementos existentes
-        Bag.AddRange(items);
-        Bag.AddRange(medicItems);
-        Bag.AddRange(objectItems);
+        Bag.AddRange(activeItems);
 
         // Implementar la lógica para actualizar la interfaz de usuario del inventario si es necesario
         UpdateInventoryUI();
+    }
+
+    // Obtener el valor de ordenamiento para un tipo de objeto
+    private int GetSortValue(string tag)
+    {
+        switch (tag)
+        {
+            case "Item":
+                return 0;
+            case "Medic":
+                return 1;
+            case "Objects":
+                return 2;
+            default:
+                return int.MaxValue; // Valor predeterminado para manejar casos desconocidos
+        }
     }
 
     private void UpdateInventoryUI()
@@ -104,10 +127,29 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    void TransferItemToThermal()
+    {
+        if (ID >= 0 && ID < Bag.Count)
+        {
+            GameObject selectedSlot = Bag[ID];
+            Image selectedImage = selectedSlot.GetComponent<Image>();
+
+            Thermal thermalScript = FindObjectOfType<Thermal>(); // Buscar el script Thermal en la escena
+
+            if (thermalScript != null && selectedImage.enabled && selectedSlot.CompareTag("Item") && thermalScript.IsNearGenerator())
+            {
+                thermalScript.ReceiveItemFromInventory(selectedSlot); // Llama al método en Thermal para transferir el objeto
+                RemoveItemFromInventory(); // Remueve el objeto del inventario
+            }
+        }
+    }
+
+
+
     void OnTriggerEnter2D(Collider2D coll)
     {
         if ((coll.CompareTag("Item") && CountItemsWithTag("Item") < maxOtherItems) ||
-            (coll.CompareTag("Medic") && CountItemsWithTag("Medic") < maxMedicItems) || 
+            (coll.CompareTag("Medic") && CountItemsWithTag("Medic") < maxMedicItems) ||
             (coll.CompareTag("Objects") && CountItemsWithTag("Objects") < maxOtherItems))
         {
             AddItemToInventory(coll);
@@ -214,6 +256,3 @@ public class Inventory : MonoBehaviour
         GameManager.Instance.ResumeGame();
     }
 }
-
-
-
