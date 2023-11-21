@@ -85,7 +85,7 @@ public class PlayerManager : Player
 
     public void LooseLife()
     {    
-        TakeDamage(1);
+        TakeDamage(0.2f);
         cordura.changeCurrentCordura(_currentLife);
     }
 
@@ -105,6 +105,15 @@ public class PlayerManager : Player
         if (collision.CompareTag("Door"))
         {
             currentDoor = collision.gameObject;
+        }
+            
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Damage"))
+        {
+            LooseLife();
         }
     }
 

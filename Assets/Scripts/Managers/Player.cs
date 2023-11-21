@@ -14,9 +14,9 @@ public class Player : MonoBehaviour, IMovable, ILife
     public delegate void PlayerDead();
     public static event PlayerDead OnPlayerDead;
 
-    public int MaxLife => _maxLife;
+    public float MaxLife => _maxLife;
 
-    public int CurrentLife => _currentLife;
+    public float CurrentLife => _currentLife;
     #endregion
 
     #region PRIVATE_PROPIETIES
@@ -26,8 +26,8 @@ public class Player : MonoBehaviour, IMovable, ILife
     [SerializeField] protected float _movementSpeedRun = 8f;
     [SerializeField] protected float _movementSpeedSilent = 1f;
 
-    [SerializeField] protected int _maxLife = 80;
-    [SerializeField] protected int _currentLife;
+    [SerializeField] protected float _maxLife = 120;
+    [SerializeField] protected float _currentLife;
 
     #endregion
 
@@ -82,7 +82,7 @@ public class Player : MonoBehaviour, IMovable, ILife
     }
 
     /*--------- [LIFE] ---------*/
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(float damage)
     {
         _currentLife -= damage;
 
@@ -92,7 +92,7 @@ public class Player : MonoBehaviour, IMovable, ILife
         }
     }
 
-    public virtual void TakeLife(int RegenLife)
+    public virtual void TakeLife(float RegenLife)
     {
         _currentLife += RegenLife;
 

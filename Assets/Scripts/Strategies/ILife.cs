@@ -4,10 +4,10 @@ using UnityEngine;
 
 public interface ILife
 {
-    int MaxLife { get; }
-    int CurrentLife { get; }
+    float MaxLife { get; }
+    float CurrentLife { get; }
 
-    void TakeDamage(int damage);
-    void TakeLife(int RegenLife);
+    void TakeDamage(float damage);
+    void TakeLife(float RegenLife);
     void Die();
 }

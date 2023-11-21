@@ -13,6 +13,7 @@ public class Generator : MonoBehaviour
     private float startTimer; // variable para guardar
 
     private ChangesLightColor myLight;
+    private DesactiveColLihgt changeTag;
 
     SpriteRenderer spriteRenderer;
 
@@ -23,6 +24,7 @@ public class Generator : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         startTimer = RepairCounter;
         myLight = GetComponent<ChangesLightColor>();
+        changeTag = GetComponent<DesactiveColLihgt>();       
     }
     private void Update()
     {
@@ -43,6 +45,9 @@ public class Generator : MonoBehaviour
         spriteRenderer.color = Color.yellow;
         StartCoroutine(RepairCountdown());
         myLight.ChangetoWhite();
+        changeTag.ChangedTagToNoDamage();
+
+
     }
 
     private IEnumerator RepairCountdown()
@@ -66,6 +71,7 @@ public class Generator : MonoBehaviour
         generatorManager.UnregisterGenerator(this);
         RepairCounter = startTimer;
         myLight.ChangetoPurple();
+        changeTag.ChangedTagToDamage();
     }
 
     public void EnableSpaceInput()

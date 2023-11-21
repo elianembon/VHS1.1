@@ -9,6 +9,9 @@ TagManager:
   - Item
   - Objects
   - Door
+  - Luz
+  - Damage
+  - NoDamage
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - map
   - player
   - enemy
-  - 
+  - Luz
   - 
   - 
   - 

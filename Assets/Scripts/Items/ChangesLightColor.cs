@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
+
 public class ChangesLightColor : MonoBehaviour
 {
     public Light2D[] Lights;
     private Color[] originalColors;
+
 
     void Start()
     {
@@ -34,5 +36,6 @@ public class ChangesLightColor : MonoBehaviour
         {
             Lights[i].color = originalColors[i];
         }
+        
     }
 }
