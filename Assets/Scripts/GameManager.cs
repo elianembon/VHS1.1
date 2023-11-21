@@ -85,11 +85,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Level2");
     }
 
-    public void Victory()
-    {
-        SceneManager.LoadScene("Victoria");
-    }
-
     public void QuitGame()
     {
         Application.Quit();

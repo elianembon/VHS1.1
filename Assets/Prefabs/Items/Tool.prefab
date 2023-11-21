@@ -12,11 +12,7 @@ GameObject:
   - component: {fileID: 8760136478924375077}
   - component: {fileID: 5667862471299023421}
   - component: {fileID: 7824019142852230903}
-<<<<<<< HEAD
   - component: {fileID: -6206166301116114453}
-=======
-  - component: {fileID: 3766148872052479824}
->>>>>>> Quicksort-Fix
   m_Layer: 0
   m_Name: Tool
   m_TagString: Item
@@ -163,11 +159,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
-<<<<<<< HEAD
 --- !u!114 &-6206166301116114453
-=======
---- !u!114 &3766148872052479824
->>>>>>> Quicksort-Fix
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
