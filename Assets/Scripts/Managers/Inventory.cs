@@ -12,6 +12,7 @@ public class Inventory : MonoBehaviour
     public GameObject inventory;
     public GameObject Selector;
     public int ID;
+    private PlayerManager player;
 
     private bool isGamePaused;
     private bool activeInventory;
@@ -26,6 +27,8 @@ public class Inventory : MonoBehaviour
         isGamePaused = false;
         activeInventory = false;
         RecordOriginalPositions();
+
+        player = GetComponent<PlayerManager>();
     }
 
     void Update()
@@ -185,7 +188,8 @@ public class Inventory : MonoBehaviour
             if (selectedImage.enabled && selectedSlot.CompareTag("Medic"))
             {
                 Debug.Log("Te estoy curando");
-                // Acción de curación aquí
+                player.GetLife();
+                RemoveItemFromInventory();
             }
         }
     }

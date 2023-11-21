@@ -95,7 +95,7 @@ public class PlayerManager : Player
             return;
         else
         {
-            TakeLife(1);
+            TakeLife(25);
             cordura.changeCurrentCordura(_currentLife);
         }
     }
