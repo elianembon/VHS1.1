@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6325110476651767617
+--- !u!1 &6640984560649532894
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,44 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1348130266213870238}
-  - component: {fileID: 8760136478924375077}
-  - component: {fileID: 5667862471299023421}
-  - component: {fileID: 7824019142852230903}
-<<<<<<< HEAD
-  - component: {fileID: -6206166301116114453}
-=======
-  - component: {fileID: 3766148872052479824}
->>>>>>> Quicksort-Fix
+  - component: {fileID: 2579223208349561489}
+  - component: {fileID: 2420369671002307232}
+  - component: {fileID: 1628372126514078582}
+  - component: {fileID: 1723574418399473645}
+  - component: {fileID: 6201458746353341504}
   m_Layer: 0
-  m_Name: Tool
+  m_Name: 'Fusible '
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1348130266213870238
+--- !u!4 &2579223208349561489
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6325110476651767617}
+  m_GameObject: {fileID: 6640984560649532894}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.67, y: -9.27, z: -0.56}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -2.5398378, y: -2.41, z: -0.56}
+  m_LocalScale: {x: 4.2, y: 3.97, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8760136478924375077
+--- !u!212 &2420369671002307232
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6325110476651767617}
+  m_GameObject: {fileID: 6640984560649532894}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -79,8 +75,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 27cd1e587c2aaf044be48a4143f6cbb0, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: a8cf5f2c6efae5340bcabc6f8b18a443, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -91,13 +87,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &5667862471299023421
+--- !u!61 &1628372126514078582
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6325110476651767617}
+  m_GameObject: {fileID: 6640984560649532894}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -123,27 +119,27 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.010215163, y: -0.0038294792}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.2, y: 1.2}
+    oldSize: {x: 0.16, y: 0.16}
     newSize: {x: 1.2, y: 1.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2, y: 1.2}
+  m_Size: {x: 0.09158635, y: 0.18070745}
   m_EdgeRadius: 0
---- !u!50 &7824019142852230903
+--- !u!50 &1723574418399473645
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6325110476651767617}
+  m_GameObject: {fileID: 6640984560649532894}
   m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -163,17 +159,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
-<<<<<<< HEAD
---- !u!114 &-6206166301116114453
-=======
---- !u!114 &3766148872052479824
->>>>>>> Quicksort-Fix
+--- !u!114 &6201458746353341504
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6325110476651767617}
+  m_GameObject: {fileID: 6640984560649532894}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 542bd7d9da4c1bc4daf45c7c15a79ad5, type: 3}
