@@ -1,25 +1,25 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class GrafoMA : MonoBehaviour, IGrafoTDA
+public class GrafoMA: MonoBehaviour, IGrafoTDA
 {
-    static int n = 100;
     public int[,] MAdy;
-    public int[,] MId;
     public int[] Etiqs;
     public int cantNodos;
+    public Nodo[] Nodos;
 
-    public void InicializarGrafo()
+    public void InicializarGrafo(int maxNodos)
     {
-        MAdy = new int[n, n];
-        MId = new int[n, n];
-        Etiqs = new int[n];
+        MAdy = new int[maxNodos, maxNodos];
+        Etiqs = new int[maxNodos];
         cantNodos = 0;
+        Nodos = new Nodo[maxNodos];
     }
-
-    public void AgregarVertice(int v)
+    public void AgregarVertice(int v, Nodo n)
     {
         Etiqs[cantNodos] = v;
+        Nodos[cantNodos] = n;
         for (int i = 0; i <= cantNodos; i++)
         {
             MAdy[cantNodos, i] = 0;
@@ -28,22 +28,27 @@ public class GrafoMA : MonoBehaviour, IGrafoTDA
         cantNodos++;
     }
 
-    public void EliminarVertice(int v)
+    public void AgregarArista(int v1, int v2, int peso)
     {
-        int ind = Vert2Indice(v);
+        int o = Vert2Indice(v1);
+        int d = Vert2Indice(v2);
+        MAdy[o, d] = peso;
+    }
 
-        for (int k = 0; k < cantNodos; k++)
+    public List<int> ObtenerVecinos(int v)
+    {
+        List<int> vecinos = new List<int>();
+        int indice = Vert2Indice(v);
+
+        for (int i = 0; i < cantNodos; i++)
         {
-            MAdy[k, ind] = MAdy[k, cantNodos - 1];
+            if (MAdy[indice, i] != 0)
+            {
+                vecinos.Add(Etiqs[i]);
+            }
         }
 
-        for (int k = 0; k < cantNodos; k++)
-        {
-            MAdy[ind, k] = MAdy[cantNodos - 1, k];
-        }
-
-        Etiqs[ind] = Etiqs[cantNodos - 1];
-        cantNodos--;
+        return vecinos;
     }
 
     public int Vert2Indice(int v)
@@ -55,68 +60,5 @@ public class GrafoMA : MonoBehaviour, IGrafoTDA
         }
 
         return i;
-    }
-
-    public ConjuntoTDA Vertices()
-    {
-        ConjuntoTDA Vert = new ConjuntoLD();
-        Vert.InicializarConjunto();
-        for (int i = 0; i < cantNodos; i++)
-        {
-            Vert.Agregar(Etiqs[i]);
-        }
-        return Vert;
-    }
-
-    public void AgregarArista(int id, int v1, int v2, int peso)
-    {
-        int o = Vert2Indice(v1);
-        int d = Vert2Indice(v2);
-        MAdy[o, d] = peso;
-        MId[o, d] = id;
-    }
-
-    public void EliminarArista(int v1, int v2)
-    {
-        int o = Vert2Indice(v1);
-        int d = Vert2Indice(v2);
-        MAdy[o, d] = 0;
-        MId[o, d] = 0;
-    }
-
-    public bool ExisteArista(int v1, int v2)
-    {
-        int o = Vert2Indice(v1);
-        int d = Vert2Indice(v2);
-        return MAdy[o, d] != 0;
-    }
-
-    public int PesoArista(int v1, int v2)
-    {
-        int o = Vert2Indice(v1);
-        int d = Vert2Indice(v2);
-        return MAdy[o, d];
-    }
-
-    public ConjuntoTDA VerticesAdyacentes(int v)
-    {
-        ConjuntoTDA adyacentes = new ConjuntoLD();
-        adyacentes.InicializarConjunto();
-
-        for (int i = 0; i < cantNodos; i++)
-        {
-            if (MAdy[v, i] != 0)
-            {
-                adyacentes.Agregar(Etiqs[i]);
-            }
-        }
-
-        return adyacentes;
-    }
-
-    public object ObtenerVertice(int v)
-    {
-        // Podrías devolver directamente el Transform si tu vértice es un Transform
-        return Etiqs[v];
     }
 }

@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
 
         if (enPausaDespuesDeColision)
         {
-            // Si estamos en pausa, contar el tiempo de pausa y luego reanudar el movimiento.
+            
             tiempoPausa -= Time.deltaTime;
             if (tiempoPausa <= 0)
             {

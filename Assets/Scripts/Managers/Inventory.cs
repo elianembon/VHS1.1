@@ -109,7 +109,7 @@ public class Inventory : MonoBehaviour
             case "Objects":
                 return 2;
             default:
-                return int.MaxValue; // Valor predeterminado para manejar casos desconocidos
+                return int.MaxValue; 
         }
     }
 

@@ -20,7 +20,7 @@ public static class Quicksort<T>
 
     private static int Partition(List<T> list, Comparison<T> comparison, int left, int right)
     {
-        int pivotIndex = (left + right) / 2; // Usar el índice central como pivote
+        int pivotIndex = (left + right) / 2; 
         T pivotValue = list[pivotIndex];
         Swap(list, pivotIndex, right);
 
