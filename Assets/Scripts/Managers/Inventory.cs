@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Linq;
 
 
 public class Inventory : MonoBehaviour
@@ -30,6 +31,11 @@ public class Inventory : MonoBehaviour
     void Update()
     {
         Nav();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TransferItemToThermal();
+        }
 
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -104,7 +110,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-
     private void UpdateInventoryUI()
     {
         for (int i = 0; i < Bag.Count; i++)
@@ -122,10 +127,29 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    void TransferItemToThermal()
+    {
+        if (ID >= 0 && ID < Bag.Count)
+        {
+            GameObject selectedSlot = Bag[ID];
+            Image selectedImage = selectedSlot.GetComponent<Image>();
+
+            Thermal thermalScript = FindObjectOfType<Thermal>(); // Buscar el script Thermal en la escena
+
+            if (thermalScript != null && selectedImage.enabled && selectedSlot.CompareTag("Item") && thermalScript.IsNearGenerator())
+            {
+                thermalScript.ReceiveItemFromInventory(selectedSlot); // Llama al método en Thermal para transferir el objeto
+                RemoveItemFromInventory(); // Remueve el objeto del inventario
+            }
+        }
+    }
+
+
+
     void OnTriggerEnter2D(Collider2D coll)
     {
         if ((coll.CompareTag("Item") && CountItemsWithTag("Item") < maxOtherItems) ||
-            (coll.CompareTag("Medic") && CountItemsWithTag("Medic") < maxMedicItems) || 
+            (coll.CompareTag("Medic") && CountItemsWithTag("Medic") < maxMedicItems) ||
             (coll.CompareTag("Objects") && CountItemsWithTag("Objects") < maxOtherItems))
         {
             AddItemToInventory(coll);
