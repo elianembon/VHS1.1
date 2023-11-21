@@ -83,9 +83,9 @@ public class PlayerManager : Player
         }
     }
 
-    public void LooseLife()
+    public void LooseLife(float damage)
     {    
-        TakeDamage(0.2f);
+        TakeDamage(damage);
         cordura.changeCurrentCordura(_currentLife);
     }
 
@@ -113,7 +113,7 @@ public class PlayerManager : Player
     {
         if (collision.CompareTag("Damage"))
         {
-            LooseLife();
+            LooseLife(0.2f);
         }
     }
 

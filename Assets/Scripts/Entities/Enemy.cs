@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -10,7 +7,9 @@ public class Enemy : MonoBehaviour
     public float rangoPersecusion = 4f;
     public float speed = 4.0f;
     public float distanciaMinima = 1.0f;
-    public GrafoMA grafo;  // Usa tu implementación del grafo en lugar de Q_queue y puntosRecorrido
+    public Q_queue<Transform> puntosRecorrido;
+    public Transform[] Points;
+
 
     public Transform puntoActual;
     private bool enPausaDespuesDeColision;
@@ -21,47 +20,29 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        puntosRecorrido = new Q_queue<Transform>();
         rangoPersecusionInit = rangoPersecusion;
         enPausaDespuesDeColision = false;
-
         sacarVida = GameObject.FindObjectOfType<PlayerManager>();
-
-        // Utiliza tu propia implementación del grafo (por ejemplo, GrafoMA)
-        grafo = new GrafoMA();
-
-        if (grafo != null) //check if grafo object is not null
+        if (Points != null && Points.Length > 0)
         {
-            grafo.InicializarGrafo();
-            grafo.AgregarVertice(1);
-            grafo.AgregarVertice(2);
-            grafo.AgregarVertice(3);
-
-            // Añade las aristas según tu escenario
-            grafo.AgregarArista(1, 1, 2, 1);
-            grafo.AgregarArista(2, 2, 3, 1);
-
-            if (puntoActual != null) // check if puntoActual object is not null
+            for (int i = 0; i < Points.Length; i++)
             {
-                puntoActual = grafo.ObtenerVertice(1) as Transform;
+                puntosRecorrido.Enqueue(Points[i]);
             }
-
         }
-        else
+        if (puntosRecorrido.Counter() > 0)
         {
-            Debug.Log("Grafo no está instanciado correctamente");
+            puntoActual = puntosRecorrido.Dequeue();
         }
 
-        // En caso de que Enemy esté bien instanciado.
-        
-            var decisionTreeBuilder = new EnemyDecisionTreeBuilder();
-            var rootNode = decisionTreeBuilder.BuildDecisionTree(grafo);
-            decisionTree = new Tree<Enemy>(rootNode);
-        
+        var decisionTreeBuilder = new EnemyDecisionTreeBuilder();
+        var rootNode = decisionTreeBuilder.BuildDecisionTree();
+        decisionTree = new Tree<Enemy>(rootNode);
     }
 
     void Update()
     {
-        Debug.Log($"Tiempo de pausa: {tiempoPausa}");
 
         if (enPausaDespuesDeColision)
         {
@@ -82,7 +63,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            sacarVida.LooseLife();
+            sacarVida.LooseLife(20f);
 
             // Detener el movimiento y entrar en estado de pausa.
             enPausaDespuesDeColision = true;
@@ -96,37 +77,19 @@ public class Enemy : MonoBehaviour
         transform.position += direccion * speed * Time.deltaTime;
     }
 
-   public void Patrol()
+    public void Patrol()
     {
-        int indiceActual = Array.IndexOf(grafo.Etiqs, puntoActual.GetInstanceID());
-        ConjuntoTDA adyacentes = grafo.VerticesAdyacentes(indiceActual);
-
-        if (!adyacentes.ConjuntoVacio())
+        if (puntosRecorrido.Counter() > 0)
         {
-            int nodoAleatorio = adyacentes.Elegir();
-            puntoActual = grafo.ObtenerVertice(nodoAleatorio) as Transform;
-
             MoverHaciaPunto(puntoActual);
+
+            if (Vector3.Distance(transform.position, puntoActual.position) <= distanciaMinima)
+            {
+                puntoActual = puntosRecorrido.Dequeue();
+                puntosRecorrido.Enqueue(puntoActual);
+            }
         }
     }
 
-    public void IncreaseVelocity()
-    {
-        speed += 1;
-    }
-
-    public void DecreaseVelocity()
-    {
-        speed -= 1;
-    }
-
-    public void IncreaseRange()
-    {
-        rangoPersecusion += 1;
-    }
-
-    public void DecreaseRange()
-    {
-        rangoPersecusion -= 1;
-    }
+   
 }
