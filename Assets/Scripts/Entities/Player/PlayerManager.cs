@@ -69,7 +69,11 @@ public class PlayerManager : Player
         {
             if(currentDoor != null)
             {
-                transform.position = currentDoor.GetComponent<Doors>().GetDestination().position;
+                Vector3 currentPosition = transform.position;
+                Vector3 targetPosition = currentDoor.GetComponent<Doors>().GetDestination().position;
+                Vector3 newPosition = new Vector3(targetPosition.x, targetPosition.y, currentPosition.z);
+
+                transform.position = newPosition;
                 Camera.instance.UpdateCameraPosition();
             }
         }
