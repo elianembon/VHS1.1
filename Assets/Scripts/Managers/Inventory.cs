@@ -31,10 +31,6 @@ public class Inventory : MonoBehaviour
     {
         isGamePaused = false;
         activeInventory = false;
-        fase1.gameObject.SetActive(false);
-        fase2.gameObject.SetActive(false);
-        fase3.gameObject.SetActive(false);
-        fase4.gameObject.SetActive(false);
         RecordOriginalPositions();
 
         player = GetComponent<PlayerManager>();
@@ -80,23 +76,35 @@ public class Inventory : MonoBehaviour
             SortInventory();
         }
 
-        if (player.CurrentLife == 120)
+        if (player.CurrentLife <= 120)
         {
             fase1.gameObject.SetActive(true);
+            fase2.gameObject.SetActive(false);
+            fase3.gameObject.SetActive(false);
+            fase4.gameObject.SetActive(false);
         }
 
-        if (player.CurrentLife == 90)
+        if (player.CurrentLife <= 90)
         {
+            fase1.gameObject.SetActive(false);
             fase2.gameObject.SetActive(true);
+            fase3.gameObject.SetActive(false);
+            fase4.gameObject.SetActive(false);
         }
 
-        if (player.CurrentLife == 60)
+        if (player.CurrentLife <= 60)
         {
+            fase1.gameObject.SetActive(false);
+            fase2.gameObject.SetActive(false);
             fase3.gameObject.SetActive(true);
+            fase4.gameObject.SetActive(false);
         }
 
-        if (player.CurrentLife == 30)
+        if (player.CurrentLife <= 30)
         {
+            fase1.gameObject.SetActive(false);
+            fase2.gameObject.SetActive(false);
+            fase3.gameObject.SetActive(false);
             fase4.gameObject.SetActive(true);
         }
     }
