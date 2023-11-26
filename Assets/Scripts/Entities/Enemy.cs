@@ -74,6 +74,7 @@ public class Enemy : MonoBehaviour
     public void MoverHaciaPunto(Transform punto)
     {
         Vector3 direccion = (punto.position - transform.position).normalized;
+
         transform.position += direccion * speed * Time.deltaTime;
     }
 

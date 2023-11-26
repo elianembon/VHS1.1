@@ -10,6 +10,7 @@ public class Thermal : MonoBehaviour
     private List<GameObject> storedItems = new List<GameObject>();
 
     public Transform generatorTransform;
+    public float minimumDistance = 5f;
 
     private void Update()
     {
@@ -31,7 +32,14 @@ public class Thermal : MonoBehaviour
     // Lógica para verificar la proximidad al generador
     public bool IsNearGenerator()
     {
-        return true;
+        float distance = Vector3.Distance(transform.position, generatorTransform.position);
+        if (distance < minimumDistance)
+        {
+            return true;
+        }
+        else
+            return false;
+        
     }
 
     // Este método se llama cada vez que un objeto con el tag "Item" entra en el área de la térmica
