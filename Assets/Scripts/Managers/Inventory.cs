@@ -20,11 +20,6 @@ public class Inventory : MonoBehaviour
     private int maxMedicItems = 3;
     private int maxOtherItems = 3;
 
-    public Image fase1;
-    public Image fase2;
-    public Image fase3;
-    public Image fase4;
-
     private List<Vector2> originalPositions = new List<Vector2>();
 
     void Awake()
@@ -74,38 +69,6 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             SortInventory();
-        }
-
-        if (player.CurrentLife <= 120)
-        {
-            fase1.gameObject.SetActive(true);
-            fase2.gameObject.SetActive(false);
-            fase3.gameObject.SetActive(false);
-            fase4.gameObject.SetActive(false);
-        }
-
-        if (player.CurrentLife <= 90)
-        {
-            fase1.gameObject.SetActive(false);
-            fase2.gameObject.SetActive(true);
-            fase3.gameObject.SetActive(false);
-            fase4.gameObject.SetActive(false);
-        }
-
-        if (player.CurrentLife <= 60)
-        {
-            fase1.gameObject.SetActive(false);
-            fase2.gameObject.SetActive(false);
-            fase3.gameObject.SetActive(true);
-            fase4.gameObject.SetActive(false);
-        }
-
-        if (player.CurrentLife <= 30)
-        {
-            fase1.gameObject.SetActive(false);
-            fase2.gameObject.SetActive(false);
-            fase3.gameObject.SetActive(false);
-            fase4.gameObject.SetActive(true);
         }
     }
 
