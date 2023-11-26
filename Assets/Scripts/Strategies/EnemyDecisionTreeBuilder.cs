@@ -37,7 +37,7 @@ public class EnemyDecisionTreeBuilder
 
     private void Patrol(Enemy enemy)
     {
-        Debug.Log("Patrol");
+       // Debug.Log("Patrol");
         if (enemy.puntosRecorrido.Counter() > 0)
         {
             enemy.MoverHaciaPunto(enemy.puntoActual);
