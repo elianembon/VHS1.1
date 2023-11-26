@@ -20,14 +20,20 @@ public class CheckPlayerDistance : MonoBehaviour
         // Calcula la distancia entre este objeto y el jugador.
         float distance = Vector3.Distance(transform.position, player.position);
 
+<<<<<<< HEAD
+=======
+        
+>>>>>>> MiniJuego
 
         // Si la distancia es menor que la distancia mínima deseada, habilita la entrada del espacio.
         if (distance < minimumDistance)
         {
+            Debug.Log("Distancia aceptable");
             generator.EnableSpaceInput();//llamamos la funcion para activar el space
         }
         else
         {
+            
             generator.DisableSpaceInput();//llamamos a la funcion para desactivar el space
         }
     }
