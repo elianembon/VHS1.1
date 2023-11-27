@@ -22,7 +22,7 @@ public class Thermal : MonoBehaviour
 
     private void Update()
     {
-        if (!isRepaired && storedItems.Count == 10 && IsNearGenerator())
+        if (!isRepaired && storedItems.Count == 6 && IsNearGenerator())
         {
             RepairGenerator();
         }
@@ -53,7 +53,7 @@ public class Thermal : MonoBehaviour
     // Este método se llama cada vez que un objeto con el tag "Item" entra en el área de la térmica
     public void ReceiveItemFromInventory(GameObject item)
     {
-        if (storedItems.Count < 10)
+        if (storedItems.Count < 6)
         {
             audioSource.PlayOneShot(repair);
             storedItems.Add(item);
@@ -61,7 +61,7 @@ public class Thermal : MonoBehaviour
         }
         else
         {
-            Debug.Log("La térmica ya tiene la cantidad máxima de items (10).");
+            Debug.Log("La térmica ya tiene la cantidad máxima de items (6).");
         }
     }
 }

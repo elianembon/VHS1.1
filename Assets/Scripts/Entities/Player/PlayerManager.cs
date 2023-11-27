@@ -17,6 +17,8 @@ public class PlayerManager : Player
     [SerializeField] private Cordura cordura2;
     [SerializeField] private Cordura cordura3;
 
+    public AudioSource audioSource;
+    private float initialVolume = 1f;
 
     private void Start()
     {
@@ -24,11 +26,14 @@ public class PlayerManager : Player
         _currentLife = _maxLife;
         
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         cordura.InitBarraCordura(corduramax);
         cordura1.InitBarraCordura(corduramax);
         cordura2.InitBarraCordura(corduramax);
         cordura3.InitBarraCordura(corduramax);
+
+        audioSource.volume = initialVolume;
     }
 
     private void Update()
@@ -99,6 +104,8 @@ public class PlayerManager : Player
     {    
         TakeDamage(damage);
         corduramax += damage;
+        float volumen = Mathf.Clamp01(initialVolume - (corduramax / _maxLife));
+        audioSource.volume = volumen;
         cordura.changeCurrentCordura(corduramax);
         cordura1.changeCurrentCordura(corduramax);
         cordura2.changeCurrentCordura(corduramax);

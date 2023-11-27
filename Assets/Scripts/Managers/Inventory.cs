@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
     public GameObject inventory;
     public GameObject Selector;
     public int ID;
-    private PlayerManager player;
+    public PlayerManager player;
 
     private bool isGamePaused;
     private bool activeInventory;
@@ -239,7 +239,6 @@ public class Inventory : MonoBehaviour
     {
         if (ID >= 0 && ID < Bag.Count && activeInventory == true)
         {
-            
             GameObject selectedSlot = Bag[ID];
             Image selectedImage = selectedSlot.GetComponent<Image>();
 
@@ -248,6 +247,17 @@ public class Inventory : MonoBehaviour
                 audioSource.PlayOneShot(useMedic);
                 Debug.Log("Te estoy curando");
                 player.GetLife();
+
+                
+                if (player != null && player.audioSource != null)
+                {
+                   
+                    player.audioSource.volume += 0.3f;
+
+                   
+                    player.audioSource.volume = Mathf.Clamp01(player.audioSource.volume);
+                }
+
                 RemoveItemFromInventory();
             }
         }

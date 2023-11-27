@@ -15,8 +15,9 @@ public class Generator : MonoBehaviour
     private ChangesLightColor myLight;
     private DesactiveColLihgt changeTag;
 
+
     private AudioSource audioSource;
-    public AudioClip Repear;
+    public AudioClip Repair;
     public AudioClip Broking;
     public AudioClip Broke;
     Animator anim;
@@ -40,6 +41,7 @@ public class Generator : MonoBehaviour
             {
                 RepairGenerator();
                 Debug.Log("repare");
+                audioSource.PlayOneShot(Repair);
             }
         }
     }
@@ -51,6 +53,7 @@ public class Generator : MonoBehaviour
         StartCoroutine(RepairCountdown());
         myLight.ChangetoWhite();
         changeTag.ChangedTagToNoDamage();
+        audioSource.PlayOneShot(Repair);
 
 
     }
@@ -69,7 +72,13 @@ public class Generator : MonoBehaviour
         {
             anim.SetBool("GenOk", false);
             anim.SetBool("GenBroking", true);
-            
+            audioSource.PlayOneShot(Broking);
+
+        }
+
+        if (RepairCounter > 15)
+        {
+            audioSource.PlayOneShot(Repair);
         }
 
         if (RepairCounter == 0)
@@ -87,6 +96,8 @@ public class Generator : MonoBehaviour
         RepairCounter = startTimer;
         myLight.ChangetoPurple();
         changeTag.ChangedTagToDamage();
+
+        audioSource.PlayOneShot(Broke);
     }
 
     public void EnableSpaceInput()
