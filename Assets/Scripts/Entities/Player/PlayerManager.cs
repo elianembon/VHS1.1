@@ -8,7 +8,6 @@ public class PlayerManager : Player
 
     public GameObject blackScreen;
     private float teleportTime = 2f;
-    public GameObject sword;
     private Animator animator;
     private GameObject currentDoor;
     private float corduramax;
@@ -18,6 +17,9 @@ public class PlayerManager : Player
     [SerializeField] private Cordura cordura3;
 
     public AudioSource audioSource;
+    public AudioClip Walk;
+    public AudioClip Run;
+    private bool movement = false;
     private float initialVolume = 1f;
 
     private void Start()
@@ -27,6 +29,7 @@ public class PlayerManager : Player
         
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+
 
         cordura.InitBarraCordura(corduramax);
         cordura1.InitBarraCordura(corduramax);
@@ -41,42 +44,66 @@ public class PlayerManager : Player
         Moving();
         
 
-        if (Input.GetKey(_moveForward))
+        if (Input.GetKeyDown(_moveForward))
         {
             
             animator.SetBool("PressW", false);
             animator.SetBool("PressS", true);
             animator.SetBool("PressA", false);
             animator.SetBool("PressD", false);
+            audioSource.Play();
+
         }
 
-        if (Input.GetKey(_moveBack))
+        if (Input.GetKeyDown(_moveBack))
         {
            
             animator.SetBool("PressS", false);
             animator.SetBool("PressW", true);
             animator.SetBool("PressA", false);
             animator.SetBool("PressD", false);
+            audioSource.Play();
         }
 
-        if (Input.GetKey(_moveLeft))
+        if (Input.GetKeyDown(_moveLeft))
         {
             
             animator.SetBool("PressA", true);
             animator.SetBool("PressW", false);
             animator.SetBool("PressS", false);
             animator.SetBool("PressD", false);
+            audioSource.Play();
         }
 
-        if (Input.GetKey(_moveRight))
+        if (Input.GetKeyDown(_moveRight))
         {
-            
+
             animator.SetBool("PressD", true);
             animator.SetBool("PressW", false);
             animator.SetBool("PressS", false);
             animator.SetBool("PressA", false);
+            audioSource.Play();
         }
-        Attack();
+
+        if (Input.GetKeyUp(_moveRight))
+        {
+            audioSource.Stop();
+        }
+
+        if (Input.GetKeyUp(_moveLeft))
+        {
+            audioSource.Stop();
+        }
+
+        if (Input.GetKeyUp(_moveBack))
+        {
+            audioSource.Stop();
+        }
+
+        if (Input.GetKeyUp(_moveForward))
+        {
+            audioSource.Stop();
+        }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -90,15 +117,10 @@ public class PlayerManager : Player
                 Camera.instance.UpdateCameraPosition();
             }
         }
+
+        
     }
 
-    private void Attack()
-    {
-        if (Input.GetKey(_attack))
-        {
-            Instantiate(sword, transform.position, transform.rotation);
-        }
-    }
 
     public void LooseLife(float damage)
     {    
@@ -154,5 +176,6 @@ public class PlayerManager : Player
             }
         }
     }
+
 
 }

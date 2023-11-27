@@ -2,25 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+
 public class Cordura : MonoBehaviour
 {
-    private Slider _slider;
+    private UnityEngine.UI.Slider _slider;
     void Start()
     {
-        _slider = GetComponent<Slider>();
+        _slider = GetComponent<UnityEngine.UI.Slider>();
     }
 
-    
-    void Update()
-    {
-        
-    }
 
     
 
     public void changeCurrentCordura (float CurrentCordura)
     {
-        _slider.value = CurrentCordura;
+        if (_slider != null)
+        {
+            _slider.value = CurrentCordura;
+        }
     }
 
     public void InitBarraCordura (float QuantityCordura)

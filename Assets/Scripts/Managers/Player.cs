@@ -17,6 +17,7 @@ public class Player : MonoBehaviour, IMovable, ILife
     public float MaxLife => _maxLife;
 
     public float CurrentLife => _currentLife;
+
     #endregion
 
     #region PRIVATE_PROPIETIES

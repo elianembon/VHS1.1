@@ -36,11 +36,9 @@ public class Generator : MonoBehaviour
     {
         if(canSpaceInp == true && !isRepaired)
         {
-            Debug.Log("puedo reparar");
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 RepairGenerator();
-                Debug.Log("repare");
                 audioSource.PlayOneShot(Repair);
             }
         }
