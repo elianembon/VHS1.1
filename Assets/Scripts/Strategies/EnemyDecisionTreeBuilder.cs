@@ -46,6 +46,7 @@ public class EnemyDecisionTreeBuilder
             {
                 enemy.puntoActual = enemy.puntosRecorrido.Dequeue();
                 enemy.puntosRecorrido.Enqueue(enemy.puntoActual);
+                enemy.SetDestination(enemy.puntoActual.position);
             }
         }
     }

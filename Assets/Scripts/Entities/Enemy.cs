@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -18,8 +19,13 @@ public class Enemy : MonoBehaviour
 
     private Tree<Enemy> decisionTree;
 
+    private NavMeshAgent navMeshAgent; 
+
     void Start()
     {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.updateRotation = false;
+        navMeshAgent.updateUpAxis = false;
         puntosRecorrido = new Q_queue<Transform>();
         rangoPersecusionInit = rangoPersecusion;
         enPausaDespuesDeColision = false;
@@ -34,6 +40,7 @@ public class Enemy : MonoBehaviour
         if (puntosRecorrido.Counter() > 0)
         {
             puntoActual = puntosRecorrido.Dequeue();
+            SetDestination(puntoActual.position);
         }
 
         var decisionTreeBuilder = new EnemyDecisionTreeBuilder();
@@ -70,7 +77,10 @@ public class Enemy : MonoBehaviour
             tiempoPausa = 1.0f; // Restablecer el tiempo de pausa
         }
     }
-
+   public void SetDestination(Vector3 destination)
+    {
+        navMeshAgent.SetDestination(destination);
+    }
     public void MoverHaciaPunto(Transform punto)
     {
         Vector3 direccion = (punto.position - transform.position).normalized;
