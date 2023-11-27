@@ -16,10 +16,7 @@ public class Cordura : MonoBehaviour
         
     }
 
-    public void changeMaxCordura (float MaxCordura)
-    {
-        _slider.maxValue = MaxCordura;
-    }
+    
 
     public void changeCurrentCordura (float CurrentCordura)
     {
@@ -28,7 +25,7 @@ public class Cordura : MonoBehaviour
 
     public void InitBarraCordura (float QuantityCordura)
     {
-        changeMaxCordura(QuantityCordura);
+        
         changeCurrentCordura(QuantityCordura);
     }
 }

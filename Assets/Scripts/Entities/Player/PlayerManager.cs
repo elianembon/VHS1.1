@@ -11,17 +11,24 @@ public class PlayerManager : Player
     public GameObject sword;
     private Animator animator;
     private GameObject currentDoor;
+    private float corduramax;
     [SerializeField] private Cordura cordura;
+    [SerializeField] private Cordura cordura1;
+    [SerializeField] private Cordura cordura2;
+    [SerializeField] private Cordura cordura3;
 
 
     private void Start()
     {
-
+        corduramax = 5;
         _currentLife = _maxLife;
         
         animator = GetComponent<Animator>();
 
-        cordura.InitBarraCordura(_currentLife);
+        cordura.InitBarraCordura(corduramax);
+        cordura1.InitBarraCordura(corduramax);
+        cordura2.InitBarraCordura(corduramax);
+        cordura3.InitBarraCordura(corduramax);
     }
 
     private void Update()
@@ -91,7 +98,11 @@ public class PlayerManager : Player
     public void LooseLife(float damage)
     {    
         TakeDamage(damage);
-        cordura.changeCurrentCordura(_currentLife);
+        corduramax += damage;
+        cordura.changeCurrentCordura(corduramax);
+        cordura1.changeCurrentCordura(corduramax);
+        cordura2.changeCurrentCordura(corduramax);
+        cordura3.changeCurrentCordura(corduramax);
     }
 
     public void GetLife()
@@ -101,7 +112,11 @@ public class PlayerManager : Player
         else
         {
             TakeLife(25);
-            cordura.changeCurrentCordura(_currentLife);
+            corduramax -= 25;
+            cordura.changeCurrentCordura(corduramax);
+            cordura1.changeCurrentCordura(corduramax);
+            cordura2.changeCurrentCordura(corduramax);
+            cordura3.changeCurrentCordura(corduramax);
         }
     }
 
