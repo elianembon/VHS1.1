@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0a246361bce892641ae5a61a4814bf8c
+guid: c485e49d0e57e524aad24a239f712dd4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,70 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LocoAdelanteSpriteSeet_0
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 97
-        width: 26
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 571e95aa65f559f43a171bb797a8464e
-      internalID: 662202497
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LocoAdelanteSpriteSeet_1
-      rect:
-        serializedVersion: 2
-        x: 59
-        y: 97
-        width: 26
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7dbc6b416d51720409cc905f442a0b6a
-      internalID: 581505073
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LocoAdelanteSpriteSeet_2
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 97
-        width: 26
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b4a20c00eef1faa4f8ce93deb20a916b
-      internalID: 1009413777
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LocoAdelanteSpriteSeet_3
+      name: GuardiaAnimacionCaminataDetras-Sheet_0
       rect:
         serializedVersion: 2
         x: 11
@@ -184,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7376a016f8d2b243925baa75cb85123
-      internalID: 1344607906
+      spriteID: d9b8e3a6e08681644ba01e200fdef8ab
+      internalID: 66608195
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LocoAdelanteSpriteSeet_4
+      name: GuardiaAnimacionCaminataDetras-Sheet_1
       rect:
         serializedVersion: 2
         x: 59
@@ -205,35 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62e42f368f9f2a14fa07939645926cf4
-      internalID: -189062103
+      spriteID: f6579005cf1bb6040b5fd430faf167f0
+      internalID: -1356929496
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LocoAdelanteSpriteSeet_5
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 49
-        width: 26
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9c081e569bb68a94aadb3fb001a34e4f
-      internalID: -290373458
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LocoAdelanteSpriteSeet_6
+      name: GuardiaAnimacionCaminataDetras-Sheet_2
       rect:
         serializedVersion: 2
         x: 11
@@ -247,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50d52a48de47d3a498173296710d1df8
-      internalID: -2650714
+      spriteID: 8cdc52f1312720d4ab94588de1d32af8
+      internalID: 1792460703
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LocoAdelanteSpriteSeet_7
+      name: GuardiaAnimacionCaminataDetras-Sheet_3
       rect:
         serializedVersion: 2
         x: 59
@@ -268,29 +184,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 879872a0615c9a0408385a6fc91d01d7
-      internalID: 1019668002
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: LocoAdelanteSpriteSeet_8
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 1
-        width: 26
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 641eeadda71a2c748b4a44a30ff457f6
-      internalID: -793781028
+      spriteID: 9894a6affb38bd649b9dc789f037b338
+      internalID: -860451792
       vertices: []
       indices: 
       edges: []
@@ -306,15 +201,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      LocoAdelanteSpriteSeet_0: 662202497
-      LocoAdelanteSpriteSeet_1: 581505073
-      LocoAdelanteSpriteSeet_2: 1009413777
-      LocoAdelanteSpriteSeet_3: 1344607906
-      LocoAdelanteSpriteSeet_4: -189062103
-      LocoAdelanteSpriteSeet_5: -290373458
-      LocoAdelanteSpriteSeet_6: -2650714
-      LocoAdelanteSpriteSeet_7: 1019668002
-      LocoAdelanteSpriteSeet_8: -793781028
+      GuardiaAnimacionCaminataDetras-Sheet_0: 66608195
+      GuardiaAnimacionCaminataDetras-Sheet_1: -1356929496
+      GuardiaAnimacionCaminataDetras-Sheet_2: 1792460703
+      GuardiaAnimacionCaminataDetras-Sheet_3: -860451792
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

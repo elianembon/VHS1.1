@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 66fb2fdeb6b34544b8ecd09130ed7b78
+guid: 6a0fa7e3aaef2f54885d79b7b42bc473
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,13 +107,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GuardiaAnimacionCorrerDelante-Sheet_0
+      name: SombraAnimacionIzquierda-Sheet_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 97
-        width: 26
-        height: 44
+        x: 0
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,20 +121,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: beb3fb8a0b7b87a429f6d3629c9dfc90
-      internalID: -1529012476
+      spriteID: 4e284c1ee2ab1a04ea66b43917dc01bc
+      internalID: -889247395
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GuardiaAnimacionCorrerDelante-Sheet_1
+      name: SombraAnimacionIzquierda-Sheet_1
       rect:
         serializedVersion: 2
-        x: 59
-        y: 97
-        width: 26
-        height: 44
+        x: 64
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1bbbcce8174a33e458b0d9073c8b1a26
-      internalID: -173345274
+      spriteID: 28f032d858736084d8f7bb87ec41d857
+      internalID: 1215271368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GuardiaAnimacionCorrerDelante-Sheet_2
+      name: SombraAnimacionIzquierda-Sheet_2
       rect:
         serializedVersion: 2
-        x: 107
-        y: 97
-        width: 26
-        height: 44
+        x: 128
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,20 +163,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a37ed0ebff81a974985ab75119328b74
-      internalID: -184735055
+      spriteID: cbcbe08ac6a3bb5478d8c6a2982b0439
+      internalID: 1451483570
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GuardiaAnimacionCorrerDelante-Sheet_3
+      name: SombraAnimacionIzquierda-Sheet_3
       rect:
         serializedVersion: 2
-        x: 11
-        y: 49
-        width: 26
-        height: 44
+        x: 192
+        y: 128
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 379ea24712f00de4fafd0a585ff63685
-      internalID: -2037144216
+      spriteID: 7bd3e33c56e4aea41a7ace0bbcb5cf0e
+      internalID: -1031230656
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GuardiaAnimacionCorrerDelante-Sheet_4
+      name: SombraAnimacionIzquierda-Sheet_4
       rect:
         serializedVersion: 2
-        x: 59
-        y: 49
-        width: 26
-        height: 44
+        x: 0
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,20 +205,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7bf799a6a95d5424cb8e96babcd03245
-      internalID: 1860344550
+      spriteID: 7df1e6f24bf678343aa8e66dabebf757
+      internalID: -476089078
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GuardiaAnimacionCorrerDelante-Sheet_5
+      name: SombraAnimacionIzquierda-Sheet_5
       rect:
         serializedVersion: 2
-        x: 107
-        y: 49
-        width: 26
-        height: 44
+        x: 64
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,20 +226,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3affe2bf89d643a41950f04dd857f27f
-      internalID: 624214359
+      spriteID: 35d89feb5be2c08498079cf8f8fbb0c4
+      internalID: -1858468232
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GuardiaAnimacionCorrerDelante-Sheet_6
+      name: SombraAnimacionIzquierda-Sheet_6
       rect:
         serializedVersion: 2
-        x: 11
-        y: 1
-        width: 26
-        height: 44
+        x: 128
+        y: 64
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,20 +247,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da2f89ac75895b547b6c478df7ef3884
-      internalID: -2021672062
+      spriteID: ac1b31cc14aa9e44aa796078133fbd09
+      internalID: 1615969304
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GuardiaAnimacionCorrerDelante-Sheet_7
+      name: SombraAnimacionIzquierda-Sheet_7
       rect:
         serializedVersion: 2
-        x: 59
-        y: 1
-        width: 26
-        height: 44
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,8 +268,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24bab6305c72d38489f060d7ac3fd463
-      internalID: 589998021
+      spriteID: d364586e84ab66e4a81fabf5b578595b
+      internalID: -256825744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SombraAnimacionIzquierda-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3185b96e189e5f4c84c3ae8db9ddac6
+      internalID: -146927402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SombraAnimacionIzquierda-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24a1761e4d1a0374791b45814e9c8cba
+      internalID: 1850933321
       vertices: []
       indices: 
       edges: []
@@ -285,14 +327,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GuardiaAnimacionCorrerDelante-Sheet_0: -1529012476
-      GuardiaAnimacionCorrerDelante-Sheet_1: -173345274
-      GuardiaAnimacionCorrerDelante-Sheet_2: -184735055
-      GuardiaAnimacionCorrerDelante-Sheet_3: -2037144216
-      GuardiaAnimacionCorrerDelante-Sheet_4: 1860344550
-      GuardiaAnimacionCorrerDelante-Sheet_5: 624214359
-      GuardiaAnimacionCorrerDelante-Sheet_6: -2021672062
-      GuardiaAnimacionCorrerDelante-Sheet_7: 589998021
+      SombraAnimacionIzquierda-Sheet_0: -889247395
+      SombraAnimacionIzquierda-Sheet_1: 1215271368
+      SombraAnimacionIzquierda-Sheet_2: 1451483570
+      SombraAnimacionIzquierda-Sheet_3: -1031230656
+      SombraAnimacionIzquierda-Sheet_4: -476089078
+      SombraAnimacionIzquierda-Sheet_5: -1858468232
+      SombraAnimacionIzquierda-Sheet_6: 1615969304
+      SombraAnimacionIzquierda-Sheet_7: -256825744
+      SombraAnimacionIzquierda-Sheet_8: -146927402
+      SombraAnimacionIzquierda-Sheet_9: 1850933321
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

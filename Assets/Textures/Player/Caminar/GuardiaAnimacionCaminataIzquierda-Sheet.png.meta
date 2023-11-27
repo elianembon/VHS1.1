@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: df16b4564258b7042b9960e0ea7c09e6
+guid: fec5e07931a9b9643911239d9980b09b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,75 +107,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GuardiaAnimacionCorrerAtras-Sheet_0
+      name: GuardiaAnimacionCaminataIzquierda-Sheet_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 97
-        width: 26
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3e938e7e4fcfc054e95f415d164748e5
-      internalID: -562557612
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GuardiaAnimacionCorrerAtras-Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 59
-        y: 97
-        width: 26
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 956d57c81cf7d0a479203e64a6a5fd41
-      internalID: 1468386285
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GuardiaAnimacionCorrerAtras-Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 97
-        width: 26
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aa4121e96feccf24583138c7eb93f028
-      internalID: -1958755597
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GuardiaAnimacionCorrerAtras-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 11
+        x: 8
         y: 49
-        width: 26
+        width: 27
         height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -184,19 +121,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46a416e83e04f884f8d5658b1b41430d
-      internalID: -752797435
+      spriteID: 6fcc2c18242130b4cbfb8301e391dc53
+      internalID: -32694578
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GuardiaAnimacionCorrerAtras-Sheet_4
+      name: GuardiaAnimacionCaminataIzquierda-Sheet_1
       rect:
         serializedVersion: 2
-        x: 59
+        x: 56
         y: 49
-        width: 26
+        width: 27
         height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -205,40 +142,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79ffb1be688b8954cb94bf260941ad9b
-      internalID: -1266246815
+      spriteID: bce24b4ee58248a47a0ae993c8a1c49e
+      internalID: -565678146
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GuardiaAnimacionCorrerAtras-Sheet_5
+      name: GuardiaAnimacionCaminataIzquierda-Sheet_2
       rect:
         serializedVersion: 2
-        x: 107
-        y: 49
-        width: 26
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fda347b1a6707d849a18f56afb0cf80c
-      internalID: -2069629853
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GuardiaAnimacionCorrerAtras-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 11
+        x: 8
         y: 1
-        width: 26
+        width: 27
         height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -247,19 +163,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f3e72743a4b0674db74dbb8e8c9920b
-      internalID: -66584762
+      spriteID: c9ceee38822845a41b31eff334633b31
+      internalID: 1014959682
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GuardiaAnimacionCorrerAtras-Sheet_7
+      name: GuardiaAnimacionCaminataIzquierda-Sheet_3
       rect:
         serializedVersion: 2
-        x: 59
+        x: 56
         y: 1
-        width: 26
+        width: 27
         height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -268,8 +184,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9a7b5a84e2c7d564e8331bfe1179339f
-      internalID: -1386793044
+      spriteID: 17c78b8f6067aca4185118b5af52d5e6
+      internalID: 1427292956
       vertices: []
       indices: 
       edges: []
@@ -285,14 +201,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GuardiaAnimacionCorrerAtras-Sheet_0: -562557612
-      GuardiaAnimacionCorrerAtras-Sheet_1: 1468386285
-      GuardiaAnimacionCorrerAtras-Sheet_2: -1958755597
-      GuardiaAnimacionCorrerAtras-Sheet_3: -752797435
-      GuardiaAnimacionCorrerAtras-Sheet_4: -1266246815
-      GuardiaAnimacionCorrerAtras-Sheet_5: -2069629853
-      GuardiaAnimacionCorrerAtras-Sheet_6: -66584762
-      GuardiaAnimacionCorrerAtras-Sheet_7: -1386793044
+      GuardiaAnimacionCaminataIzquierda-Sheet_0: -32694578
+      GuardiaAnimacionCaminataIzquierda-Sheet_1: -565678146
+      GuardiaAnimacionCaminataIzquierda-Sheet_2: 1014959682
+      GuardiaAnimacionCaminataIzquierda-Sheet_3: 1427292956
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
