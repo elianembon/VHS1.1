@@ -12,6 +12,14 @@ public class Thermal : MonoBehaviour
     public Transform generatorTransform;
     public float minimumDistance = 5f;
 
+    private AudioSource audioSource;
+    public AudioClip repair;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     private void Update()
     {
         if (!isRepaired && storedItems.Count == 10 && IsNearGenerator())
@@ -47,6 +55,7 @@ public class Thermal : MonoBehaviour
     {
         if (storedItems.Count < 10)
         {
+            audioSource.PlayOneShot(repair);
             storedItems.Add(item);
             Debug.Log("Item transferido a la térmica. Cantidad actual de items en la térmica: " + storedItems.Count);
         }

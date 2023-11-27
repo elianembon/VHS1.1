@@ -25,10 +25,18 @@ public class Inventory : MonoBehaviour
     public Image fase3;
     public Image fase4;
 
+    private AudioSource audioSource;
+    public AudioClip remove;
+    public AudioClip collectMedic;
+    public AudioClip useMedic;
+    public AudioClip collectItem;
+    public AudioClip collectObject;
+
     private List<Vector2> originalPositions = new List<Vector2>();
 
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         isGamePaused = false;
         activeInventory = false;
         RecordOriginalPositions();
@@ -40,7 +48,7 @@ public class Inventory : MonoBehaviour
     {
         Nav();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             TransferItemToThermal();
         }
@@ -191,6 +199,21 @@ public class Inventory : MonoBehaviour
         {
             AddItemToInventory(coll);
         }
+
+        if (coll.CompareTag("Medic"))
+        {
+            audioSource.PlayOneShot(collectMedic);
+        }
+
+        if (coll.CompareTag("Item"))
+        {
+            audioSource.PlayOneShot(collectItem);
+        }
+
+        if (coll.CompareTag("Objects"))
+        {
+            audioSource.PlayOneShot(collectObject);
+        }
     }
 
     void AddItemToInventory(Collider2D coll)
@@ -216,6 +239,7 @@ public class Inventory : MonoBehaviour
     {
         if (ID >= 0 && ID < Bag.Count)
         {
+            audioSource.PlayOneShot(useMedic);
             GameObject selectedSlot = Bag[ID];
             Image selectedImage = selectedSlot.GetComponent<Image>();
 
@@ -247,6 +271,7 @@ public class Inventory : MonoBehaviour
     {
         if (ID >= 0 && ID < Bag.Count)
         {
+            audioSource.PlayOneShot(remove);
             Bag[ID].GetComponent<Image>().enabled = false;
             Bag[ID].GetComponent<Image>().sprite = null;
             Bag[ID].tag = "Untagged";

@@ -12,10 +12,11 @@ public class PlayerManager : Player
     private Animator animator;
     private GameObject currentDoor;
     [SerializeField] private Cordura cordura;
-    
+
 
     private void Start()
     {
+
         _currentLife = _maxLife;
         
         animator = GetComponent<Animator>();
