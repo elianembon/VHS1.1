@@ -174,7 +174,7 @@ public class Inventory : MonoBehaviour
 
     void TransferItemToThermal()
     {
-        if (ID >= 0 && ID < Bag.Count)
+        if (ID >= 0 && ID < Bag.Count && activeInventory == true)
         {
             GameObject selectedSlot = Bag[ID];
             Image selectedImage = selectedSlot.GetComponent<Image>();
@@ -237,14 +237,15 @@ public class Inventory : MonoBehaviour
 
     void UseMedicItem()
     {
-        if (ID >= 0 && ID < Bag.Count)
+        if (ID >= 0 && ID < Bag.Count && activeInventory == true)
         {
-            audioSource.PlayOneShot(useMedic);
+            
             GameObject selectedSlot = Bag[ID];
             Image selectedImage = selectedSlot.GetComponent<Image>();
 
             if (selectedImage.enabled && selectedSlot.CompareTag("Medic"))
             {
+                audioSource.PlayOneShot(useMedic);
                 Debug.Log("Te estoy curando");
                 player.GetLife();
                 RemoveItemFromInventory();
@@ -252,24 +253,24 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    void ToggleInventory()
-    {
-        activeInventory = !activeInventory;
-        inventory.SetActive(activeInventory);
+    //void ToggleInventory()
+    //{
+    //    activeInventory = !activeInventory;
+    //    inventory.SetActive(activeInventory);
 
-        if (activeInventory)
-        {
-            PauseGame();
-        }
-        else
-        {
-            ResumeGame();
-        }
-    }
+    //    if (activeInventory)
+    //    {
+    //        PauseGame();
+    //    }
+    //    else
+    //    {
+    //        ResumeGame();
+    //    }
+    //}
 
     void RemoveItemFromInventory()
     {
-        if (ID >= 0 && ID < Bag.Count)
+        if (ID >= 0 && ID < Bag.Count && activeInventory == true)
         {
             audioSource.PlayOneShot(remove);
             Bag[ID].GetComponent<Image>().enabled = false;
@@ -280,7 +281,7 @@ public class Inventory : MonoBehaviour
 
     void Nav()
     {
-        if (!isGamePaused)
+        if (!isGamePaused && activeInventory == true)
         {
             if (Input.GetKeyDown(KeyCode.D) && ID < Bag.Count - 1)
             {

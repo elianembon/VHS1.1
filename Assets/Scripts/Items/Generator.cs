@@ -15,10 +15,15 @@ public class Generator : MonoBehaviour
     private ChangesLightColor myLight;
     private DesactiveColLihgt changeTag;
 
+    private AudioSource audioSource;
+    public AudioClip Repear;
+    public AudioClip Broking;
+    public AudioClip Broke;
     Animator anim;
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         generatorManager = GeneratorManager.Instance;
         generatorManager.RegisterGenerator(this);
         anim = GetComponent<Animator>();
@@ -57,12 +62,14 @@ public class Generator : MonoBehaviour
             yield return new WaitForSeconds(1f);
             RepairCounter--;
             anim.SetBool("GenOk", true);
+            
         }
 
         if(RepairCounter <= 15)
         {
             anim.SetBool("GenOk", false);
             anim.SetBool("GenBroking", true);
+            
         }
 
         if (RepairCounter == 0)
@@ -75,6 +82,7 @@ public class Generator : MonoBehaviour
     {
         isRepaired = false;
         anim.SetBool("GenBroke", true);
+        
         generatorManager.UnregisterGenerator(this);
         RepairCounter = startTimer;
         myLight.ChangetoPurple();
