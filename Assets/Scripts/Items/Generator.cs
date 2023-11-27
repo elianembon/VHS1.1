@@ -15,13 +15,13 @@ public class Generator : MonoBehaviour
     private ChangesLightColor myLight;
     private DesactiveColLihgt changeTag;
 
-    SpriteRenderer spriteRenderer;
+    Animator anim;
 
     private void Start()
     {
         generatorManager = GeneratorManager.Instance;
         generatorManager.RegisterGenerator(this);
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
         startTimer = RepairCounter;
         myLight = GetComponent<ChangesLightColor>();
         changeTag = GetComponent<DesactiveColLihgt>();       
@@ -42,7 +42,7 @@ public class Generator : MonoBehaviour
     public void RepairGenerator()
     {
         isRepaired = true;
-        spriteRenderer.color = Color.yellow;
+        
         StartCoroutine(RepairCountdown());
         myLight.ChangetoWhite();
         changeTag.ChangedTagToNoDamage();
@@ -56,6 +56,13 @@ public class Generator : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             RepairCounter--;
+            anim.SetBool("GenOk", true);
+        }
+
+        if(RepairCounter <= 15)
+        {
+            anim.SetBool("GenOk", false);
+            anim.SetBool("GenBroking", true);
         }
 
         if (RepairCounter == 0)
@@ -67,7 +74,7 @@ public class Generator : MonoBehaviour
     public void NoRepairGenerator()
     {
         isRepaired = false;
-        spriteRenderer.color = Color.red;
+        anim.SetBool("GenBroke", true);
         generatorManager.UnregisterGenerator(this);
         RepairCounter = startTimer;
         myLight.ChangetoPurple();
