@@ -48,11 +48,6 @@ public class Inventory : MonoBehaviour
     {
         Nav();
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            TransferItemToThermal();
-        }
-
         if (Input.GetKeyDown(KeyCode.I))
         {
             if (!activeInventory)
@@ -74,9 +69,10 @@ public class Inventory : MonoBehaviour
             RemoveItemFromInventory();
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             UseMedicItem();
+            TransferItemToThermal();
         }
 
         if (Input.GetKeyDown(KeyCode.R))

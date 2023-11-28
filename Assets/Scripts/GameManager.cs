@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            OnDestroy();
         }
 
     }
@@ -95,10 +94,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Victoria");
     }
    
-    private void OnDestroy()
-    {
-       
-    }
 
 }
 

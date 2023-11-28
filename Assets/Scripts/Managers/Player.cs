@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,10 @@ public class Player : MonoBehaviour, IMovable, ILife
     public float MovementSpeedWalk => _movementSpeedWalk;
     public float MovementSpeedRun => _movementSpeedRun;
 
-    public delegate void PlayerDead();
-    public static event PlayerDead OnPlayerDead;
+    //public delegate void PlayerDead();
+    //public static event PlayerDead OnPlayerDead;
+
+    public EventHandler PlayerDead;
 
     public float MaxLife => _maxLife;
 
@@ -103,10 +106,10 @@ public class Player : MonoBehaviour, IMovable, ILife
     public void Die()
     {
             
-       Debug.Log($"{name} !DIED�");
 
+        
+        PlayerDead?.Invoke(this, EventArgs.Empty);
         //Destroy(gameObject);
-        OnPlayerDead?.Invoke();
     }
 
     #endregion
