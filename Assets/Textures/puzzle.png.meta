@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -112,17 +112,17 @@ TextureImporter:
         serializedVersion: 2
         x: 38
         y: 57
-        width: 123
+        width: 203
         height: 106
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d1d446ea8c7d374fbfa8783d10cf977
-      internalID: 688582548
+      spriteID: 4c339eca71bf9e54aa32ed95cc86e207
+      internalID: 2073491077
       vertices: []
       indices: 
       edges: []
@@ -131,19 +131,19 @@ TextureImporter:
       name: puzzle_1
       rect:
         serializedVersion: 2
-        x: 181
-        y: 138
+        x: 247
+        y: 151
         width: 4
         height: 4
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89652472390b48446843277c4ad3d9e7
-      internalID: -1433810127
+      spriteID: c3acf3374f5239f46ac8883730aa74b5
+      internalID: 1726508069
       vertices: []
       indices: 
       edges: []
@@ -152,40 +152,40 @@ TextureImporter:
       name: puzzle_2
       rect:
         serializedVersion: 2
-        x: 188
-        y: 138
+        x: 259
+        y: 149
         width: 4
         height: 4
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ddbd894e7f63314b8a6b7aa012fa60d
-      internalID: -1600104943
+      spriteID: 372b2bb5ac4164945b05373c9c6d263c
+      internalID: 26951061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: not
+      name: puzzle_3
       rect:
         serializedVersion: 2
-        x: 226
-        y: 134
-        width: 12
-        height: 12
+        x: 247
+        y: 139
+        width: 4
+        height: 4
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c758ef186651ae4f842622fbed190a7
-      internalID: -1361174224
+      spriteID: 3054946fde45f214e9957a8f9ff3234c
+      internalID: -2063477931
       vertices: []
       indices: 
       edges: []
@@ -194,82 +194,40 @@ TextureImporter:
       name: puzzle_4
       rect:
         serializedVersion: 2
-        x: 181
-        y: 133
+        x: 260
+        y: 139
         width: 4
         height: 4
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34e4be3b1878cd844bc0affa8809ee39
-      internalID: -986781094
+      spriteID: 0cc4aa54e34078247b29890b99d99737
+      internalID: 919841796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: puzzle_5
+      name: cuerpo
       rect:
         serializedVersion: 2
-        x: 188
-        y: 133
-        width: 4
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cc2eb948b3177564eabd40672d6b9ce5
-      internalID: -430261437
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: or
-      rect:
-        serializedVersion: 2
-        x: 229
-        y: 118
+        x: 260
+        y: 75
         width: 7
-        height: 11
+        height: 2
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2016669775c97143afd930a7a9673f4
-      internalID: 1961779420
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: and
-      rect:
-        serializedVersion: 2
-        x: 227
-        y: 102
-        width: 10
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6dd24308a15d2b84f831939f489d3a7d
-      internalID: -1464387525
+      spriteID: 108baaccf288b624c864492c666f30b5
+      internalID: -49801640
       vertices: []
       indices: 
       edges: []
@@ -278,61 +236,19 @@ TextureImporter:
       name: cable
       rect:
         serializedVersion: 2
-        x: 208
-        y: 90
-        width: 7
+        x: 280
+        y: 75
+        width: 1
         height: 2
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a37e8cd8c4a1e3a4da0d539cb32395b9
-      internalID: 673718068
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cable pelado
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 74
-        width: 3
-        height: 2
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f0df0a249641f784cb03499e58dc3ff2
-      internalID: -118203517
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: conector
-      rect:
-        serializedVersion: 2
-        x: 196
-        y: 74
-        width: 2
-        height: 2
-      alignment: 5
-      pivot: {x: 1, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 29dec8f2a36febf4c879b36d1f94d503
-      internalID: 1400611357
+      spriteID: a0f0d974fedf88940b602a911e7cf7cc
+      internalID: 781018884
       vertices: []
       indices: 
       edges: []
@@ -348,17 +264,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      and: -1464387525
-      cable: 673718068
-      cable pelado: -118203517
-      conector: 1400611357
-      not: -1361174224
-      or: 1961779420
-      puzzle_0: 688582548
-      puzzle_1: -1433810127
-      puzzle_2: -1600104943
-      puzzle_4: -986781094
-      puzzle_5: -430261437
+      cable: 781018884
+      cuerpo: -49801640
+      puzzle_0: 2073491077
+      puzzle_1: 1726508069
+      puzzle_2: 26951061
+      puzzle_3: -2063477931
+      puzzle_4: 919841796
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

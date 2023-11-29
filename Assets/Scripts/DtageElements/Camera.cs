@@ -17,6 +17,12 @@ public class Camera : MonoBehaviour
     [Range(-50, 50)]
     public float posCamX;
 
+    internal Vector3 ScreenToWorldPoint(Vector3 mousePosition)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    internal static object main;
 
     private void Awake()
     {
