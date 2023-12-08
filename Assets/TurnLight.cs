@@ -7,7 +7,6 @@ public class TurnLight : MonoBehaviour
 {
     public Botones boton1;
     public Botones boton2;
-    public bool encendido = false;
 
     public Image lightP;
     private Image originalLight;
@@ -17,26 +16,26 @@ public class TurnLight : MonoBehaviour
     void Start()
     {
       
-        
-
+        lightP = GetComponent<Image>();
+        originalLight = lightP;
     }
 
     // Update is called once per frame
     void Update()
     {
-        originalLight = lightP;
+
 
         if (boton1.posLight == true && boton2.posLight == true)
         {
             lightP.gameObject.SetActive(false);
-            encendido = true;
-
-
             Debug.Log("Me desactivo");
         }
         else
         {
             lightP.gameObject.SetActive(true);
         }
+
+        Debug.Log(boton1.posLight);
+        Debug.Log(boton2.posLight);
     }
 }

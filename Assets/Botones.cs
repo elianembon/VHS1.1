@@ -26,9 +26,8 @@ public class Botones : MonoBehaviour
         {
             posLight = false;
             negLight = true;
-            Debug.Log("Me cambio -");
         }
-        else if(negLight == true)
+        if(negLight == true)
         {
             negLight = false;
             posLight = true;

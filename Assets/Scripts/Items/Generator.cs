@@ -22,8 +22,6 @@ public class Generator : MonoBehaviour
     public AudioClip Broke;
     Animator anim;
 
-
-
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -42,7 +40,6 @@ public class Generator : MonoBehaviour
             {
                 RepairGenerator();
                 audioSource.PlayOneShot(Repair);
-                
             }
         }
     }
@@ -58,7 +55,6 @@ public class Generator : MonoBehaviour
 
 
     }
-
 
     private IEnumerator RepairCountdown()
     {
