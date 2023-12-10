@@ -11,11 +11,18 @@ public class Inventory : MonoBehaviour
     public List<GameObject> Bag = new List<GameObject>();
     public GameObject inventory;
     public GameObject Selector;
+    public GameObject DescripcionMedic;
+    public GameObject DescripcionTermica;
     public int ID;
     public PlayerManager player;
 
     private bool isGamePaused;
     private bool activeInventory;
+    
+
+    //Descripcion de los items del inventario
+    private bool onMedicItem = false;
+    private bool onTermicItem = false;
 
     private int maxMedicItems = 3;
     private int maxOtherItems = 3;
@@ -44,8 +51,14 @@ public class Inventory : MonoBehaviour
         player = GetComponent<PlayerManager>();
     }
 
+    private void Start()
+    {
+       
+    }
+
     void Update()
     {
+        
         Nav();
 
         if (Input.GetKeyDown(KeyCode.I))
@@ -56,6 +69,7 @@ public class Inventory : MonoBehaviour
                 activeInventory = true;
                 inventory.SetActive(true);
                 PauseGame();
+                
             }
             else
             {
@@ -81,6 +95,7 @@ public class Inventory : MonoBehaviour
             SortInventory();
         }
 
+        TermicDescription();
     }
 
 
@@ -238,10 +253,13 @@ public class Inventory : MonoBehaviour
 
     void UseMedicItem()
     {
+
         if (ID >= 0 && ID < Bag.Count && activeInventory == true)
         {
             GameObject selectedSlot = Bag[ID];
             Image selectedImage = selectedSlot.GetComponent<Image>();
+
+           
 
             if (selectedImage.enabled && selectedSlot.CompareTag("Medic"))
             {
@@ -330,4 +348,45 @@ public class Inventory : MonoBehaviour
     {
         GameManager.Instance.ResumeGame();
     }
+
+    
+
+
+    private void TermicDescription()
+    {
+        
+            GameObject selectedSlot = Bag[ID];
+            Image selectedImage = selectedSlot.GetComponent<Image>();
+
+            if (selectedImage.enabled && selectedSlot.CompareTag("Item"))
+            {
+                onTermicItem = true;
+               
+            }
+            else
+            {
+                
+                onTermicItem = false;
+            }
+
+            if (selectedImage.enabled && selectedSlot.CompareTag("Medic"))
+            {
+                onMedicItem = true;
+            }
+            else
+            {
+                onMedicItem = false;
+            }
+
+            DescripcionMedic.SetActive(onMedicItem);
+
+            DescripcionTermica.SetActive(onTermicItem);
+            
+        
+        
+    }
+
+
+
+    
 }

@@ -115,7 +115,7 @@ TextureImporter:
         width: 94
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -136,7 +136,7 @@ TextureImporter:
         width: 12
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -144,6 +144,27 @@ TextureImporter:
       bones: []
       spriteID: e0ee69377f1d70a43b4dfefff7fc61a8
       internalID: -2034085351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SplashScreenInventory_0
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 42
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5f0b20067b047149aa4e029b607a22e
+      internalID: 806076199
       vertices: []
       indices: 
       edges: []
@@ -159,6 +180,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      SplashScreenInventory_0: 806076199
       cursor: -2034085351
       ui: 1555105874
   mipmapLimitGroupName: 
