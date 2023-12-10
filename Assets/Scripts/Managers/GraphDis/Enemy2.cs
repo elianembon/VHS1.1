@@ -12,17 +12,16 @@ public class Enemy2 : MonoBehaviour
 
     void Start()
     {
-        nM.LoadNodos(); // Asegúrate de cargar los nodos antes de cargar el grafo
-        nM.ChargeGrafo(); // Asegúrate de cargar el grafo correctamente
+        nM.LoadNodos(); // Asegï¿½rate de cargar los nodos antes de cargar el grafo
+        nM.ChargeGrafo(); // Asegï¿½rate de cargar el grafo correctamente
 
-        AlgDijkstra.Dijkstra(nM.grafo, 0); // Cambié el índice de inicio a 0
+        AlgDijkstra.Dijkstra(nM.grafo, 0); // Cambiï¿½ el ï¿½ndice de inicio a 0
         nodosRecorrido = AlgDijkstra.ConvertirNodosAEnteros(AlgDijkstra.nodos);
     }
 
     void Update()
     {
-        void Update()
-        {
+       
             if (nodosRecorrido != null && nodosRecorrido.Length > 0)
             {
                 MoverHaciaNodo(nM.grafo.Etiqs[nodosRecorrido[indiceNodoActual]]);
@@ -32,14 +31,13 @@ public class Enemy2 : MonoBehaviour
                     indiceNodoActual = (indiceNodoActual + 1) % nodosRecorrido.Length;
                 }
             }
-        }
-
-        void MoverHaciaNodo(int nodo)
-        {
-            // Assuming that Nodo class has a Position property
-            Vector3 direccion = (nM.grafo.Nodos[nodo].transform.position - transform.position).normalized;
-            transform.position += direccion * velocidad * Time.deltaTime;
-        }
-
+            
+    }
+    
+    void MoverHaciaNodo(int nodo)
+    {
+        // Assuming that Nodo class has a Position property
+        Vector3 direccion = (nM.grafo.Nodos[nodo].transform.position - transform.position).normalized;
+        transform.position += direccion * velocidad * Time.deltaTime;
     }
 }

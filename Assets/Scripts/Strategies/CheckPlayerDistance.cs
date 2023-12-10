@@ -12,16 +12,20 @@ public class CheckPlayerDistance : MonoBehaviour
 
     private void Start()
     {
-        // Obtén una referencia al script Generator en el mismo GameObject.
+        // Obtï¿½n una referencia al script Generator en el mismo GameObject.
         generator = GetComponent<Generator>();
     }
     private void Update()
     {
+        CheckEnabledSpaceInput();
+    }
+
+    void CheckEnabledSpaceInput()
+    {
         // Calcula la distancia entre este objeto y el jugador.
         float distance = Vector3.Distance(transform.position, player.position);
-
-
-        // Si la distancia es menor que la distancia mínima deseada, habilita la entrada del espacio.
+        
+        // Si la distancia es menor que la distancia mï¿½nima deseada, habilita la entrada del espacio.
         if (distance < minimumDistance)
         {
             generator.EnableSpaceInput();//llamamos la funcion para activar el space
@@ -31,6 +35,8 @@ public class CheckPlayerDistance : MonoBehaviour
             generator.DisableSpaceInput();//llamamos a la funcion para desactivar el space
         }
     }
+
+
 }
 
 

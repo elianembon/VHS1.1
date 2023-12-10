@@ -14,42 +14,35 @@ public class MenuPausa : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && Pausa == false)
+        if(Input.GetKeyDown(KeyCode.Escape) && !Pausa)
         {
-            Pausa = true;
-            activated();
+            Activated();
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && Pausa == true)
+        else if (Input.GetKeyDown(KeyCode.Escape) && Pausa)
         {
-            Pausa = false;
-            Desactive();
-            Desactive();
+            Deactived();
         }
     }
 
-    public void Desactive()
+    public void Deactived()
     {
-        if (Pausa == false)
-        {
-            MPausa.SetActive(false);
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-            Time.timeScale = 1f;
+        Pausa = false;
+        MPausa.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1f;
             
-            Debug.Log("JUEGO no PAUSADO");
-        }
+        Debug.Log("JUEGO no PAUSADO");
     }
 
-    public void activated()
+    public void Activated()
     {
-        if (Pausa == true)
-        {
-            MPausa.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            Time.timeScale = 0f;
-            Debug.Log("JUEGO PAUSADO");
-        }
+        Pausa = true;
+        MPausa.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0f;
+        Debug.Log("JUEGO PAUSADO");
             
     }
     

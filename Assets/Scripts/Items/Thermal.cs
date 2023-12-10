@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,9 +21,18 @@ public class Thermal : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+
     private void Update()
     {
-        if (!isRepaired && storedItems.Count == 6 && IsNearGenerator())
+        if (Input.GetKeyDown(KeyCode.Space) && IsNearGenerator())
+        {
+            TryRepairGenerator();
+        }
+    }
+
+    void TryRepairGenerator()
+    {
+        if (!isRepaired && storedItems.Count == 6)
         {
             RepairGenerator();
         }
@@ -33,11 +43,11 @@ public class Thermal : MonoBehaviour
         isRepaired = true;
         GameManager.Instance.Victoy();
 
-        Debug.Log("Reparación completada. Cambiando a la escena Victoria.");
+        Debug.Log("Reparaciï¿½n completada. Cambiando a la escena Victoria.");
         SceneManager.LoadScene("Victoria");
     }
 
-    // Lógica para verificar la proximidad al generador
+    // Lï¿½gica para verificar la proximidad al generador
     public bool IsNearGenerator()
     {
         float distance = Vector3.Distance(transform.position, generatorTransform.position);
@@ -50,18 +60,18 @@ public class Thermal : MonoBehaviour
         
     }
 
-    // Este método se llama cada vez que un objeto con el tag "Item" entra en el área de la térmica
+    // Este mï¿½todo se llama cada vez que un objeto con el tag "Item" entra en el ï¿½rea de la tï¿½rmica
     public void ReceiveItemFromInventory(GameObject item)
     {
         if (storedItems.Count < 6)
         {
             audioSource.PlayOneShot(repair);
             storedItems.Add(item);
-            Debug.Log("Item transferido a la térmica. Cantidad actual de items en la térmica: " + storedItems.Count);
+            Debug.Log("Item transferido a la tï¿½rmica. Cantidad actual de items en la tï¿½rmica: " + storedItems.Count);
         }
         else
         {
-            Debug.Log("La térmica ya tiene la cantidad máxima de items (6).");
+            Debug.Log("La tï¿½rmica ya tiene la cantidad mï¿½xima de items (6).");
         }
     }
 }

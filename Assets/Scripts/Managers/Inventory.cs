@@ -33,7 +33,7 @@ public class Inventory : MonoBehaviour
     public AudioClip collectObject;
 
     private List<Vector2> originalPositions = new List<Vector2>();
-
+    
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -52,6 +52,7 @@ public class Inventory : MonoBehaviour
         {
             if (!activeInventory)
             {
+                FasesInventory();
                 activeInventory = true;
                 inventory.SetActive(true);
                 PauseGame();
@@ -80,6 +81,11 @@ public class Inventory : MonoBehaviour
             SortInventory();
         }
 
+    }
+
+
+    private void FasesInventory()
+    {
         if (player.CurrentLife <= 120)
         {
             fase1.gameObject.SetActive(true);
@@ -109,7 +115,6 @@ public class Inventory : MonoBehaviour
             fase4.gameObject.SetActive(true);
         }
     }
-
     private void SortInventory()
     {
         List<GameObject> activeItems = Bag.FindAll(item => item.activeSelf);
@@ -122,7 +127,7 @@ public class Inventory : MonoBehaviour
             return item1Value.CompareTo(item2Value);
         };
 
-        // Ordenar la lista de objetos activos usando Quicksort genérico
+        // Ordenar la lista de objetos activos usando Quicksort genï¿½rico
         Quicksort<GameObject>.Sort(activeItems, itemComparison, 0, activeItems.Count - 1);
 
         // Limpiar la bolsa original
@@ -131,7 +136,7 @@ public class Inventory : MonoBehaviour
         // Agregar los elementos ordenados en la bolsa original, manteniendo los elementos existentes
         Bag.AddRange(activeItems);
 
-        // Implementar la lógica para actualizar la interfaz de usuario del inventario si es necesario
+        // Implementar la lï¿½gica para actualizar la interfaz de usuario del inventario si es necesario
         UpdateInventoryUI();
     }
 
@@ -179,7 +184,7 @@ public class Inventory : MonoBehaviour
 
             if (thermalScript != null && selectedImage.enabled && selectedSlot.CompareTag("Item") && thermalScript.IsNearGenerator())
             {
-                thermalScript.ReceiveItemFromInventory(selectedSlot); // Llama al método en Thermal para transferir el objeto
+                thermalScript.ReceiveItemFromInventory(selectedSlot); // Llama al mï¿½todo en Thermal para transferir el objeto
                 RemoveItemFromInventory(); // Remueve el objeto del inventario
             }
         }
