@@ -43,7 +43,7 @@ public class Thermal : MonoBehaviour
         isRepaired = true;
         GameManager.Instance.Victoy();
 
-        Debug.Log("Reparaci�n completada. Cambiando a la escena Victoria.");
+        Debug.Log("Reparacion completada. Cambiando a la escena Victoria.");
         SceneManager.LoadScene("Victoria");
     }
 
@@ -60,18 +60,18 @@ public class Thermal : MonoBehaviour
         
     }
 
-    // Este m�todo se llama cada vez que un objeto con el tag "Item" entra en el �rea de la t�rmica
+    // Este metodo se llama cada vez que un objeto con el tag "Item" entra en el area de la termica
     public void ReceiveItemFromInventory(GameObject item)
     {
         if (storedItems.Count < 6)
         {
             audioSource.PlayOneShot(repair);
             storedItems.Add(item);
-            Debug.Log("Item transferido a la t�rmica. Cantidad actual de items en la t�rmica: " + storedItems.Count);
+            Debug.Log("Item transferido a la termica. Cantidad actual de items en la termica: " + storedItems.Count);
         }
         else
         {
-            Debug.Log("La t�rmica ya tiene la cantidad m�xima de items (6).");
+            Debug.Log("La termica ya tiene la cantidad maxima de items (6).");
         }
     }
 }

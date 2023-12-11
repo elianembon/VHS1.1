@@ -15,6 +15,7 @@ public class Inventory : MonoBehaviour
     public GameObject DescripcionTermica;
     public int ID;
     public PlayerManager player;
+    public int fusibleColocados;
 
     private bool isGamePaused;
     private bool activeInventory;
@@ -200,8 +201,10 @@ public class Inventory : MonoBehaviour
 
             if (thermalScript != null && selectedImage.enabled && selectedSlot.CompareTag("Item") && thermalScript.IsNearGenerator())
             {
-                thermalScript.ReceiveItemFromInventory(selectedSlot); // Llama al m�todo en Thermal para transferir el objeto
+                thermalScript.ReceiveItemFromInventory(selectedSlot); // Llama al metodo en Thermal para transferir el objeto
                 RemoveItemFromInventory(); // Remueve el objeto del inventario
+
+                fusibleColocados++;
             }
         }
     }
