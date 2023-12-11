@@ -42,6 +42,8 @@ public class Inventory : MonoBehaviour
     public AudioClip useMedic;
     public AudioClip collectItem;
     public AudioClip collectObject;
+    public AudioClip openInv;
+    public AudioClip closeInv;
 
     private List<Vector2> originalPositions = new List<Vector2>();
     
@@ -71,6 +73,7 @@ public class Inventory : MonoBehaviour
         {
             if (!activeInventory)
             {
+                audioSource.PlayOneShot(openInv);
                 activeInventory = true;
                 FasesInventory(player.CurrentLife);
                 inventory.SetActive(true);
@@ -79,6 +82,7 @@ public class Inventory : MonoBehaviour
             }
             else
             {
+                audioSource.PlayOneShot(closeInv);
                 activeInventory = false;
                 inventory.SetActive(false);
                 ResumeGame();

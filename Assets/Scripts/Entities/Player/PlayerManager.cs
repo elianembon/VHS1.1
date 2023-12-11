@@ -19,6 +19,8 @@ public class PlayerManager : Player, Subject
     private bool movement = false;
     private float initialVolume = 1f;
 
+    public bool inDark = false;
+
     private List<Observer> _observers;
 
     private void Start()
@@ -152,7 +154,10 @@ public class PlayerManager : Player, Subject
         if (collision.CompareTag("Damage"))
         {
             LooseLife(0.2f);
+            inDark = true;
         }
+        else
+            inDark = false;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
