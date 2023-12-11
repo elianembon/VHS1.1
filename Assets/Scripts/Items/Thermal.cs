@@ -16,6 +16,8 @@ public class Thermal : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip repair;
 
+    public EventHandler Victory;
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -24,9 +26,9 @@ public class Thermal : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && IsNearGenerator())
+        if (storedItems.Count == 6)
         {
-            TryRepairGenerator();
+            Repaired();
         }
     }
 
@@ -34,17 +36,15 @@ public class Thermal : MonoBehaviour
     {
         if (!isRepaired && storedItems.Count == 6)
         {
-            RepairGenerator();
+            //RepairGenerator();
         }
     }
 
-    void RepairGenerator()
+    void Repaired()
     {
-        isRepaired = true;
-        GameManager.Instance.Victoy();
-
-        Debug.Log("Reparacion completada. Cambiando a la escena Victoria.");
+        Debug.Log("Reparado");
         SceneManager.LoadScene("Victoria");
+
     }
 
     // L�gica para verificar la proximidad al generador

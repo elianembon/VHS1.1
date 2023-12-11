@@ -12,6 +12,7 @@ TagManager:
   - Luz
   - Damage
   - NoDamage
+  - Thermal
   layers:
   - Default
   - TransparentFX

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour
     private bool isGamePaused = false;
 
     private string currentSceneName;
+
+
 
     private void Awake()
     {
@@ -27,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        
+
        
     }
 
@@ -70,30 +73,22 @@ public class GameManager : MonoBehaviour
 
     public void GoToMenu()
     {
-        Invoke(nameof(GoToMenu2), 1f);
-    }
-
-    public void GoToMenu2()
-    {
         SceneManager.LoadScene("MenuInicial");
     }
 
-    public void GoComoJugar()
-    {
-        Invoke(nameof(level2), 1f);
-    }
 
-    public void level2()
+    public void GoComoJugar()
     {
         SceneManager.LoadScene("ComoJugar");
     }
+
 
     public void QuitGame()
     {
         Application.Quit();
     }
 
-    public void Victoy()
+    public void Victory(object sender, EventArgs e)
     {
         SceneManager.LoadScene("Victoria");
     }
