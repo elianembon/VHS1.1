@@ -33,6 +33,8 @@ public class Player : MonoBehaviour, IMovable, ILife
     [SerializeField] protected float _maxLife = 120;
     [SerializeField] protected float _currentLife;
 
+    private List<Observer> _observers;
+
     #endregion
 
     #region KEY_BINDINGS
@@ -51,6 +53,7 @@ public class Player : MonoBehaviour, IMovable, ILife
     #region METHODS
 
     /*--------- [MOVEMENT] ---------*/
+
     public virtual void Move(Vector3 direction) => transform.position += direction.normalized* Time.deltaTime* _movementSpeed;
     public virtual void Moving()
     {
@@ -105,12 +108,11 @@ public class Player : MonoBehaviour, IMovable, ILife
 
     public void Die()
     {
-            
-
         
         PlayerDead?.Invoke(this, EventArgs.Empty);
         //Destroy(gameObject);
     }
+
 
     #endregion
 }

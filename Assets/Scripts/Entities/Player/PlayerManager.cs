@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : Player
+public class PlayerManager : Player, Subject
 {
     public static PlayerManager Instance { get; private set; }
 
@@ -10,17 +10,16 @@ public class PlayerManager : Player
     private float teleportTime = 2f;
     private Animator animator;
     private GameObject currentDoor;
-    private float corduramax;
-    [SerializeField] private Cordura cordura;
-    [SerializeField] private Cordura cordura1;
-    [SerializeField] private Cordura cordura2;
-    [SerializeField] private Cordura cordura3;
+    public float corduramax;
+
 
     public AudioSource audioSource;
     public AudioClip Walk;
     public AudioClip Run;
     private bool movement = false;
     private float initialVolume = 1f;
+
+    private List<Observer> _observers;
 
     private void Start()
     {
@@ -29,14 +28,10 @@ public class PlayerManager : Player
         
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-
-
-        cordura.InitBarraCordura(corduramax);
-        cordura1.InitBarraCordura(corduramax);
-        cordura2.InitBarraCordura(corduramax);
-        cordura3.InitBarraCordura(corduramax);
+        _observers = new List<Observer>();
 
         audioSource.volume = initialVolume;
+        Notify();
     }
 
     private void Update()
@@ -128,10 +123,7 @@ public class PlayerManager : Player
         corduramax += damage;
         float volumen = Mathf.Clamp01(initialVolume - (corduramax / _maxLife));
         audioSource.volume = volumen;
-        cordura.changeCurrentCordura(corduramax);
-        cordura1.changeCurrentCordura(corduramax);
-        cordura2.changeCurrentCordura(corduramax);
-        cordura3.changeCurrentCordura(corduramax);
+        Notify();
     }
 
     public void GetLife()
@@ -142,10 +134,7 @@ public class PlayerManager : Player
         {
             TakeLife(25);
             corduramax -= 25;
-            cordura.changeCurrentCordura(corduramax);
-            cordura1.changeCurrentCordura(corduramax);
-            cordura2.changeCurrentCordura(corduramax);
-            cordura3.changeCurrentCordura(corduramax);
+            Notify();
         }
     }
 
@@ -177,5 +166,21 @@ public class PlayerManager : Player
         }
     }
 
+    public void Suscribe(Observer observer)
+    {
+        _observers.Add(observer);
+    }
 
+    public void Unsuscribe(Observer observer)
+    {
+        _observers.Remove(observer);
+    }
+
+    public void Notify()
+    {
+        foreach(var observer in _observers)
+        {
+            observer.UpdateState(subject: this);
+        }
+    }
 }

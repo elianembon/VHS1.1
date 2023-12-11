@@ -65,8 +65,8 @@ public class Inventory : MonoBehaviour
         {
             if (!activeInventory)
             {
-                FasesInventory();
                 activeInventory = true;
+                FasesInventory(player.CurrentLife);
                 inventory.SetActive(true);
                 PauseGame();
                 
@@ -99,30 +99,30 @@ public class Inventory : MonoBehaviour
     }
 
 
-    private void FasesInventory()
+    private void FasesInventory(float currentLife)
     {
-        if (player.CurrentLife <= 120)
+        if (currentLife <= 120)
         {
             fase1.gameObject.SetActive(true);
             fase2.gameObject.SetActive(false);
             fase3.gameObject.SetActive(false);
             fase4.gameObject.SetActive(false);
         }
-        if (player.CurrentLife <= 90)
+        if (currentLife <= 90)
         {
             fase1.gameObject.SetActive(false);
             fase2.gameObject.SetActive(true);
             fase3.gameObject.SetActive(false);
             fase4.gameObject.SetActive(false);
         }
-        if (player.CurrentLife <= 60)
+        if (currentLife <= 60)
         {
             fase1.gameObject.SetActive(false);
             fase2.gameObject.SetActive(false);
             fase3.gameObject.SetActive(true);
             fase4.gameObject.SetActive(false);
         }
-        if (player.CurrentLife <= 30)
+        if (currentLife <= 30)
         {
             fase1.gameObject.SetActive(false);
             fase2.gameObject.SetActive(false);
@@ -130,6 +130,7 @@ public class Inventory : MonoBehaviour
             fase4.gameObject.SetActive(true);
         }
     }
+
     private void SortInventory()
     {
         List<GameObject> activeItems = Bag.FindAll(item => item.activeSelf);
@@ -386,7 +387,4 @@ public class Inventory : MonoBehaviour
         
     }
 
-
-
-    
 }
