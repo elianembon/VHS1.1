@@ -27,6 +27,7 @@ public class Inventory : MonoBehaviour
 
     private int maxMedicItems = 3;
     private int maxOtherItems = 3;
+    private int maxAllItems = 9;
 
     public Image fase1;
     public Image fase2;
@@ -213,7 +214,7 @@ public class Inventory : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if ((coll.CompareTag("Item") && CountItemsWithTag("Item") < maxOtherItems) ||
+        if ((coll.CompareTag("Item") & CountItemsWithTag("Item") < maxOtherItems) ||
             (coll.CompareTag("Medic") && CountItemsWithTag("Medic") < maxMedicItems) ||
             (coll.CompareTag("Objects") && CountItemsWithTag("Objects") < maxOtherItems))
         {
