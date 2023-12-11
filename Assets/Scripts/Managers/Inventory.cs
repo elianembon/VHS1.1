@@ -8,6 +8,8 @@ using System.Linq;
 
 public class Inventory : MonoBehaviour
 {
+    protected InventoryManager inventoryManager;
+
     public List<GameObject> Bag = new List<GameObject>();
     public GameObject inventory;
     public GameObject Selector;
@@ -27,7 +29,7 @@ public class Inventory : MonoBehaviour
 
     private int maxMedicItems = 3;
     private int maxOtherItems = 3;
-    private int maxAllItems = 9;
+    
 
     public Image fase1;
     public Image fase2;
@@ -51,11 +53,13 @@ public class Inventory : MonoBehaviour
         RecordOriginalPositions();
 
         player = GetComponent<PlayerManager>();
+
+        
     }
 
     private void Start()
     {
-       
+        inventoryManager = FindObjectOfType<InventoryManager>();
     }
 
     void Update()
@@ -81,10 +85,10 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+      /*  if (Input.GetKeyDown(KeyCode.Q))
         {
             RemoveItemFromInventory();
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -204,7 +208,7 @@ public class Inventory : MonoBehaviour
             {
                 thermalScript.ReceiveItemFromInventory(selectedSlot); // Llama al metodo en Thermal para transferir el objeto
                 RemoveItemFromInventory(); // Remueve el objeto del inventario
-
+                inventoryManager.CountOtherUsed--;
                 fusibleColocados++;
             }
         }
@@ -221,12 +225,12 @@ public class Inventory : MonoBehaviour
             AddItemToInventory(coll);
         }
 
-        if (coll.CompareTag("Medic"))
+        if (coll.CompareTag("Medic") && inventoryManager.CountMeducUsed <3)
         {
             audioSource.PlayOneShot(collectMedic);
         }
 
-        if (coll.CompareTag("Item"))
+        if (coll.CompareTag("Item") && inventoryManager.CountOtherUsed <3)
         {
             audioSource.PlayOneShot(collectItem);
         }
@@ -281,7 +285,7 @@ public class Inventory : MonoBehaviour
                    
                     player.audioSource.volume = Mathf.Clamp01(player.audioSource.volume);
                 }
-
+                inventoryManager.CountMeducUsed--;
                 RemoveItemFromInventory();
             }
         }

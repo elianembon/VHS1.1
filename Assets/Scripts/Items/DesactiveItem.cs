@@ -4,19 +4,32 @@ using UnityEngine;
 
 public class DesactiveItem : MonoBehaviour
 {
-
-    private Inventory inventory;
+    protected InventoryManager inventoryManager;
 
     private void Start()
     {
-        inventory = FindObjectOfType<Inventory>();
+        inventoryManager = FindObjectOfType<InventoryManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(this.gameObject);
+            string tag = gameObject.tag;
+
+            if (tag == "Medic" && inventoryManager.CountMeducUsed < 3)
+            {
+                inventoryManager.IncrementMeducUsed();
+                Destroy(gameObject);
+            }
+            else if (tag == "Item" && inventoryManager.CountOtherUsed < 3)
+            {
+                inventoryManager.IncrementOtherUsed();
+                Destroy(gameObject);
+            }
+
+            
         }
     }
 }
