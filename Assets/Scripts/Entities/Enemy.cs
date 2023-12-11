@@ -6,12 +6,11 @@ public class Enemy : MonoBehaviour
     public PlayerManager sacarVida;
     public Transform jugador;
     public float rangoPersecusion = 4f;
-    public float speed = 4.0f;
     public float distanciaMinima = 1.0f;
     public Q_queue<Transform> puntosRecorrido;
     public Transform[] Points;
 
-
+    [SerializeField] public EntityStats _stats;
     public Transform puntoActual;
     private bool enPausaDespuesDeColision;
     private float tiempoPausa = 0f; // 1 segundo de pausa
@@ -19,8 +18,9 @@ public class Enemy : MonoBehaviour
 
     private Tree<Enemy> decisionTree;
 
-    private NavMeshAgent navMeshAgent; 
+    private NavMeshAgent navMeshAgent;
 
+    
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            sacarVida.LooseLife(20f);
+            sacarVida.LooseLife(_stats.Damage);
 
             // Detener el movimiento y entrar en estado de pausa.
             enPausaDespuesDeColision = true;
@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour
     {
         Vector3 direccion = (punto.position - transform.position).normalized;
 
-        transform.position += direccion * speed * Time.deltaTime;
+        transform.position += direccion * _stats.MovementSpeed * Time.deltaTime;
     }
 
     public void Patrol()

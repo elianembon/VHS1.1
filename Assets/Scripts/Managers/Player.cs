@@ -8,7 +8,7 @@ using static GeneratorManager;
 public class Player : MonoBehaviour, IMovable, ILife
 {
     #region STRATEGY
-    public float MovementSpeed => _movementSpeed;
+    public float MovementSpeed => _stats.MovementSpeed;
     public float MovementSpeedWalk => _movementSpeedWalk;
     public float MovementSpeedRun => _movementSpeedRun;
 
@@ -17,22 +17,20 @@ public class Player : MonoBehaviour, IMovable, ILife
 
     public EventHandler PlayerDead;
 
-    public float MaxLife => _maxLife;
+    public float MaxLife => _stats.MaxLife;
 
-    public float CurrentLife => _currentLife;
+    public float CurrentLife => _stats.CurrentLife;
 
     #endregion
 
     #region PRIVATE_PROPIETIES
-    [SerializeField] private float _movementSpeed;
+    
     
     [SerializeField] protected float _movementSpeedWalk = 3f;
     [SerializeField] protected float _movementSpeedRun = 8f;
     [SerializeField] protected float _movementSpeedSilent = 1f;
 
-    [SerializeField] protected float _maxLife = 120;
-    [SerializeField] protected float _currentLife;
-
+    [SerializeField] protected EntityStats _stats;
     private List<Observer> _observers;
 
     #endregion
@@ -54,7 +52,7 @@ public class Player : MonoBehaviour, IMovable, ILife
 
     /*--------- [MOVEMENT] ---------*/
 
-    public virtual void Move(Vector3 direction) => transform.position += direction.normalized* Time.deltaTime* _movementSpeed;
+    public virtual void Move(Vector3 direction) => transform.position += direction.normalized* Time.deltaTime* _stats.MovementSpeed;
     public virtual void Moving()
     {
         Vector2 movement = new Vector2();
@@ -85,15 +83,15 @@ public class Player : MonoBehaviour, IMovable, ILife
         if (Input.GetKey(_moveSilent))
             targetSpeed = _movementSpeedSilent;
 
-        _movementSpeed = Mathf.Lerp(_movementSpeed, targetSpeed, Time.deltaTime * 5f);
+        _stats.MovementSpeed = Mathf.Lerp(_stats.MovementSpeed, targetSpeed, Time.deltaTime * 5f);
     }
 
     /*--------- [LIFE] ---------*/
     public virtual void TakeDamage(float damage)
     {
-        _currentLife -= damage;
+        _stats.CurrentLife -= damage;
 
-        if (_currentLife <= 0)
+        if (_stats.CurrentLife <= 0)
         {
             Die();
         }
@@ -101,7 +99,7 @@ public class Player : MonoBehaviour, IMovable, ILife
 
     public virtual void TakeLife(float RegenLife)
     {
-        _currentLife += RegenLife;
+        _stats.CurrentLife += RegenLife;
 
        
     }

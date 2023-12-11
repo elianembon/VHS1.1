@@ -32,7 +32,7 @@ public class EnemyDecisionTreeBuilder
     private void ChasePlayer(Enemy enemy)
     {
         Vector3 direction = (enemy.jugador.position - enemy.transform.position).normalized;
-        enemy.transform.position += direction * enemy.speed * Time.deltaTime;
+        enemy.transform.position += direction * enemy._stats.MovementSpeed * Time.deltaTime;
     }
 
     private void Patrol(Enemy enemy)

@@ -24,7 +24,7 @@ public class PlayerManager : Player, Subject
     private void Start()
     {
         corduramax = 5;
-        _currentLife = _maxLife;
+        _stats.CurrentLife = _stats.MaxLife;
         
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
@@ -121,14 +121,14 @@ public class PlayerManager : Player, Subject
     {    
         TakeDamage(damage);
         corduramax += damage;
-        float volumen = Mathf.Clamp01(initialVolume - (corduramax / _maxLife));
+        float volumen = Mathf.Clamp01(initialVolume - (corduramax / _stats.MaxLife));
         audioSource.volume = volumen;
         Notify();
     }
 
     public void GetLife()
     {
-        if (_currentLife == _maxLife)
+        if (_stats.CurrentLife == _stats.MaxLife)
             return;
         else
         {
