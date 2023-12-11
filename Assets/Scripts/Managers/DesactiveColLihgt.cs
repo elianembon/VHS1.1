@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class DesactiveColLihgt : MonoBehaviour
+public class DesactiveColLihgt : MonoBehaviour, Observer
 {
     public GameObject[] objects;
 
@@ -23,5 +23,16 @@ public class DesactiveColLihgt : MonoBehaviour
         }
     }
 
-
+    public void UpdateState(Subject subject)
+    {
+        if(subject is Generator gen)
+        {
+            if (gen.isRepaired == true)
+            {
+                ChangedTagToNoDamage();
+            }
+            else
+                ChangedTagToDamage();
+        }
+    }
 }

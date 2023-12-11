@@ -3,17 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Generator : MonoBehaviour
+public class Generator : MonoBehaviour, Subject
 {
     public bool isRepaired = false;
     private bool canSpaceInp = false;
+    private List<Observer> _observers;
 
     private GeneratorManager generatorManager;
     public float RepairCounter = 60; // Contador inicializado en 60 segundos
     private float startTimer; // variable para guardar
 
-    private ChangesLightColor myLight;
-    private DesactiveColLihgt changeTag;
+    //private ChangesLightColor myLight;
+    //private DesactiveColLihgt changeTag;
 
 
     private AudioSource audioSource;
@@ -29,8 +30,9 @@ public class Generator : MonoBehaviour
         generatorManager.RegisterGenerator(this);
         anim = GetComponent<Animator>();
         startTimer = RepairCounter;
-        myLight = GetComponent<ChangesLightColor>();
-        changeTag = GetComponent<DesactiveColLihgt>();       
+        //myLight = GetComponent<ChangesLightColor>();
+        //changeTag = GetComponent<DesactiveColLihgt>();
+        _observers = new List<Observer>();
     }
     private void Update()
     {
@@ -49,9 +51,10 @@ public class Generator : MonoBehaviour
         isRepaired = true;
         
         StartCoroutine(RepairCountdown());
-        myLight.ChangetoWhite();
-        changeTag.ChangedTagToNoDamage();
+        //myLight.ChangetoWhite();
+        //changeTag.ChangedTagToNoDamage();
         audioSource.PlayOneShot(Repair);
+        Notify();
 
 
     }
@@ -82,6 +85,7 @@ public class Generator : MonoBehaviour
         if (RepairCounter == 0)
         {
             NoRepairGenerator();
+            
         }
     }
 
@@ -92,10 +96,11 @@ public class Generator : MonoBehaviour
         
         generatorManager.UnregisterGenerator(this);
         RepairCounter = startTimer;
-        myLight.ChangetoPurple();
-        changeTag.ChangedTagToDamage();
-
+        //myLight.ChangetoPurple();
+        //changeTag.ChangedTagToDamage();
+        Notify();
         audioSource.PlayOneShot(Broke);
+        
     }
 
     public void EnableSpaceInput()
@@ -108,6 +113,23 @@ public class Generator : MonoBehaviour
         canSpaceInp = false;
     }
 
+    public void Suscribe(Observer observer)
+    {
+        _observers.Add(observer);
+    }
+
+    public void Unsuscribe(Observer observer)
+    {
+        _observers.Remove(observer);
+    }
+
+    public void Notify()
+    {
+        foreach(var observer in _observers)
+        {
+            observer.UpdateState(subject: this);
+        }
+    }
 }
 
 
