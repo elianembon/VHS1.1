@@ -8,8 +8,12 @@ public class Installer : MonoBehaviour
     [SerializeField] private Cordura _bar2;
     [SerializeField] private Cordura _bar3;
     [SerializeField] private Cordura _bar4;
+<<<<<<< HEAD
     [SerializeField] private PlayerManager playerManager; 
     [SerializeField] private PlayerSounds sounds; 
+=======
+    [SerializeField]private PlayerManager playerManager; 
+>>>>>>> parent of 4d1aa3f (facade)
 
     private void Start()
     {
