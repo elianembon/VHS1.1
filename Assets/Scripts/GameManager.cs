@@ -88,11 +88,11 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void Victory(object sender, EventArgs e)
+    public void Victory()
     {
         SceneManager.LoadScene("Victoria");
     }
-   
+
 
 }
 

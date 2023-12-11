@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Installer : MonoBehaviour
 {
-    [SerializeField] private Cordura _bar1;
-    [SerializeField] private Cordura _bar2;
-    [SerializeField] private Cordura _bar3;
-    [SerializeField] private Cordura _bar4;
+    [SerializeField] private UIManager _bar1;
+    [SerializeField] private UIManager _bar2;
+    [SerializeField] private UIManager _bar3;
+    [SerializeField] private UIManager _bar4;
     [SerializeField]private PlayerManager playerManager; 
 
     private void Start()
