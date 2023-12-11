@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 
-public class ChangesLightColor : MonoBehaviour
+public class ChangesLightColor : MonoBehaviour, Observer
 {
     public Light2D[] Lights;
     private Color[] originalColors;
@@ -17,6 +17,7 @@ public class ChangesLightColor : MonoBehaviour
         for (int i = 0; i < Lights.Length; i++)
         {
             originalColors[i] = Lights[i].color;
+            
         }
     }
 
@@ -37,5 +38,18 @@ public class ChangesLightColor : MonoBehaviour
             Lights[i].color = originalColors[i];
         }
         
+    }
+
+    public void UpdateState(Subject subject)
+    {
+        if(subject is Generator gen)
+        {
+            if (gen.isRepaired == true)
+            {
+                ChangetoWhite();
+            }
+            else
+                ChangetoPurple();
+        }
     }
 }

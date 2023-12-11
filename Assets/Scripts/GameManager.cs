@@ -70,18 +70,22 @@ public class GameManager : MonoBehaviour
 
     public void GoToMenu()
     {
+        Invoke(nameof(GoToMenu2), 1f);
+    }
+
+    public void GoToMenu2()
+    {
         SceneManager.LoadScene("MenuInicial");
     }
 
-
     public void GoComoJugar()
     {
-        SceneManager.LoadScene("ComoJugar");
+        Invoke(nameof(level2), 1f);
     }
 
     public void level2()
     {
-        SceneManager.LoadScene("Level2");
+        SceneManager.LoadScene("ComoJugar");
     }
 
     public void QuitGame()

@@ -8,8 +8,7 @@ public class Installer : MonoBehaviour
     [SerializeField] private Cordura _bar2;
     [SerializeField] private Cordura _bar3;
     [SerializeField] private Cordura _bar4;
-    [SerializeField]private PlayerManager playerManager;
-    [SerializeField] Inventory inventory; 
+    [SerializeField]private PlayerManager playerManager; 
 
     private void Start()
     {
