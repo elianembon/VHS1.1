@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Installer : MonoBehaviour
 {
-    [SerializeField] private UIManager _bar1;
-    [SerializeField] private UIManager _bar2;
-    [SerializeField] private UIManager _bar3;
-    [SerializeField] private UIManager _bar4;
-    [SerializeField]private PlayerManager playerManager; 
+    [SerializeField] private Cordura _bar1;
+    [SerializeField] private Cordura _bar2;
+    [SerializeField] private Cordura _bar3;
+    [SerializeField] private Cordura _bar4;
+    [SerializeField] private PlayerManager playerManager; 
+    [SerializeField] private PlayerSounds sounds; 
 
     private void Start()
     {
@@ -18,6 +19,7 @@ public class Installer : MonoBehaviour
             playerManager.Suscribe(_bar2);
             playerManager.Suscribe(_bar3);
             playerManager.Suscribe(_bar4);
+            playerManager.Suscribe(sounds);
         }
         else
         {
