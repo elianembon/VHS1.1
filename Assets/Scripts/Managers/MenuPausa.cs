@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 public class MenuPausa : MonoBehaviour
 {
     public GameObject MPausa;
+    public UIManager UIManager;
     public bool Pausa = false;
     
     void Start()
     {
         // Desactivar el menú de pausa al inicio
         MPausa.SetActive(false);
+        UIManager = FindObjectOfType<UIManager>();
     }
     void Update()
     {
@@ -31,7 +33,7 @@ public class MenuPausa : MonoBehaviour
         MPausa.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        Time.timeScale = 1f;
+        UIManager.ResumeGame();
             
     }
 
@@ -41,7 +43,7 @@ public class MenuPausa : MonoBehaviour
         MPausa.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        Time.timeScale = 0f;
+        UIManager.PauseGame();
             
     }
     

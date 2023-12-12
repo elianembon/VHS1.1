@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-           
+
         }
         else
         {
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
 
-       
+
     }
 
     // M�todo para pausar el juego
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     {
         isGamePaused = true;
         Time.timeScale = 0f; // Pausa el tiempo
-       
+
     }
 
     // M�todo para reanudar el juego
@@ -47,14 +47,12 @@ public class GameManager : MonoBehaviour
     {
         isGamePaused = false;
         Time.timeScale = 1f; // Restaura el tiempo
-       
+
     }
 
     public void NextLevel()
     {
-        currentSceneName = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        //SceneManager.LoadScene(currentSceneName);
+        SceneManager.LoadScene("UltimateLevel");
 
     }
 
@@ -88,11 +86,11 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void Victory(object sender, EventArgs e)
+    public void Victory()
     {
         SceneManager.LoadScene("Victoria");
     }
-   
+
 
 }
 

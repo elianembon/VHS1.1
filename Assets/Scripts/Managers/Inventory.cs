@@ -9,6 +9,7 @@ using System.Linq;
 public class Inventory : MonoBehaviour
 {
     protected InventoryManager inventoryManager;
+    public UIManager UIManager;
 
     public List<GameObject> Bag = new List<GameObject>();
     public GameObject inventory;
@@ -62,6 +63,7 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
+        UIManager = FindObjectOfType<UIManager>();
     }
 
     void Update()
@@ -77,7 +79,7 @@ public class Inventory : MonoBehaviour
                 activeInventory = true;
                 FasesInventory(player.CurrentLife);
                 inventory.SetActive(true);
-                PauseGame();
+                UIManager.PauseGame();
                 
             }
             else
@@ -85,7 +87,7 @@ public class Inventory : MonoBehaviour
                 audioSource.PlayOneShot(closeInv);
                 activeInventory = false;
                 inventory.SetActive(false);
-                ResumeGame();
+                UIManager.ResumeGame();
             }
         }
 
@@ -352,15 +354,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    void PauseGame()
-    {
-        GameManager.Instance.PauseGame();
-    }
-
-    void ResumeGame()
-    {
-        GameManager.Instance.ResumeGame();
-    }
 
     
 
