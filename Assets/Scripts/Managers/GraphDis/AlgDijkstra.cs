@@ -27,88 +27,97 @@ class AlgDijkstra
 
     public static void Dijkstra(GrafoMA grafo, int source)
     {
+        // obtengo la matriz de adyacencia del TDA_Grafo
+        int[,] graph = grafo.MAdy;
+
+        // obtengo la cantidad de nodos del TDA_Grafo
         int verticesCount = grafo.cantNodos;
 
+        // obtengo el indice del nodo elegido como origen a partir de su valor
         source = grafo.Vert2Indice(source);
 
+        // vector donde se van a guardar los resultados de las distancias entre 
+        // el origen y cada vertice del grafo
         distance = new int[verticesCount];
-        nodos = new string[verticesCount];
 
         bool[] shortestPathTreeSet = new bool[verticesCount];
-
-        List<List<int>> nodosLista = new List<List<int>>(); // Mueve la inicialización aquí
-
-        for (int i = 0; i < verticesCount; ++i)
-        {
-            distance[i] = int.MaxValue;
-            shortestPathTreeSet[i] = false;
-            nodosLista.Add(new List<int>());
-            nodosLista[i].Add(grafo.Etiqs[i]);
-        }
-
-        for (int i = 0; i < verticesCount; ++i)
-        {
-            int u = MinimumDistance(distance, shortestPathTreeSet, verticesCount);
-
-            shortestPathTreeSet[u] = true;
-
-            for (int v = 0; v < verticesCount; ++v)
-            {
-                if (!shortestPathTreeSet[v] && grafo.MAdy[u, v] != 0 && distance[u] != int.MaxValue && distance[u] + grafo.MAdy[u, v] < distance[v])
-                {
-                    distance[v] = distance[u] + grafo.MAdy[u, v];
-
-                    nodosLista[v] = new List<int>(nodosLista[u]);
-                    nodosLista[v].Add(grafo.Etiqs[v]);
-                }
-            }
-        }
-
-        for (int i = 0; i < verticesCount; i++)
-        {
-            if (nodosLista[i].Count > 0)
-            {
-                nodos[i] = string.Join(",", nodosLista[i]);
-            }
-        }
 
         int[] nodos1 = new int[verticesCount];
         int[] nodos2 = new int[verticesCount];
 
+        for (int i = 0; i < verticesCount; ++i)
+        {
+            // asigno un valor maximo (inalcanzable) como distancia a cada nodo
+            // cualquier camino que se encuentre va a ser menor a ese valor
+            // si no se encuentra un camino, este valor maximo permanece y es el 
+            // indica que no hay ningun camino entre el origen y ese nodo
+            distance[i] = int.MaxValue;
+
+            // seteo en falso al vector que guarda la booleana cuando se encuentra un camino
+            shortestPathTreeSet[i] = false;
+
+            nodos1[i] = nodos2[i] = -1;
+        }
+
+        // la distancia al nodo origen es 0
         distance[source] = 0;
         nodos1[source] = nodos2[source] = grafo.Etiqs[source];
+        // recorro todos los nodos (vertices)
+        for (int count = 0; count < verticesCount - 1; ++count)
+        {
+            int u = MinimumDistance(distance, shortestPathTreeSet, verticesCount);
+            shortestPathTreeSet[u] = true;
 
-        UnityEngine.Debug.Log("Entrando en el bucle principal de Dijkstra.");
+            // recorro todos los nodos (vertices)
+            for (int v = 0; v < verticesCount; ++v)
+            {
+                // comparo cada nodo (que aun no se haya calculado) contra el que se encontro que tiene la menor distancia al origen elegido
+                if (!shortestPathTreeSet[v] && Convert.ToBoolean(graph[u, v]) && distance[u] != int.MaxValue && distance[u] + graph[u, v] < distance[v])
+                {
+                    // si encontré una distancia menor a la que tenia, la reasigno la nodo
+                    distance[v] = distance[u] + graph[u, v];
+                    // guardo los nodos para reconstruir el camino
+                    nodos1[v] = grafo.Etiqs[u];
+                    nodos2[v] = grafo.Etiqs[v];
+                }
+            }
+        }
+        // construyo camino de nodos
+        nodos = new string[verticesCount];
+        int nodOrig = grafo.Etiqs[source];
+
         for (int i = 0; i < verticesCount; i++)
         {
-            UnityEngine.Debug.Log($"Iteración {i + 1}: nodos1[{i}] = {nodos1[i]}, nodos2[{i}] = {nodos2[i]}");
             if (nodos1[i] != -1)
             {
                 List<int> l1 = new List<int>();
                 l1.Add(nodos1[i]);
                 l1.Add(nodos2[i]);
-                while (l1[0] != source)
+
+                while (l1[0] != nodOrig)
                 {
                     for (int j = 0; j < verticesCount; j++)
                     {
-                        if (l1[0] == nodos2[j])
+                        if (j != source && l1[0] == nodos2[j])
                         {
                             l1.Insert(0, nodos1[j]);
                             break;
                         }
                     }
                 }
-
-                // Actualizar nodos1 y nodos2 según el resultado del camino más corto
-                nodos1[i] = l1[0]; // Nodo inicial del camino más corto
-                nodos2[i] = l1[l1.Count - 1]; // Nodo final del camino más corto
-
-                nodos[i] = string.Join(",", l1); // Simplificación aquí
+                for (int j = 0; j < l1.Count; j++)
+                {
+                    if (j == 0)
+                    {
+                        nodos[i] = l1[j].ToString();
+                    }
+                    else
+                    {
+                        nodos[i] += "," + l1[j].ToString();
+                    }
+                }
             }
         }
-
-        // Agrega mensajes de depuración
-        UnityEngine.Debug.Log("Dijkstra nodos: " + string.Join(", ", nodos));
     }
 
     public static int[] ConvertirNodosAEnteros(string[] nodos)
@@ -123,7 +132,7 @@ class AlgDijkstra
 
                 if (partes.Length > 0)
                 {
-                    if (int.TryParse(partes[0], out int nodoEntero))
+                    if (int.TryParse(partes[i], out int nodoEntero))
                     {
                         nodosEnteros[i] = nodoEntero;
                     }

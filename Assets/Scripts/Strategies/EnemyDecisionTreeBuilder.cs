@@ -1,20 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class EnemyDecisionTreeBuilder
 {
-
-
     public TreeNode<Enemy> BuildDecisionTree()
     {
         var rootNode = new TreeNode<Enemy>(
             condition: ShouldChasePlayer,
             action: ChasePlayer,
             falseNode: new TreeNode<Enemy>(
-                condition: _ => true, 
-                action: Patrol
+                condition: _ => true,
+                action: MoveAlongDijkstraPath
             )
         );
 
@@ -23,7 +20,7 @@ public class EnemyDecisionTreeBuilder
 
     private bool ShouldChasePlayer(Enemy enemy)
     {
-
+        Debug.Log("xd");
         float distance = Vector3.Distance(enemy.transform.position, enemy.jugador.position);
         bool shouldChase = distance <= enemy.rangoPersecusion;
         return shouldChase;
@@ -31,21 +28,24 @@ public class EnemyDecisionTreeBuilder
 
     private void ChasePlayer(Enemy enemy)
     {
+        Debug.Log("persiguiendo");
         Vector3 direction = (enemy.jugador.position - enemy.transform.position).normalized;
         enemy.transform.position += direction * enemy._stats.MovementSpeed * Time.deltaTime;
+
+        // Update the NavMeshAgent destination
+        enemy.SetDestination(enemy.jugador.position);
     }
 
-    private void Patrol(Enemy enemy)
+    private void MoveAlongDijkstraPath(Enemy enemy)
     {
-        if (enemy.puntosRecorrido.Counter() > 0)
+        // Check if Dijkstra nodes are available
+        if (enemy.nodosRecorrido != null && enemy.nodosRecorrido.Length > 0)
         {
-            enemy.MoverHaciaPunto(enemy.puntoActual);
+            enemy.MoverHaciaNodo(enemy.nM.grafo.Etiqs[enemy.nodosRecorrido[enemy.indiceNodoActual]]);
 
-            if (Vector3.Distance(enemy.transform.position, enemy.puntoActual.position) <= enemy.distanciaMinima)
+            if (Vector3.Distance(enemy.transform.position, enemy.nM.grafo.Nodos[enemy.nodosRecorrido[enemy.indiceNodoActual]].transform.position) < 0.1f)
             {
-                enemy.puntoActual = enemy.puntosRecorrido.Dequeue();
-                enemy.puntosRecorrido.Enqueue(enemy.puntoActual);
-                enemy.SetDestination(enemy.puntoActual.position);
+                enemy.indiceNodoActual = (enemy.indiceNodoActual + 1) % enemy.nodosRecorrido.Length;
             }
         }
     }

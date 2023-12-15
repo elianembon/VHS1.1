@@ -14,11 +14,12 @@ public class NodoManager : MonoBehaviour
     private void Awake()
     {
         LoadNodos();
+        ChargeGrafo();
     }
     void Start()
     {
 
-        ChargeGrafo();
+        
 
     }
 
