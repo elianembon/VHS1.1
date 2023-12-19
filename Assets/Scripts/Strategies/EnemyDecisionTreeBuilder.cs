@@ -20,7 +20,6 @@ public class EnemyDecisionTreeBuilder
 
     private bool ShouldChasePlayer(Enemy enemy)
     {
-        Debug.Log("xd");
         float distance = Vector3.Distance(enemy.transform.position, enemy.jugador.position);
         bool shouldChase = distance <= enemy.rangoPersecusion;
         return shouldChase;
@@ -28,7 +27,6 @@ public class EnemyDecisionTreeBuilder
 
     private void ChasePlayer(Enemy enemy)
     {
-        Debug.Log("persiguiendo");
         Vector3 direction = (enemy.jugador.position - enemy.transform.position).normalized;
         enemy.transform.position += direction * enemy._stats.MovementSpeed * Time.deltaTime;
 

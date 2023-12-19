@@ -12,13 +12,13 @@ public class PlayerSounds : MonoBehaviour, Observer
     private void PlayPain()
     {
         sound.Play();
-        Debug.Log("repreoduciendo gemidos");
+        //Debug.Log("repreoduciendo gemidos");
     }
 
     private void PlayWhispers()
     {
         whispers.Play();
-        Debug.Log("Reproduciendo susurros");
+        //Debug.Log("Reproduciendo susurros");
     }
     public void UpdateState(Subject subject)
     {

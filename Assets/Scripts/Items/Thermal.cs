@@ -42,7 +42,7 @@ public class Thermal : MonoBehaviour
 
     void Repaired()
     {
-        Debug.Log("Reparado");
+        
         SceneManager.LoadScene("Victoria");
 
     }
@@ -67,11 +67,11 @@ public class Thermal : MonoBehaviour
         {
             audioSource.PlayOneShot(repair);
             storedItems.Add(item);
-            Debug.Log("Item transferido a la termica. Cantidad actual de items en la termica: " + storedItems.Count);
+            //Debug.Log("Item transferido a la termica. Cantidad actual de items en la termica: " + storedItems.Count);
         }
         else
         {
-            Debug.Log("La termica ya tiene la cantidad maxima de items (6).");
+            //Debug.Log("La termica ya tiene la cantidad maxima de items (6).");
         }
     }
 }

@@ -279,7 +279,7 @@ public class Inventory : MonoBehaviour
             if (selectedImage.enabled && selectedSlot.CompareTag("Medic"))
             {
                 audioSource.PlayOneShot(useMedic);
-                Debug.Log("Te estoy curando");
+                //Debug.Log("Te estoy curando");
                 player.GetLife();
 
                 
