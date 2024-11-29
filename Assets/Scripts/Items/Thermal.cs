@@ -17,10 +17,16 @@ public class Thermal : MonoBehaviour
     public AudioClip repair;
 
     public EventHandler Victory;
+    private eventManager _eventManager;
+    private Inventory _inv;
+    private Player _player;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        _eventManager = FindObjectOfType<eventManager>();
+        _inv = FindObjectOfType<Inventory>();
+        _player = FindAnyObjectByType<Player>();
     }
 
 
@@ -42,7 +48,9 @@ public class Thermal : MonoBehaviour
 
     void Repaired()
     {
-        
+        _eventManager.SendSanityPillsEvent(_inv._pillsUsed);
+        _eventManager.SendFinalSanityEvent(_player.CurrentLife);
+
         SceneManager.LoadScene("Victoria");
 
     }

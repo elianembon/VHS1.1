@@ -16,11 +16,11 @@ public class eventManager : MonoBehaviour
         AnalyticsService.Instance.RecordEvent(sanityPillsEvent);
     }
 
-    public void SendFinalSanityEvent(int _FinalSanity)
+    public void SendFinalSanityEvent(float _currentSanity)
    {
         FinalSanityEvent finalSanityEvent = new FinalSanityEvent()
         {
-            FinalSanity = _FinalSanity
+            currentSanity = _currentSanity
         };
 
         AnalyticsService.Instance.RecordEvent(finalSanityEvent);

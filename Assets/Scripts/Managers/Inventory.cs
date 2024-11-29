@@ -22,14 +22,16 @@ public class Inventory : MonoBehaviour
 
     private bool isGamePaused;
     private bool activeInventory;
-    
 
+    
+    
     //Descripcion de los items del inventario
     private bool onMedicItem = false;
     private bool onTermicItem = false;
 
     private int maxMedicItems = 3;
     private int maxOtherItems = 3;
+    public int _pillsUsed = 0;
     
 
     public Image fase1;
@@ -56,7 +58,7 @@ public class Inventory : MonoBehaviour
         RecordOriginalPositions();
 
         player = GetComponent<PlayerManager>();
-
+       
         
     }
 
@@ -281,7 +283,8 @@ public class Inventory : MonoBehaviour
                 audioSource.PlayOneShot(useMedic);
                 //Debug.Log("Te estoy curando");
                 player.GetLife();
-
+                _pillsUsed++;
+                
                 
                 if (player != null && player.audioSource != null)
                 {

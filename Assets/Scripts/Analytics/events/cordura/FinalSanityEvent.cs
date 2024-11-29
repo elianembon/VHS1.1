@@ -9,5 +9,5 @@ public class FinalSanityEvent : Unity.Services.Analytics.Event
 
     }
 
-    public int FinalSanity { set { SetParameter("FinalSanity", value); } }
+    public float currentSanity { set { SetParameter("currentSanity", value); } }
 }
