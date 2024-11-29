@@ -26,12 +26,16 @@ public class EnemyDecisionTreeBuilder : eventManager
 
     private bool ShouldChasePlayer(Enemy enemy)
     {
+
+        
+        int nodoActual = enemy.indiceNodoActual;
         float distance = Vector3.Distance(enemy.transform.position, enemy.jugador.position);
         bool shouldChase = distance <= enemy.rangoPersecusion;
 
         if (shouldChase && !hasSentData)
         {
             SendEnemydata(true);
+            SendenemyAreaPersecutionEvent(true, nodoActual);
             hasSentData = true;  // Marcar como enviado
         }
         else if (!shouldChase)
