@@ -8,7 +8,5 @@ public class enemyChaseEvent : Unity.Services.Analytics.Event
     {
 
     }
-
-
     public bool enemyInArea { set { SetParameter("enemyInArea", value); } }
 }

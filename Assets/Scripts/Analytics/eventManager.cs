@@ -16,4 +16,16 @@ public class eventManager : MonoBehaviour
 
         AnalyticsService.Instance.RecordEvent(enemyChaseEvent);
     }
+
+    public void SendenemyAreaPersecutionEvent(bool _enemyInArea, int _ActualNodo)
+    {
+        enemyAreaPersecutionEvent enemyAreaPersecutionEvent = new enemyAreaPersecutionEvent()
+        {
+            enemyInArea = _enemyInArea,
+            ActualNodo = _ActualNodo
+        };
+
+        AnalyticsService.Instance.RecordEvent(enemyAreaPersecutionEvent);
+    }
+
 }
