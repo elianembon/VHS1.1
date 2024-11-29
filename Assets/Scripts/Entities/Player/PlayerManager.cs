@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerManager : Player, Subject
@@ -20,6 +21,9 @@ public class PlayerManager : Player, Subject
     private float initialVolume = 1f;
 
     public bool inDark = false;
+    public float damage;
+    public int LightTimer = 0;
+    public int DarkTimer = 0;
 
     private List<Observer> _observers;
 
@@ -45,7 +49,15 @@ public class PlayerManager : Player, Subject
     private void Update()
     {
         Moving();
-        
+        if (inDark)
+        {
+            LooseLife(damage);
+            DarkTimer += Mathf.FloorToInt(Time.deltaTime);
+        }
+        else
+        {
+            LightTimer += Mathf.FloorToInt(Time.deltaTime);
+        }
 
         if (Input.GetKeyDown(_moveForward))
         {
@@ -131,6 +143,8 @@ public class PlayerManager : Player, Subject
         corduramax += damage;
         if (_stats.CurrentLife <= 0)
         {
+            _eventManager.SendSanatyEvent(LightTimer);
+            _eventManager.SendSanityDowngradeEvent(DarkTimer);
             _eventManager.SendEnemyTimeChaseEvent(FindAnyObjectByType<Enemy>().chaseTime);
             _eventManager.SendSanityPillsEvent(_inventory._pillsUsed);
         }
@@ -164,7 +178,7 @@ public class PlayerManager : Player, Subject
     {
         if (collision.CompareTag("Damage"))
         {
-            LooseLife(0.2f);
+            
             inDark = true;
         }
         else

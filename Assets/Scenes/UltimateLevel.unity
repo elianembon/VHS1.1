@@ -86906,6 +86906,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: f394802b5c9d1d14790faced2a261340, type: 2}
     - target: {fileID: 1702182478034359807, guid: d08cdec9e5f8cc24c99e4e094a3e83ad, type: 3}
+      propertyPath: damage
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702182478034359807, guid: d08cdec9e5f8cc24c99e4e094a3e83ad, type: 3}
       propertyPath: cordura
       value: 
       objectReference: {fileID: 1315261280}

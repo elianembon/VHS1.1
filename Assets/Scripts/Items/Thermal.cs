@@ -49,6 +49,8 @@ public class Thermal : MonoBehaviour
     void Repaired()
     {
         _eventManager.SendSanityPillsEvent(_inv._pillsUsed);
+        _eventManager.SendSanatyEvent(FindAnyObjectByType<PlayerManager>().LightTimer);
+        _eventManager.SendSanityDowngradeEvent(FindAnyObjectByType<PlayerManager>().DarkTimer);
         _eventManager.SendEnemyTimeChaseEvent(FindAnyObjectByType<Enemy>().chaseTime);
         _eventManager.SendFinalSanityEvent(_player.CurrentLife);
 

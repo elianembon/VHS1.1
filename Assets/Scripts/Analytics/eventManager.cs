@@ -129,5 +129,22 @@ public class eventManager : MonoBehaviour
 
         AnalyticsService.Instance.RecordEvent(EnemyTimeChase);
     }
+    public void SendSanityEvent(int _time)
+    {
+        SanityEvent lightTime = new SanityEvent()
+        {
+            LightTime = _time
+        };
 
+        AnalyticsService.Instance.RecordEvent(lightTime);
+    }
+    public void SendSanityDownGradeEvent(int _time)
+    {
+        SanityDowngradeEvent shadowTime = new SanityDowngradeEvent()
+        {
+            ShadowTime = _time
+        };
+
+        AnalyticsService.Instance.RecordEvent(shadowTime);
+    }
 }
