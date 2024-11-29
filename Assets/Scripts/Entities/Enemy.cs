@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+
+public class Enemy : MonoBehaviour 
 {
+
+    eventManager eventManager;
     public PlayerManager sacarVida;
     public Transform jugador;
     public float rangoPersecusion = 4f;
@@ -10,6 +13,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] public EntityStats _stats;
     private bool enPausaDespuesDeColision;
+    private bool presec = false;
+
     private float tiempoPausa = 0f; // 1 segundo de pausa
     private float rangoPersecusionInit;
 
@@ -42,6 +47,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+
         if (enPausaDespuesDeColision)
         {
             tiempoPausa -= Time.deltaTime;
