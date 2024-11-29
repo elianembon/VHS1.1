@@ -8,8 +8,8 @@ public class LoseScreen : MonoBehaviour
     Player myplayer;
     void Start()
     {
-        myplayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         Time.timeScale = 1f;
+        myplayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         gameObject.SetActive(false);
         myplayer.PlayerDead += ActivedScene;
     }

@@ -49,6 +49,7 @@ public class Thermal : MonoBehaviour
     void Repaired()
     {
         _eventManager.SendSanityPillsEvent(_inv._pillsUsed);
+        _eventManager.SendEnemyTimeChaseEvent(FindAnyObjectByType<Enemy>().chaseTime);
         _eventManager.SendFinalSanityEvent(_player.CurrentLife);
 
         SceneManager.LoadScene("Victoria");

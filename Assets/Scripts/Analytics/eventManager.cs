@@ -10,7 +10,7 @@ public class eventManager : MonoBehaviour
     {
         SanityPillsEvent sanityPillsEvent = new SanityPillsEvent()
         {
-            Pills = _pills 
+           Pills = _pills 
         };
 
         AnalyticsService.Instance.RecordEvent(sanityPillsEvent);
@@ -110,6 +110,24 @@ public class eventManager : MonoBehaviour
 
         AnalyticsService.Instance.RecordEvent(interactionsGen);
     }
+    //yuuji
+    public void SendOnDeadByEnemyEvent(bool _onEvent)
+    {
+        OnDeadByEnemyEvent onDeadByEnemyEvent = new OnDeadByEnemyEvent()
+        {
+            deathByEnemy = _onEvent
+        };
 
+        AnalyticsService.Instance.RecordEvent(onDeadByEnemyEvent);
+    }
+    public void SendEnemyTimeChaseEvent(float _time)
+    {
+        EnemyTimeChaseEvent EnemyTimeChase = new EnemyTimeChaseEvent()
+        {
+            enemyTimeChase = _time
+        };
+
+        AnalyticsService.Instance.RecordEvent(EnemyTimeChase);
+    }
 
 }

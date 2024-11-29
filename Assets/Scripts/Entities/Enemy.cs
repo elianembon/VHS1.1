@@ -12,11 +12,12 @@ public class Enemy : MonoBehaviour
     public float distanciaMinima = 1.0f;
 
     [SerializeField] public EntityStats _stats;
-    private bool enPausaDespuesDeColision;
+    public bool enPausaDespuesDeColision;
     private bool presec = false;
 
     private float tiempoPausa = 0f; // 1 segundo de pausa
     private float rangoPersecusionInit;
+    public float chaseTime = 0f;
 
     private Tree<Enemy> decisionTree;
     private eventManager _eventManager;
@@ -49,7 +50,6 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-
         if (enPausaDespuesDeColision)
         {
             tiempoPausa -= Time.deltaTime;
@@ -72,6 +72,10 @@ public class Enemy : MonoBehaviour
         {
             _numOfAttacks++;
             sacarVida.LooseLife(_stats.Damage);
+            if(sacarVida.CurrentLife <= 0)
+            {
+                _eventManager.SendOnDeadByEnemyEvent(enPausaDespuesDeColision);
+            }
             _eventManager.SendSanityDowngradeEvent(_numOfAttacks);
             // Detener el movimiento y entrar en estado de pausa.
             enPausaDespuesDeColision = true;

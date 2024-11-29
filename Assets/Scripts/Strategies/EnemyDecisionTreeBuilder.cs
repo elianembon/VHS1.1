@@ -6,8 +6,6 @@ using UnityEngine;
 public class EnemyDecisionTreeBuilder : eventManager
 {
 
-
-
     public TreeNode<Enemy> BuildDecisionTree()
     {
         var rootNode = new TreeNode<Enemy>(
@@ -48,8 +46,8 @@ public class EnemyDecisionTreeBuilder : eventManager
 
     private void ChasePlayer(Enemy enemy)
     {
+        enemy.chaseTime += Time.deltaTime;
         
-
         Vector3 direction = (enemy.jugador.position - enemy.transform.position).normalized;
         enemy.transform.position += direction * enemy._stats.MovementSpeed * Time.deltaTime;
 

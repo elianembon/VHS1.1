@@ -23,6 +23,9 @@ public class PlayerManager : Player, Subject
 
     private List<Observer> _observers;
 
+    private eventManager _eventManager;
+    private Inventory _inventory;
+
     private void Start()
     {
         corduramax = 5;
@@ -31,6 +34,9 @@ public class PlayerManager : Player, Subject
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         _observers = new List<Observer>();
+
+        _eventManager = FindObjectOfType<eventManager>();
+        _inventory = GetComponent<Inventory>();
 
         audioSource.volume = initialVolume;
         Notify();
@@ -123,6 +129,11 @@ public class PlayerManager : Player, Subject
     {    
         TakeDamage(damage);
         corduramax += damage;
+        if (_stats.CurrentLife <= 0)
+        {
+            _eventManager.SendEnemyTimeChaseEvent(FindAnyObjectByType<Enemy>().chaseTime);
+            _eventManager.SendSanityPillsEvent(_inventory._pillsUsed);
+        }
         float volumen = Mathf.Clamp01(initialVolume - (corduramax / _stats.MaxLife));
         audioSource.volume = volumen;
         Notify();

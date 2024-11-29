@@ -33,9 +33,6 @@ public class Player : MonoBehaviour, IMovable, ILife
     [SerializeField] protected EntityStats _stats;
     private List<Observer> _observers;
 
-    private eventManager _eventManager;
-    private Inventory _inventory;
-    
     #endregion
 
     #region KEY_BINDINGS
@@ -52,12 +49,6 @@ public class Player : MonoBehaviour, IMovable, ILife
     #endregion
 
     #region METHODS
-
-    public void Start()
-    {
-        _eventManager = FindObjectOfType<eventManager>();
-        _inventory = GetComponent<Inventory>();
-    }
 
     /*--------- [MOVEMENT] ---------*/
 
@@ -115,7 +106,6 @@ public class Player : MonoBehaviour, IMovable, ILife
 
     public void Die()
     {
-        _eventManager.SendSanityPillsEvent(_inventory._pillsUsed);
         PlayerDead?.Invoke(this, EventArgs.Empty);
         //Destroy(gameObject);
     }
