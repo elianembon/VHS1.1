@@ -6,7 +6,59 @@ using Unity.Services.Analytics;
 public class eventManager : MonoBehaviour
 {
 
-   
+    public void SendSanityPillsEvent(int _pills)
+    {
+        SanityPillsEvent sanityPillsEvent = new SanityPillsEvent()
+        {
+            Pills = _pills 
+        };
+
+        AnalyticsService.Instance.RecordEvent(sanityPillsEvent);
+    }
+
+    public void SendFinalSanityEvent(int _FinalSanity)
+   {
+        FinalSanityEvent finalSanityEvent = new FinalSanityEvent()
+        {
+            FinalSanity = _FinalSanity
+        };
+
+        AnalyticsService.Instance.RecordEvent(finalSanityEvent);
+   }
+
+    public void SendSanatyEvent(int _lightTime)
+    {
+        SanityEvent sanityEvent = new SanityEvent()
+        {
+            LightTime = _lightTime
+        };
+
+        AnalyticsService.Instance.RecordEvent(sanityEvent);
+
+    }
+
+    public void SendSanityDowngradeEvent(int _shadowTime)
+    {
+        SanityDowngradeEvent sanityDowngradeEvent = new SanityDowngradeEvent()
+        {
+            ShadowTime = _shadowTime
+        };
+
+        AnalyticsService.Instance.RecordEvent(sanityDowngradeEvent);
+
+    }
+
+    public void SendSanityAttackEvent(int _enemyAttack)
+    {
+        SanityAttackEvent sanityAttackEvent = new SanityAttackEvent()
+        {
+            EnemyAttack = _enemyAttack
+        };
+
+        AnalyticsService.Instance.RecordEvent(sanityAttackEvent);
+
+    }
+
     public void SendEnemydata(bool _enemyInArea)
     {
         enemyChaseEvent enemyChaseEvent = new enemyChaseEvent()
