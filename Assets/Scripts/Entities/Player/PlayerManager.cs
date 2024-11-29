@@ -24,6 +24,8 @@ public class PlayerManager : Player, Subject
     public float damage;
     public int LightTimer = 0;
     public int DarkTimer = 0;
+    float timeAccumulator = 0f; 
+    float darkTimeAccumulator = 0f; 
 
     private List<Observer> _observers;
 
@@ -48,15 +50,30 @@ public class PlayerManager : Player, Subject
 
     private void Update()
     {
+
+
         Moving();
         if (inDark)
         {
             LooseLife(damage);
-            DarkTimer += Mathf.FloorToInt(Time.deltaTime);
+
+            
+            darkTimeAccumulator += Time.deltaTime;
+            if (darkTimeAccumulator >= 1f)
+            {
+                DarkTimer += Mathf.FloorToInt(darkTimeAccumulator); 
+                darkTimeAccumulator -= Mathf.Floor(darkTimeAccumulator); 
+            }
         }
         else
         {
-            LightTimer += Mathf.FloorToInt(Time.deltaTime);
+            
+            timeAccumulator += Time.deltaTime;
+            if (timeAccumulator >= 1f)
+            {
+                LightTimer += Mathf.FloorToInt(timeAccumulator); 
+                timeAccumulator -= Mathf.Floor(timeAccumulator); 
+            }
         }
 
         if (Input.GetKeyDown(_moveForward))
