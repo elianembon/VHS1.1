@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class enemyAreaPersecutionEvent : Unity.Services.Analytics.Event
 {
-    public enemyAreaPersecutionEvent() : base("enemyAreaPersecutionEvent")
+    public enemyAreaPersecutionEvent() : base("enemyAreaPersecution")
     {
 
     }
