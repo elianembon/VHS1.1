@@ -28,4 +28,36 @@ public class eventManager : MonoBehaviour
         AnalyticsService.Instance.RecordEvent(enemyAreaPersecutionEvent);
     }
 
+        //lina
+    public void SendinteractionFuse(string _gameObjectName)
+    {
+        interactionFuse interactionFuse = new interactionFuse()
+        {
+            gameObjectName  = _gameObjectName,
+        };
+
+        AnalyticsService.Instance.RecordEvent(interactionFuse);
+    }
+
+    public void SendinteractionDoor(string _gameObjectName)
+    {
+        interactionDoor interactionDoor = new interactionDoor()
+        {
+            gameObjectName = _gameObjectName,
+        };
+
+        AnalyticsService.Instance.RecordEvent(interactionDoor);
+    }
+
+    public void SendinteractionsGen(string _genName)
+    {
+        interactionsGen interactionsGen = new interactionsGen()
+        {
+            genName = _genName,
+        };
+
+        AnalyticsService.Instance.RecordEvent(interactionsGen);
+    }
+
+
 }
