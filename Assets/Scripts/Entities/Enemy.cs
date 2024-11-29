@@ -19,13 +19,14 @@ public class Enemy : MonoBehaviour
     private float rangoPersecusionInit;
 
     private Tree<Enemy> decisionTree;
-
+    private eventManager _eventManager;
     private NavMeshAgent navMeshAgent;
 
     // Additional variables for Dijkstra
     public NodoManager nM;
     public int[] nodosRecorrido;
     public int indiceNodoActual = 0;
+    public int _numOfAttacks = 0; 
 
     void Start()
     {
@@ -35,6 +36,7 @@ public class Enemy : MonoBehaviour
         rangoPersecusionInit = rangoPersecusion;
         enPausaDespuesDeColision = false;
         sacarVida = GameObject.FindObjectOfType<PlayerManager>();
+        _eventManager = FindObjectOfType<eventManager>();
 
         var decisionTreeBuilder = new EnemyDecisionTreeBuilder();
         var rootNode = decisionTreeBuilder.BuildDecisionTree();
@@ -68,8 +70,9 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            _numOfAttacks++;
             sacarVida.LooseLife(_stats.Damage);
-
+            _eventManager.SendSanityDowngradeEvent(_numOfAttacks);
             // Detener el movimiento y entrar en estado de pausa.
             enPausaDespuesDeColision = true;
             tiempoPausa = 1.0f; // Restablecer el tiempo de pausa
