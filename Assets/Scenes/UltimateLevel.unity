@@ -666,6 +666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 1329194074}
+  nameDoor: Door04
 --- !u!61 &55413606
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2641,6 +2642,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2070050917}
     m_Modifications:
+    - target: {fileID: -6206166301116114453, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
+      propertyPath: fuseName
+      value: fuse07
+      objectReference: {fileID: 0}
     - target: {fileID: 1348130266213870238, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -3408,6 +3413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b76ea61c6899449b76a5a7c00b893a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameGen: Gen03
   isRepaired: 0
   RepairCounter: 60
   Repair: {fileID: 8300000, guid: 2487b2bbf6418cb4397b2e01b5a87c0e, type: 3}
@@ -5770,6 +5776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 1071224638}
+  nameDoor: Door20
 --- !u!61 &403457063
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5931,6 +5938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b76ea61c6899449b76a5a7c00b893a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameGen: Gen02
   isRepaired: 0
   RepairCounter: 60
   Repair: {fileID: 8300000, guid: 2487b2bbf6418cb4397b2e01b5a87c0e, type: 3}
@@ -6366,6 +6374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b76ea61c6899449b76a5a7c00b893a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameGen: Gen01
   isRepaired: 0
   RepairCounter: 30
   Repair: {fileID: 8300000, guid: 2487b2bbf6418cb4397b2e01b5a87c0e, type: 3}
@@ -8157,6 +8166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 1675126373}
+  nameDoor: Door11
 --- !u!61 &538217437
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8842,6 +8852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 134106223}
+  nameDoor: Door02
 --- !u!61 &608491924
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9260,6 +9271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 1288470777}
+  nameDoor: Door10
 --- !u!61 &668538281
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38643,6 +38655,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2070050917}
     m_Modifications:
+    - target: {fileID: -6206166301116114453, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
+      propertyPath: fuseName
+      value: fuse06
+      objectReference: {fileID: 0}
     - target: {fileID: 1348130266213870238, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -38752,6 +38768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 518006646}
+  nameDoor: Door08
 --- !u!61 &970095256
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38896,6 +38913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 361554734}
+  nameDoor: Door12
 --- !u!61 &975905976
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39268,6 +39286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 1820795972}
+  nameDoor: Door07
 --- !u!61 &1025276976
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -41480,6 +41499,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2070050917}
     m_Modifications:
+    - target: {fileID: -6206166301116114453, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
+      propertyPath: fuseName
+      value: fuse08
+      objectReference: {fileID: 0}
     - target: {fileID: 1348130266213870238, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -42072,6 +42095,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2070050917}
     m_Modifications:
+    - target: {fileID: -6206166301116114453, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
+      propertyPath: fuseName
+      value: fuse02
+      objectReference: {fileID: 0}
     - target: {fileID: 1348130266213870238, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -42271,6 +42298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 1953506022}
+  nameDoor: Door01
 --- !u!61 &1270706392
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -51254,6 +51282,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2070050917}
     m_Modifications:
+    - target: {fileID: -6206166301116114453, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
+      propertyPath: fuseName
+      value: fuse05
+      objectReference: {fileID: 0}
     - target: {fileID: 1348130266213870238, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -51605,6 +51637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 1775116841}
+  nameDoor: Door06
 --- !u!61 &1376199174
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -83232,6 +83265,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2070050917}
     m_Modifications:
+    - target: {fileID: -6206166301116114453, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
+      propertyPath: fuseName
+      value: fuse09
+      objectReference: {fileID: 0}
     - target: {fileID: 1348130266213870238, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -83317,6 +83354,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2070050917}
     m_Modifications:
+    - target: {fileID: -6206166301116114453, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
+      propertyPath: fuseName
+      value: fuse10
+      objectReference: {fileID: 0}
     - target: {fileID: 1348130266213870238, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -83723,6 +83764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 1190208899}
+  nameDoor: Door09
 --- !u!61 &1522531302
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -83969,6 +84011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 866486964}
+  nameDoor: Door05
 --- !u!61 &1567517170
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -84374,6 +84417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 467150746}
+  nameDoor: Door15
 --- !u!61 &1598598567
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -85375,6 +85419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 565895962}
+  nameDoor: Door16
 --- !u!61 &1686470150
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -85530,6 +85575,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2070050917}
     m_Modifications:
+    - target: {fileID: -6206166301116114453, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
+      propertyPath: fuseName
+      value: fuse04
+      objectReference: {fileID: 0}
     - target: {fileID: 1348130266213870238, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -86419,6 +86468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 2031181209}
+  nameDoor: Door03
 --- !u!61 &1748078094
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -86707,6 +86757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 1384038050}
+  nameDoor: Door19
 --- !u!61 &1768586937
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -87667,6 +87718,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2070050917}
     m_Modifications:
+    - target: {fileID: -6206166301116114453, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
+      propertyPath: fuseName
+      value: fuse03
+      objectReference: {fileID: 0}
     - target: {fileID: 1348130266213870238, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -88075,6 +88130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b76ea61c6899449b76a5a7c00b893a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameGen: Gen04
   isRepaired: 0
   RepairCounter: 60
   Repair: {fileID: 8300000, guid: 2487b2bbf6418cb4397b2e01b5a87c0e, type: 3}
@@ -89217,6 +89273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 964516453}
+  nameDoor: Door13
 --- !u!61 &1972441441
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -89749,6 +89806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 1374866463}
+  nameDoor: Door18
 --- !u!61 &2000857927
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -89930,6 +89988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 744610758}
+  nameDoor: Door17
 --- !u!61 &2041819838
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -90059,6 +90118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 963013183}
+  nameDoor: Door14
 --- !u!61 &2047846577
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -90804,6 +90864,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2070050917}
     m_Modifications:
+    - target: {fileID: -6206166301116114453, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
+      propertyPath: fuseName
+      value: fuse01
+      objectReference: {fileID: 0}
     - target: {fileID: 1348130266213870238, guid: 8f1bd0d092c7c2f4fafe4957fc095493, type: 3}
       propertyPath: m_RootOrder
       value: -1
