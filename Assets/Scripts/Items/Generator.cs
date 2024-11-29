@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Generator : MonoBehaviour, Subject
 {
+    [SerializeField] string nameGen;
     public bool isRepaired = false;
     private bool canSpaceInp = false;
     private List<Observer> _observers;
@@ -12,6 +13,7 @@ public class Generator : MonoBehaviour, Subject
     private GeneratorManager generatorManager;
     public float RepairCounter = 60; // Contador inicializado en 60 segundos
     private float startTimer; // variable para guardar
+    private eventManager evMan;
 
     //private ChangesLightColor myLight;
     //private DesactiveColLihgt changeTag;
@@ -33,6 +35,7 @@ public class Generator : MonoBehaviour, Subject
         //myLight = GetComponent<ChangesLightColor>();
         //changeTag = GetComponent<DesactiveColLihgt>();
         _observers = new List<Observer>();
+        evMan = FindObjectOfType<eventManager>();
     }
     private void Update()
     {
@@ -55,6 +58,7 @@ public class Generator : MonoBehaviour, Subject
         //changeTag.ChangedTagToNoDamage();
         audioSource.PlayOneShot(Repair);
         Notify();
+        evMan.SendinteractionsGen(nameGen);
 
 
     }

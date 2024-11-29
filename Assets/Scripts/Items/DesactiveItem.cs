@@ -6,9 +6,14 @@ public class DesactiveItem : MonoBehaviour
 {
     protected InventoryManager inventoryManager;
 
+    [SerializeField] string fuseName;
+
+    private eventManager evenMan;
+
     private void Start()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
+        evenMan = FindObjectOfType<eventManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,6 +31,7 @@ public class DesactiveItem : MonoBehaviour
             else if (tag == "Item" && inventoryManager.CountOtherUsed < 3)
             {
                 inventoryManager.IncrementOtherUsed();
+                evenMan.SendinteractionFuse(fuseName);
                 Destroy(gameObject);
             }
 
