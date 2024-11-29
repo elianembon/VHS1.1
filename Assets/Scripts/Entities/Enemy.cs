@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour 
 {
 
-    eventManager eventManager;
+    private eventManager eventManager;
     public PlayerManager sacarVida;
     public Transform jugador;
     public float rangoPersecusion = 4f;
