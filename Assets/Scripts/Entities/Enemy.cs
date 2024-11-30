@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
             {
                 _eventManager.SendOnDeadByEnemyEvent(enPausaDespuesDeColision);
             }
-            _eventManager.SendSanityDowngradeEvent(_numOfAttacks);
+            _eventManager.SendSanityAttackEvent(_numOfAttacks);
             // Detener el movimiento y entrar en estado de pausa.
             enPausaDespuesDeColision = true;
             tiempoPausa = 1.0f; // Restablecer el tiempo de pausa
