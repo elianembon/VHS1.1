@@ -33,11 +33,13 @@ public class Player : MonoBehaviour, IMovable, ILife
     [SerializeField] protected EntityStats _stats;
     private List<Observer> _observers;
 
+    [SerializeField] public bool isPlayerDead = false;
+
     #endregion
 
     #region KEY_BINDINGS
     /*--------- [KEY BINDINGS] ---------*/
-     protected KeyCode _moveForward = KeyCode.W;
+    protected KeyCode _moveForward = KeyCode.W;
      protected KeyCode _moveBack = KeyCode.S;
      protected KeyCode _moveLeft = KeyCode.A;
      protected KeyCode _moveRight = KeyCode.D;
@@ -107,6 +109,7 @@ public class Player : MonoBehaviour, IMovable, ILife
     public void Die()
     {
         PlayerDead?.Invoke(this, EventArgs.Empty);
+        isPlayerDead = true;
         //Destroy(gameObject);
     }
 

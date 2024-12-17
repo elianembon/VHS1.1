@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuPausa : MonoBehaviour
 {
+    private Player player;
     public GameObject MPausa;
     public UIManager UIManager;
     public bool Pausa = false;
@@ -14,10 +15,15 @@ public class MenuPausa : MonoBehaviour
         // Desactivar el menú de pausa al inicio
         MPausa.SetActive(false);
         UIManager = FindObjectOfType<UIManager>();
+        player = FindObjectOfType<Player>();
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && !Pausa)
+        if (player.isPlayerDead)
+        {
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && !Pausa)
         {
             Activated();
         }
@@ -33,6 +39,7 @@ public class MenuPausa : MonoBehaviour
         MPausa.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1;
         UIManager.ResumeGame();
             
     }
@@ -43,6 +50,7 @@ public class MenuPausa : MonoBehaviour
         MPausa.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0;
         UIManager.PauseGame();
             
     }
@@ -53,5 +61,8 @@ public class MenuPausa : MonoBehaviour
         SceneManager.LoadScene("MenuInicial");
     }
   
-    
+    public void ChangePauseState(bool pause)
+    {
+        Pausa = pause;
+    }
 }
