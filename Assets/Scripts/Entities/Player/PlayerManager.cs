@@ -50,96 +50,78 @@ public class PlayerManager : Player, Subject
 
     private void Update()
     {
-
-
         Moving();
+
+        // --- Sistema de luz/oscuridad ---
         if (inDark)
         {
             LooseLife(damage);
 
-            
             darkTimeAccumulator += Time.deltaTime;
             if (darkTimeAccumulator >= 1f)
             {
-                DarkTimer += Mathf.FloorToInt(darkTimeAccumulator); 
-                darkTimeAccumulator -= Mathf.Floor(darkTimeAccumulator); 
+                DarkTimer += Mathf.FloorToInt(darkTimeAccumulator);
+                darkTimeAccumulator -= Mathf.Floor(darkTimeAccumulator);
             }
         }
         else
         {
-            
             timeAccumulator += Time.deltaTime;
             if (timeAccumulator >= 1f)
             {
-                LightTimer += Mathf.FloorToInt(timeAccumulator); 
-                timeAccumulator -= Mathf.Floor(timeAccumulator); 
+                LightTimer += Mathf.FloorToInt(timeAccumulator);
+                timeAccumulator -= Mathf.Floor(timeAccumulator);
             }
         }
 
-        if (Input.GetKeyDown(_moveForward))
-        {
-            
-            animator.SetBool("PressW", false);
-            animator.SetBool("PressS", true);
-            animator.SetBool("PressA", false);
-            animator.SetBool("PressD", false);
-            audioSource.Play();
+        // --- INPUT CONTINUO ---
+        bool w = Input.GetKey(_moveForward);
+        bool s = Input.GetKey(_moveBack);
+        bool a = Input.GetKey(_moveLeft);
+        bool d = Input.GetKey(_moveRight);
+        bool moving = w || s || a || d;
+        bool running = Input.GetKey(KeyCode.LeftShift);
 
+        // --- ANIMATOR ---
+        animator.SetBool("PressW", w);
+        animator.SetBool("PressS", s);
+        animator.SetBool("PressA", a);
+        animator.SetBool("PressD", d);
+
+        // --- AUDIO (optimizado) ---
+        if (moving)
+        {
+            // asegurá un clip base (usar Walk como loop)
+            if (audioSource.clip != Walk)
+            {
+                audioSource.clip = Walk;
+                audioSource.loop = true;
+            }
+
+            if (!audioSource.isPlaying)
+                audioSource.Play();
+
+            // correr = mismo clip, más rápido
+            float targetPitch = running ? 1.5f : 1f;
+            audioSource.pitch = Mathf.Lerp(audioSource.pitch, targetPitch, Time.deltaTime * 10f);
+        }
+        else
+        {
+            // no cortar de golpe (fade out corto)
+            audioSource.volume = Mathf.Lerp(audioSource.volume, 0f, Time.deltaTime * 10f);
+
+            if (audioSource.volume < 0.01f)
+            {
+                audioSource.Stop();
+                audioSource.volume = initialVolume;
+                audioSource.pitch = 1f;
+            }
         }
 
-        if (Input.GetKeyDown(_moveBack))
-        {
-           
-            animator.SetBool("PressS", false);
-            animator.SetBool("PressW", true);
-            animator.SetBool("PressA", false);
-            animator.SetBool("PressD", false);
-            audioSource.Play();
-        }
-
-        if (Input.GetKeyDown(_moveLeft))
-        {
-            
-            animator.SetBool("PressA", true);
-            animator.SetBool("PressW", false);
-            animator.SetBool("PressS", false);
-            animator.SetBool("PressD", false);
-            audioSource.Play();
-        }
-
-        if (Input.GetKeyDown(_moveRight))
-        {
-
-            animator.SetBool("PressD", true);
-            animator.SetBool("PressW", false);
-            animator.SetBool("PressS", false);
-            animator.SetBool("PressA", false);
-            audioSource.Play();
-        }
-
-        if (Input.GetKeyUp(_moveRight))
-        {
-            audioSource.Stop();
-        }
-
-        if (Input.GetKeyUp(_moveLeft))
-        {
-            audioSource.Stop();
-        }
-
-        if (Input.GetKeyUp(_moveBack))
-        {
-            audioSource.Stop();
-        }
-
-        if (Input.GetKeyUp(_moveForward))
-        {
-            audioSource.Stop();
-        }
-
+        // --- INTERACT ---
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if(currentDoor != null)
+            if (currentDoor != null)
             {
                 Vector3 currentPosition = transform.position;
                 Vector3 targetPosition = currentDoor.GetComponent<Doors>().GetDestination().position;
@@ -149,8 +131,6 @@ public class PlayerManager : Player, Subject
                 Camera.instance.UpdateCameraPosition();
             }
         }
-
-        
     }
 
 

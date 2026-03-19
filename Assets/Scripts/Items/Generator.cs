@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Generator : MonoBehaviour, Subject
 {
@@ -11,7 +12,7 @@ public class Generator : MonoBehaviour, Subject
     private List<Observer> _observers;
 
     private GeneratorManager generatorManager;
-    public float RepairCounter = 60; // Contador inicializado en 60 segundos
+    public float RepairCounter; 
     private float startTimer; // variable para guardar
     private eventManager evMan;
 
@@ -25,86 +26,116 @@ public class Generator : MonoBehaviour, Subject
     public AudioClip Broke;
     Animator anim;
 
+    private Coroutine repairRoutine;
+
+    [SerializeField] private Image circularSlider;
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
+
         generatorManager = GeneratorManager.Instance;
         generatorManager.RegisterGenerator(this);
-        anim = GetComponent<Animator>();
+
         startTimer = RepairCounter;
-        //myLight = GetComponent<ChangesLightColor>();
-        //changeTag = GetComponent<DesactiveColLihgt>();
+
         _observers = new List<Observer>();
         evMan = FindObjectOfType<eventManager>();
+
+        UpdateUI(); // Actualizamos la UI al inicio por si acaso
     }
+
     private void Update()
     {
-        if(canSpaceInp == true && !isRepaired)
+        if (canSpaceInp && !isRepaired)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 RepairGenerator();
-                audioSource.PlayOneShot(Repair);
             }
         }
     }
 
     public void RepairGenerator()
     {
+        if (isRepaired) return;
+
         isRepaired = true;
-        
-        StartCoroutine(RepairCountdown());
-        //myLight.ChangetoWhite();
-        //changeTag.ChangedTagToNoDamage();
-        audioSource.PlayOneShot(Repair);
+
+        if (repairRoutine != null)
+            StopCoroutine(repairRoutine);
+
+        repairRoutine = StartCoroutine(RepairCountdown());
+
+        audioSource.clip = Repair;
+        audioSource.Play();
+
         Notify();
         evMan.SendinteractionsGen(nameGen);
-
-
     }
 
     private IEnumerator RepairCountdown()
     {
-        while (isRepaired && RepairCounter > 0)
+        while (RepairCounter > 0)
         {
             yield return new WaitForSeconds(1f);
             RepairCounter--;
-            anim.SetBool("GenOk", true);
-            
+
+            // 3. ACTUALIZAMOS LA UI CADA VEZ QUE BAJA EL CONTADOR
+            UpdateUI();
+
+            // --- ESTADOS ---
+            if (RepairCounter >= 3)
+            {
+                anim.SetBool("GenOk", true);
+                anim.SetBool("GenBroking", false);
+                anim.SetBool("GenBroke", false);
+            }
+            else if (RepairCounter > 0 && RepairCounter < 3)
+            {
+                anim.SetBool("GenOk", false);
+                anim.SetBool("GenBroking", true);
+                anim.SetBool("GenBroke", false);
+
+                if (audioSource.clip != Broking)
+                {
+                    audioSource.clip = Broking;
+                    audioSource.Play();
+                }
+            }
         }
 
-        if(RepairCounter <= 15)
-        {
-            anim.SetBool("GenOk", false);
-            anim.SetBool("GenBroking", true);
-            audioSource.PlayOneShot(Broking);
-
-        }
-
-        if (RepairCounter > 15)
-        {
-            audioSource.PlayOneShot(Repair);
-        }
-
-        if (RepairCounter == 0)
-        {
-            NoRepairGenerator();
-            
-        }
+        NoRepairGenerator();
     }
 
     public void NoRepairGenerator()
     {
         isRepaired = false;
+
+        anim.SetBool("GenOk", false);
+        anim.SetBool("GenBroking", false);
         anim.SetBool("GenBroke", true);
-        
-        generatorManager.UnregisterGenerator(this);
+
         RepairCounter = startTimer;
-        //myLight.ChangetoPurple();
-        //changeTag.ChangedTagToDamage();
+
+        // 4. ACTUALIZAMOS LA UI AL REINICIARSE
+        UpdateUI();
+
+        audioSource.clip = Broke;
+        audioSource.Play();
+
         Notify();
-        audioSource.PlayOneShot(Broke);
-        
+    }
+
+    // --- NUEVO MÉTODO PARA ACTUALIZAR LA BARRA ---
+    private void UpdateUI()
+    {
+        if (circularSlider != null)
+        {
+            // Fill Amount necesita un valor entre 0 y 1. 
+            // Dividir el actual entre el máximo nos da el porcentaje exacto.
+            circularSlider.fillAmount = RepairCounter / startTimer;
+        }
     }
 
     public void EnableSpaceInput()
@@ -129,12 +160,9 @@ public class Generator : MonoBehaviour, Subject
 
     public void Notify()
     {
-        foreach(var observer in _observers)
+        foreach (var observer in _observers)
         {
             observer.UpdateState(subject: this);
         }
     }
 }
-
-
-
