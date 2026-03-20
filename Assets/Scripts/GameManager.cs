@@ -28,11 +28,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void Start()
-    {
-
-
-    }
+   
 
     // M�todo para pausar el juego
     public void PauseGame()
